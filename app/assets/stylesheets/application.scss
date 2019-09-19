@@ -13,4 +13,16 @@
  * require_tree .
  * require_self
  */
+
 @import 'bootstrap';
+
+#search-bar {
+  background: #000;
+}
+
+#nav {
+  background: #0c0c0c;
+}
+ul.navbar-nav {
+  margin: 0 auto;
+}
