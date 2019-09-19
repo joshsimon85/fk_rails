@@ -10,20 +10,20 @@
         =link_to 'Home', root_path, class: 'nav-link'
     -if active['about']
       %li.nav-item.active
-        = link_to nil, class: 'nav-link' do
+        = link_to about_path, class: 'nav-link' do
           About
           %span.sr-only (current)
     -else
       %li.nav-item
-        =link_to 'About', nil, class: 'nav-link'
+        =link_to 'About', about_path, class: 'nav-link'
     -if active['contact']
       %li.nav-item.active
-        = link_to nil, class: 'nav-link' do
+        = link_to contact_path, class: 'nav-link' do
           Contact
           %span.sr-only (current)
     -else
       %li.nav-item
-        =link_to 'Contact', nil, class: 'nav-link'
+        =link_to 'Contact', contact_path, class: 'nav-link'
     -if active['sign in']
       %li.nav-item.active
         = link_to nil, class: 'nav-link' do

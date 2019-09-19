@@ -1,2 +1,10 @@
 = render partial: 'shared/nav', locals: { active: 'home'}
-%h1 hello world
+%div.jumbotron.text-center
+  %h1.display-4
+    Freakish Performance
+  %p.lead
+    Performance Packages for RotorWay Helicopters
+  %hr.my-4
+  %p
+
+    = link_to 'Contact Us', nil, class: 'btn btn-primary btn-md', role: 'button'

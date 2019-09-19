@@ -11,33 +11,17 @@
 
   <body>
     <nav id="search-bar" class="navbar navbar-dark">
-      <a class="navbar-brand" href="#">
+      <%= link_to root_path, class: 'navbar-brand' do %>
         <img src="#" width="30" height="30" alt="">
         FrankenKopter
-      </a>
+      <% end %>
       <form class="form-inline">
         <input class="form-control mr-1" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          <%= fa_icon 'search' %>
+        </button>
       </form>
     </nav>
-    <!--
-    <nav id="nav" class="navbar navbar-expand-lg navbar-dark">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Sign In</a>
-        </li>
-      </ul>
-    </nav>
-    -->
     <%= yield %>
   </body>
 </html>
