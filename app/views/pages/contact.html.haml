@@ -1,1 +1,21 @@
+= javascript_pack_tag 'application'
 = render partial: 'shared/nav', locals: { active: 'contact' }
+%section.bg-light
+  %div.container
+    %div.col-md-6
+      %span.eyebrow.mb-1.text-primary GET IN TOUCH WITH US
+      %h2 We'll get back to you as soon as possible.
+    %div.row
+      = form_with model: Email.new, url: emails_path do |f|
+        %div.form-row.mb-3
+          %div.col-sm-12.col-md
+            = f.text_field :full_name, class: 'form-control form-control-minimal', placeholder: 'Full Name'
+          %div.col-sm-12.col-md
+            = f.text_field :email, class: 'form-control form-control-minimal', placeholder: 'Email'
+          %div.col-sm-12.col-md
+            = f.text_field :phone_number, class: 'form-control form-control-minimal', placeholder: 'Phone Number'
+        %div.form-row.mb-3
+          = f.rich_text_area :message, class: 'col-sm-12'
+        %hr
+        %div.form-row.mt-3
+          = f.submit 'Submit', class: 'btn btn-primary'
