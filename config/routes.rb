@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   get '/about', to: 'pages#about'
   get '/contact', to: 'pages#contact'
 
-  resource :emails, only: [:new, :create]
+  resource :emails, only: [:create]
 end

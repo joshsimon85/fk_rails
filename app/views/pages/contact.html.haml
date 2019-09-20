@@ -2,11 +2,12 @@
 = render partial: 'shared/nav', locals: { active: 'contact' }
 %section.bg-light
   %div.container
-    %div.col-md-6
-      %span.eyebrow.mb-1.text-primary GET IN TOUCH WITH US
-      %h2 We'll get back to you as soon as possible.
-    %div.row
-      = form_with model: Email.new, url: emails_path do |f|
+    %div.row.mt-5
+      %div.col-sm-12
+        %span.eyebrow.mb-1.text-primary GET IN TOUCH WITH US
+        %h2 We'll get back to you as soon as possible.
+    %div.row.mt-3
+      = form_with model: Email.new, url: emails_path, class: 'col' do |f|
         %div.form-row.mb-3
           %div.col-sm-12.col-md
             = f.text_field :full_name, class: 'form-control form-control-minimal', placeholder: 'Full Name'
@@ -14,8 +15,9 @@
             = f.text_field :email, class: 'form-control form-control-minimal', placeholder: 'Email'
           %div.col-sm-12.col-md
             = f.text_field :phone_number, class: 'form-control form-control-minimal', placeholder: 'Phone Number'
-        %div.form-row.mb-3
-          = f.rich_text_area :message, class: 'col-sm-12'
+        %div.form-row.mb-3.mt-5
+          %div.col
+            = f.rich_text_area :message, placeholder: 'Message'
         %hr
         %div.form-row.mt-3
-          = f.submit 'Submit', class: 'btn btn-primary'
+          = f.submit 'Submit', class: 'col-sm-2 btn btn-primary'
