@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'pages#index'
 
   get '/about', to: 'pages#about'
-  get '/contact', to: 'pages#contact'
+  get '/emails' => redirect('/emails/new')
 
-  resource :emails, only: [:create]
+  resources :emails, only: [:index, :new, :create]
 end
