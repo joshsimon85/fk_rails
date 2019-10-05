@@ -48,6 +48,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'fabrication', '~> 2.20', '>= 2.20.2'
   gem 'faker', '~> 2.4'
+  gem 'letter_opener', '~> 1.7'
   gem 'pry'
   gem 'rspec-rails', '~> 4.0.0.beta2'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'

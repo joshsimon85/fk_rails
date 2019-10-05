@@ -28,7 +28,6 @@ RSpec.feature 'User sends an email' do
     visit contact_path
 
     click_button "Submit"
-    expect(page).to have_text("There was a problem sending your email")
     expect(page).to have_text("Please fix the following 3 errors")
   end
 

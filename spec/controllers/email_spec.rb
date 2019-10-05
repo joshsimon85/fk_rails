@@ -30,12 +30,7 @@ RSpec.describe EmailsController do
     context 'with invalid inputs' do
       it 'renders the contact template' do
         post :create, params: { email: { full_name: 'Jon Doe'} }
-        expect(response).to render_template('pages/contact')
-      end
-
-      it 'sets the flash error message' do
-        post :create, params: { email: { email: 'jon@doe.com'} }
-        expect(flash[:error]).to be_present
+        expect(response).to render_template('emails/new')
       end
 
       it 'does not save the record to the database' do
