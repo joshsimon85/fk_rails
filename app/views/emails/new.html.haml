@@ -1,0 +1,33 @@
+= javascript_pack_tag 'application'
+= render partial: 'shared/nav', locals: { active: 'contact' }
+%section.bg-light.container
+  %div.row
+    %div.col-sm-12.mt-5
+      %h2.mb-1.text-primary GET IN TOUCH WITH US
+      %p.lead We'll get back to you as soon as possible.
+  - if @email.errors.present?
+    %div.alert.alert-danger.alert-dismissible.fade.show{role: 'alert'}
+      = button_tag(type: 'button', class: 'close', data: {dismiss: 'alert'}, aria: {label: 'Close'}) do
+        = content_tag :span, aria: {hidden: 'true'} do
+          &times;
+      - error_count = @email.errors.count
+      %h4.lead Please fix the following #{pluralize(error_count == 4 ? 3 : error_count, 'error')}:
+      %ul
+        - @email.errors.full_messages.each do |msg|
+          - unless msg == 'Email is invalid' && @email.errors[:email].include?("can't be blank")
+            %li= msg
+  %div.row.mt-3
+    = form_with url: contact_path, method: 'post', scope: 'email', local: true, class: 'col' do |f|
+      %div.form-row.mb-3
+        %div.col-sm-12.col-md
+          = f.text_field :full_name, class: 'form-control form-control-minimal', placeholder: 'Full Name'
+        %div.col-sm-12.col-md
+          = f.text_field :email, class: 'form-control form-control-minimal', placeholder: 'Email'
+        %div.col-sm-12.col-md
+          = f.text_field :phone_number, class: 'form-control form-control-minimal', placeholder: 'Phone Number'
+      %div.form-row.mb-3.mt-5
+        %div.col
+          = f.rich_text_area :message, placeholder: 'Message', class: ('field_with_errors' if @email.errors[:message].present?)
+      %hr
+      %div.form-row.mt-3.mb-5
+        = f.submit 'Submit', class: 'col-sm-2 btn btn-primary'

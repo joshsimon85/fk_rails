@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsFrankenKopter</title>
+    <title>FrankenKopter</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <%= render partial: 'shared/flash_notice' %>
     <nav id="search-bar" class="navbar navbar-dark">
       <%= link_to root_path, class: 'navbar-brand' do %>
         <img src="#" width="30" height="30" alt="">

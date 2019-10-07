@@ -1,3 +1,4 @@
+//= require actiontext
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -16,13 +17,39 @@
 @import 'font-awesome';
 @import 'bootstrap';
 
+// flash error global styling
+.alert.alert-dismissible.fade.show.alert-danger {
+  margin-bottom: 0;
+}
+
+.alert.alert-dismissible.fade.show.alert-success {
+  margin-bottom: 0;
+}
+
+// Navbar global styling
+#nav {
+  background: #0c0c0c;
+}
+
+ul.navbar-nav {
+  margin: 0 auto;
+}
+
+// Search Bar global styling
 #search-bar {
   background: #000;
 }
 
-#nav {
-  background: #0c0c0c;
+// Trix text editor
+#email_message {
+  min-height: 200px;
 }
-ul.navbar-nav {
-  margin: 0 auto;
+
+.trix-button--icon-code {
+  display: none;
+}
+
+// Input error fields
+.field_with_errors {
+  outline: 1px solid red;
 }
