@@ -1,4 +1,6 @@
 class EmailsController < ApplicationController
+  before_action :require_admin, except: [:new, :create]
+
   def new
     @email = Email.new
   end
