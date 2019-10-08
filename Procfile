@@ -1,3 +1,3 @@
 web: bundle exec puma -p $PORT
-sidkiq: bundle exec sidekiq -t 25
+worker: bundle exec sidekiq -t 25 -c 2
 redis:  redis-server
