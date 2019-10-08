@@ -1,6 +1,9 @@
 require 'rails_helper'
+require 'sidekiq/testing'
 
 RSpec.describe EmailsController do
+  Sidekiq::Testing.inline!
+
   describe 'POST create' do
     context 'with all valid inputs' do
       before do
@@ -23,7 +26,7 @@ RSpec.describe EmailsController do
       it 'sends out an email to the email creator' do
         sleep(1)
         expect(ActionMailer::Base.deliveries.count).to eq(2)
-        expect(ActionMailer::Base.deliveries.last.to).to eq(['kasey@frankenkopter.com'])
+        expect(ActionMailer::Base.deliveries.last.to).to eq(['support@frankenkopter.com'])
         expect(ActionMailer::Base.deliveries.first.from).to eq(['support@frankenkopter.com'])
       end
     end
