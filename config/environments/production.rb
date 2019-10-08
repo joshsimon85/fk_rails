@@ -64,7 +64,7 @@ Rails.application.configure do
   config.active_job.queue_name_prefix = "rails_franken_kopter_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.delivery_method = :stmp
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :authentication => :plain,
     :address => ENV['MAILGUN_SMTP_LOGIN'],
