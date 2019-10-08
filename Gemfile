@@ -48,6 +48,7 @@ gem 'webpacker', '~> 4.0', '>= 4.0.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
   gem 'fabrication', '~> 2.20', '>= 2.20.2'
   gem 'faker', '~> 2.4'
   gem 'pry'
