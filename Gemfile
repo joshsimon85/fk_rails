@@ -42,6 +42,7 @@ gem 'haml', '~> 5.1', '>= 5.1.2'
 gem 'jquery-rails'
 gem 'image_processing', '~> 1.9', '>= 1.9.3'
 gem 'pg', '~> 1.1', '>= 1.1.4'
+gem 'sidekiq', '~> 6.0', '>=6.0.1'
 gem 'webpacker', '~> 4.0', '>= 4.0.7'
 
 group :development, :test do

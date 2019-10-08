@@ -6,8 +6,7 @@ class EmailsController < ApplicationController
   def create
     @email = Email.create(email_params)
     if @email.valid?
-      UserMailer.with(email: @email).contact_page_email.deliver_later
-      AdminMailer.with(email: @email).contact_page_email.deliver_later
+      EmailWorker.perform_later(@email.id)
       flash[:success] = 'Your email has been sent'
       redirect_to root_path
     else
