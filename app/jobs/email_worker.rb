@@ -3,7 +3,7 @@ class EmailWorker < ApplicationJob
 
   def perform(email_id)
     send_user_email(email_id)
-    send_admin_email(email_id)
+    #send_admin_email(email_id)
   end
 
   private
