@@ -1,6 +1,8 @@
 class EmailWorker < ApplicationJob
+  include Sidekiq::Worker
   queue_as :default
-
+  sidekiq_options retry: false, backtrace: true
+  
   def perform(email_id)
     send_user_email(email_id)
     send_admin_email(email_id)
