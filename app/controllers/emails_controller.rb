@@ -6,7 +6,8 @@ class EmailsController < ApplicationController
   def create
     @email = Email.create(email_params)
     if @email.valid?
-      EmailWorker.perform_later(@email.id)
+      EmailWorker.perform_later('user', @email.id)
+      EmailWorker.perform_later('admin', @email.id)
       flash[:success] = 'Your email has been sent'
       redirect_to root_path
     else
