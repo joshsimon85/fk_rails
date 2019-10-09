@@ -2,9 +2,8 @@ class EmailWorker < ApplicationJob
   queue_as :default
 
   def perform(email_id)
-    puts "#{Email.find(email_id)}"
-    #send_user_email(email_id)
-    #send_admin_email(email_id)
+    send_user_email(email_id)
+    send_admin_email(email_id)
   end
 
   private
