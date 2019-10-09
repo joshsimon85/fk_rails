@@ -7,12 +7,12 @@ class EmailWorker < ApplicationJob
   end
 
   private
-  
+
   def send_user_email(email_id)
-    UserMailer.contact_page_email(email_id).deliver
+    UserMailer.contact_page_email(email_id).deliver_now
   end
 
   def send_admin_email(email_id)
-    AdminMailer.contact_page_email(email_id).deliver
+    AdminMailer.contact_page_email(email_id).deliver_now
   end
 end
