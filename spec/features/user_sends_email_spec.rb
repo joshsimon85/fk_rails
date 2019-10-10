@@ -41,7 +41,7 @@ RSpec.feature 'User sends an email' do
     visit contact_path
 
     click_button "Submit"
-    expect(page).to have_text("Please fix the following 3 errors")
+    expect(page).to have_text("The following 4 errors prevented your email from being sent:")
 
   end
 
@@ -54,6 +54,15 @@ RSpec.feature 'User sends an email' do
 
     click_button "Submit"
 
-    expect(page).to have_text("Please fix the following 1 error:")
+    expect(page).to have_text("The following 1 error prevented your email from being sent:")
+  end
+
+  scenario 'user creates a new email with valid full_name' do
+    visit contact_path
+
+    fill_in 'email_full_name', :with => 'Jon'
+
+    click_button 'Submit'
+    expect(page).to have_text('The following 3 errors prevented your email ')
   end
 end

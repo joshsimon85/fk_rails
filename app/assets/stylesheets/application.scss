@@ -17,12 +17,46 @@
 @import 'font-awesome';
 @import 'bootstrap';
 
-// flash error global styling
-.alert.alert-dismissible.fade.show.alert-danger {
-  margin-bottom: 0;
+// heading global
+h1 {
+  font-size: 36px;
 }
 
-.alert.alert-dismissible.fade.show.alert-success {
+// font weights
+.bold {
+  font-weight: bold;
+}
+
+// flash error global styling
+.alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+}
+
+.alert-alert {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+}
+
+.alert-notice {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+}
+
+.alert {
   margin-bottom: 0;
 }
 
@@ -35,6 +69,25 @@ ul.navbar-nav {
   margin: 0 auto;
 }
 
+.dropdown-menu.show {
+  background: rgb(11, 11, 11);
+}
+
+.dropdown-item {
+  color: #858585;
+  font-size: .9rem;
+  text-align: center;
+}
+
+.dropdown-divider {
+  border-top: 1px solid #858585;
+}
+
+.dropdown-item:hover {
+  background: inherit;
+  color: #fff;
+}
+
 // Search Bar global styling
 #search-bar {
   background: #000;
@@ -42,6 +95,7 @@ ul.navbar-nav {
 
 // Trix text editor
 #email_message {
+  background: #fff;
   min-height: 200px;
 }
 
@@ -49,7 +103,38 @@ ul.navbar-nav {
   display: none;
 }
 
+#email_message.field_with_errors {
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(114, 28, 36, .6);
+}
+
 // Input error fields
-.field_with_errors {
-  outline: 1px solid red;
+.field_with_errors > input {
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(114, 28, 36, .6);
+}
+
+// Break points
+@media (min-width: 576px) {
+  .partial-38 {
+    border-radius: 4px;
+    margin: 30px auto;
+    padding: 10px;
+    width: 90%;
+  }
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+  .partial-38 {
+    width: 38%;
+    margin: 40px auto;
+  }
+}
+
+@media (min-width: 1200px) {
+
 }

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   root to: 'pages#index'

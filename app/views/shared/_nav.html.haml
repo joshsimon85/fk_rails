@@ -1,5 +1,5 @@
 %nav#nav.navbar.navbar-expand-lg.navbar-dark
-  %ul.navbar-nav.mr-auto
+  %ul.navbar-nav
     -if active['home']
       %li.nav-item.active
         = link_to root_path, class: 'nav-link' do
@@ -24,11 +24,24 @@
     -else
       %li.nav-item
         =link_to 'Contact', contact_path, class: 'nav-link'
-    -if active['sign in']
-      %li.nav-item.active
-        = link_to nil, class: 'nav-link' do
-          Sign In
-          %span.sr-only (current)
+    -if active['accounts']
+      %li.nav-item.dropdown.active
+        %span.sr-only (current)
+        =link_to nil, class: 'nav-link dropdown-toggle', id: 'navbarDropdown', role: 'button', data: {toggle: 'dropdown'}, aria: {haspopup: 'true', expanded: 'false'} do
+          Accounts
+        %ul.dropdown-menu{ aria: {labelledby: 'navbarDropdown'}}
+          %li
+            =link_to 'Create An Account', new_user_registration_path, class: 'dropdown-item'
+          %li.dropdown-divider
+          %li
+            =link_to 'Sign In', new_user_session_path, class: 'dropdown-item'
     -else
-      %li.nav-item
-        =link_to 'Sign In', nil, class: 'nav-link'
+      %li.nav-item.dropdown
+        =link_to nil, class: 'nav-link dropdown-toggle', id: 'navbarDropdown', role: 'button', data: {toggle: 'dropdown'}, aria: {haspopup: 'true', expanded: 'false'} do
+          Accounts
+        %ul.dropdown-menu{ aria: {labelledby: 'navbarDropdown'}}
+          %li
+            =link_to 'Create An Account', new_user_registration_path, class: 'dropdown-item'
+          %li.dropdown-divider
+          %li
+            =link_to 'Sign In', new_user_session_path, class: 'dropdown-item'

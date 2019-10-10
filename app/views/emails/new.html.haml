@@ -3,7 +3,7 @@
 %section.bg-light.container
   %div.row
     %div.col-sm-12.mt-5
-      %h2.mb-1.text-primary GET IN TOUCH WITH US
+      %h1.mb-1.text-primary GET IN TOUCH WITH US
       %p.lead We'll get back to you as soon as possible.
   - if @email.errors.present?
     %div.alert.alert-danger.alert-dismissible.fade.show{role: 'alert'}
@@ -11,11 +11,10 @@
         = content_tag :span, aria: {hidden: 'true'} do
           &times;
       - error_count = @email.errors.count
-      %h4.lead Please fix the following #{pluralize(error_count == 4 ? 3 : error_count, 'error')}:
+      %h4.lead.bold The following #{pluralize(error_count, 'error')} prevented your email from being sent:
       %ul
         - @email.errors.full_messages.each do |msg|
-          - unless msg == 'Email is invalid' && @email.errors[:email].include?("can't be blank")
-            %li= msg
+          %li= msg
   %div.row.mt-3
     = form_with url: contact_path, method: 'post', scope: 'email', local: true, class: 'col' do |f|
       %div.form-row.mb-3
