@@ -30,5 +30,16 @@ workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 #
 preload_app!
 
+on_worker_boot do
+  ActiveRecord::Base.establish_connection
+
+  if ENV['REDIS_PROVIDER']
+    uri = URI.parse(ENV['REDIS_PROVIDER'])
+    Redis.current = Redis.new(:url => uri)
+    $redis = Redis.current
+  else
+    Redis.current.quit
+  end
+end 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
