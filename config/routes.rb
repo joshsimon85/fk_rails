@@ -5,9 +5,18 @@ Rails.application.routes.draw do
   }
 
   resources :admins, only: [:index] do
+    resources :emails, only: [:index, :show, :delete, :destroy] do
+      collection do
+        delete 'destroy_multiple'
+      end
+    end 
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'
   end
+
+  resources :users, only: :show
+
+  resources :emails, only: [:new, :create]
 
   root to: 'pages#index'
 

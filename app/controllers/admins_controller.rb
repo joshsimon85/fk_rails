@@ -1,6 +1,7 @@
-class AdminsController < ApplicationController
+class AdminsController < UsersController
+  before_action :require_admin!
+
   def index
-    @user = current_user
     @email_count = Email.count
   end
 end
