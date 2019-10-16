@@ -4,10 +4,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :admins, only: [:index]
+  resources :admins, only: [:index] do
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
-  require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
   root to: 'pages#index'
 
   get '/about', to: 'pages#about'

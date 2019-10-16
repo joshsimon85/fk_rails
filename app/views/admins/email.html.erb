@@ -1,0 +1,71 @@
+<%= render partial: 'shared/nav', locals: { active: 'dashboard'} %>
+<header>
+  <p> Welcome <%= @user.full_name %>!</p>
+</header>
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Admin Panel</span>
+          <%= fa_icon 'plus-circle' %>
+        </h6>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <%= link_to admins_path, class: 'nav-link active' do %>
+              <%= fa_icon 'home' %>
+              Home
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to nil, class: 'nav-link' do %>
+              <%= fa_icon 'file' %>
+              Orders
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to nil, class: 'nav-link' do %>
+              <%= fa_icon 'envelope' %>
+              Emails
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to nil, class: 'nav-link' do %>
+              <%= fa_icon 'users' %>
+              Customers
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to nil, class: 'nav-link' do %>
+              <%= fa_icon 'folder-open' %>
+              Reports
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to nil, class: 'nav-link' do %>
+              <%= fa_icon 'code' %>
+              Queue
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Dashboard</h1>
+          Welcome <%= @user.full_name %>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

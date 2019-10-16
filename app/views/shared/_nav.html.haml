@@ -19,12 +19,21 @@
         =link_to 'About', about_path, class: 'nav-link'
     -if active['contact']
       %li.nav-item.active
-        = link_to contact_path, class: 'nav-link' do
+        =link_to contact_path, class: 'nav-link' do
           Contact
           %span.sr-only (current)
     -else
       %li.nav-item
         =link_to 'Contact', contact_path, class: 'nav-link'
+    -if user_signed_in? && current_user.admin?
+      -if active['dashboard']
+        %li.nav-item.active
+          =link_to admins_path, class: 'nav-link' do
+            Dashboard
+            %span.sr-only (current)
+      -else
+        %li.nav-item
+          =link_to 'Dashboard', admins_path, class: 'nav-link'
     -if user_signed_in?
       =render partial: 'shared/signed_in_dropdown', locals: {active: active}
     -else
@@ -32,4 +41,4 @@
   %ul.navbar-nav.col-sm.justify-content-end
     -if user_signed_in?
       %li
-        =link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-primary'
+        =link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-primary'

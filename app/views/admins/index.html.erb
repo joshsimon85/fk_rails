@@ -1,0 +1,78 @@
+<%= render partial: 'shared/nav', locals: { active: 'dashboard'} %>
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span><%= @user.full_name.titleize %> (Admin)</span>
+          <%= fa_icon 'plus-circle' %>
+        </h6>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <%= link_to admins_path, class: 'nav-link active' do %>
+              <%= fa_icon 'home' %>
+              Home
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to nil, class: 'nav-link' do %>
+              <%= fa_icon 'credit-card' %>
+              Payments
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to nil, class: 'nav-link' do %>
+              <%= fa_icon 'envelope' %>
+              Emails
+              <span class="badge badge-primary badge-pill pull-right"><%= @email_count %></span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to nil, class: 'nav-link' do %>
+              <%= fa_icon 'pencil' %>
+              Testimonials
+              <span class="badge badge-primary badge-pill pull-right">1</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to nil, class: 'nav-link' do %>
+              <%= fa_icon 'users' %>
+              Customers
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to nil, class: 'nav-link' do %>
+              <%= fa_icon 'folder-open' %>
+              Reports
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to admin_sidekiq_web_path(@user), class: 'nav-link' do %>
+              <%= fa_icon 'database' %>
+              Queue
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <header class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+      </header>
+      <section class="jumbotron">
+        <section>
+          <h2 class="h4">Emails</h2>
+          <p class="lead">You have <%= @email_count %> unread <%= 'email'.pluralize(@email_count) %>!</p>
+          <%= link_to 'Unread Emails', nil %>
+        </section>
+        <hr class="my-4">
+        <section>
+          <h2 class="h4">Testimonials</h2>
+          <p class="lead">You have 1 new testimonial!</p>
+          <%= link_to 'New Testimonials', nil %>
+        </section>
+      </section>
+    </main>
+  </div>
+</div>
