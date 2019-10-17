@@ -1,12 +1,12 @@
 class EmailsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :show, :delete, :destroy]
   before_action :require_admin!, only: [:index, :show, :delete, :destroy, :multiple_delete]
+  before_action :set_records_count!, except: [:new, :create]
+  before_action :set_current_page!, except: [:new, :create, :show]
+  before_action :set_order!, except: [:new, :create, :show]
 
   def index
-    page = params[:page] || 1
-    @current_page = page.to_i
-    @emails = Email.limit(10).offset(10 * (@current_page - 1))
-    @email_count = Email.count
+    @emails = Email.limit_and_sort_emails(10 * (@current_page - 1), @order)
   end
 
   def new
@@ -27,36 +27,44 @@ class EmailsController < ApplicationController
 
   def show
     @email = Email.find(params[:id])
-    @email_count = Email.count
   end
 
   def destroy
-    current_page = params[:page].to_i
-    user = User.find(params[:admin_id])
     Email.destroy(params[:id])
     flash[:success] = 'The email record has been removed'
-    redirect_to after_email_delete_path(user, current_page)
+    redirect_to admin_emails_path(current_user, :page => @current_page, :order => @order)
   end
 
   def destroy_multiple
-    user = User.find(params[:admin_id])
-    current_page = params[:page].to_i
     email_ids = params[:emails].keys.map(&:to_i)
     Email.where(id: email_ids).delete_all
     flash[:success] = 'The email records have been removed'
-    redirect_to after_email_delete_path(user, current_page)
+    redirect_to admin_emails_path(current_user, :page => @current_page, :order => @order)
   end
 
   private
 
-  def after_email_delete_path(user, current_page)
-    record_count = Email.count
-    if current_page == 0
-      admin_emails_path(user)
-    elsif current_page <= (record_count / 10.0).ceil
-      admin_emails_path(user, :page => current_page)
+  def set_records_count!
+    @records_count = Email.count
+  end
+
+  def set_current_page!
+    total_pages = (@records_count / 10.0).ceil
+    page = params[:page].to_i
+    if page == 0
+      @current_page = 1
+    elsif total_pages < page
+      @current_page = total_pages
     else
-      admin_emails_path(user, :page => (record_count / 10.0).ceil)
+      @current_page = page
+    end
+  end
+
+  def set_order!
+    if %w(desc asc).include?(params[:order])
+      @order = params[:order]
+    else
+      @order = 'desc'
     end
   end
 

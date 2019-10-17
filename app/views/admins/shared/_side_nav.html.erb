@@ -7,45 +7,45 @@
     <ul class="nav flex-column">
       <li class="nav-item">
         <%= link_to admins_path, class: 'nav-link active' do %>
-          <%= fa_icon 'home' %>
+          <%= fa_icon 'home', class: 'pr-1' %>
           Home
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to nil, class: 'nav-link' do %>
-          <%= fa_icon 'credit-card' %>
+          <%= fa_icon 'credit-card', class: 'pr-1' %>
           Payments
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to admin_emails_path(current_user), class: 'nav-link' do %>
-          <%= fa_icon 'envelope' %>
+          <%= fa_icon 'envelope', class: 'pr-1' %>
           Emails
-          <span class="badge badge-primary badge-pill pull-right"><%= @email_count %></span>
+          <span class="badge badge-primary badge-pill pull-right"><%= @records_count %></span>
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to nil, class: 'nav-link' do %>
-          <%= fa_icon 'pencil' %>
+          <%= fa_icon 'pencil', class: 'pr-1' %>
           Testimonials
           <span class="badge badge-primary badge-pill pull-right">1</span>
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to nil, class: 'nav-link' do %>
-          <%= fa_icon 'users' %>
+          <%= fa_icon 'users', class: 'pr-1' %>
           Customers
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to nil, class: 'nav-link' do %>
-          <%= fa_icon 'folder-open' %>
+          <%= fa_icon 'folder-open', class: 'pr-1' %>
           Reports
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to admin_sidekiq_web_path(current_user), class: 'nav-link' do %>
-          <%= fa_icon 'database' %>
+          <%= fa_icon 'database', class: 'pr-1' %>
           Queue
         <% end %>
       </li>
