@@ -10,49 +10,51 @@
         </h1>
       </header>
       <section class="bg-light p-3 mb-3">
-        <%= form_for :emails, url: destroy_multiple_admin_emails_path(current_user, :page => @current_page), method: :delete do |f| %>
-          <% @emails.each_with_index do |email, idx| %>
-            <dl class="row">
-              <dt class="col-sm-1">Email:</dt>
-              <dd class="col-sm-4"><%= email.email %></dd>
-              <dt class="col-sm-1">Name:</dt>
-              <dd class="col-sm-2"><%= email.full_name %></dd>
-              <dt class="col-sm-1">Sent:</dt>
-              <dd class="col-sm-3"><%= format_datetime(email.created_at) %></dd>
-            </dl>
-            <div class="row">
-              <div class="col-sm-12">
-                <%= check_box_tag "emails[#{email.id}]", true %>
-                <%= link_to 'View', admin_email_path(current_user, email, :page => @current_page), class: "btn btn-sm btn-outline-secondary ml-2" %>
-                <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#email-<%= email.id %>">
-                  Delete
-                </button>
-                <div class="modal fade" id="email-<%= email.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="modal-title-<%= email.id %>">Are you sure you want to delete this email?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        This action can't be undone
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                        <%= link_to 'Delete', admin_email_path(current_user, email), method: :delete, class: 'btn btn-outline-danger' %>
+        <% if @emails_count == 0 %>
+          <h2>You don't have any stored emails</h2>
+        <% else %>
+          <%= form_for :emails, url: destroy_multiple_admin_emails_path(current_user, :page => @current_page), method: :delete do |f| %>
+            <% @emails.each_with_index do |email, idx| %>
+              <dl class="row">
+                <dt class="col-sm-1">Email:</dt>
+                <dd class="col-sm-4"><%= email.email %></dd>
+                <dt class="col-sm-1">Name:</dt>
+                <dd class="col-sm-2"><%= email.full_name %></dd>
+                <dt class="col-sm-1">Sent:</dt>
+                <dd class="col-sm-3"><%= format_datetime(email.created_at) %></dd>
+              </dl>
+              <div class="row">
+                <div class="col-sm-12">
+                  <%= check_box_tag "emails[#{email.id}]", true %>
+                  <%= link_to 'View', admin_email_path(current_user, email), class: "btn btn-sm btn-outline-secondary ml-2" %>
+                  <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#email-<%= email.id %>">
+                    Delete
+                  </button>
+                  <div class="modal fade" id="email-<%= email.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="modal-title-<%= email.id %>">Are you sure you want to delete this email?</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          This action can't be undone
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                          <%= link_to 'Delete', admin_email_path(current_user, email, :page => @current_page), method: :delete, class: 'btn btn-outline-danger' %>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <% unless idx + 1 == @email_count  %>
               <hr class="my-4">
             <% end %>
+            <%= f.submit 'Delete Selected', class: "btn btn-outline-danger" %>
           <% end %>
-          <%= f.submit 'Delete Selected', class: "btn btn-outline-danger" %>
         <% end %>
       </section>
       <%= render partial: 'shared/pagination', locals: {records_count: @email_count} %>
