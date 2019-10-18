@@ -51,4 +51,96 @@ RSpec.describe EmailsController do
       end
     end
   end
+
+  describe 'GET index' do
+    context 'with logged in valid admin' do
+      let(:admin) { Fabricate(:user, admin: true) }
+
+      it 'renders the index template with valid admin' do
+        sign_in(admin, scope: :user)
+        get :index, params: { admin_id: admin.id }
+        expect(response).to render_template(:index)
+      end
+    end
+
+    context 'with logged in user that is not an admin' do
+      let(:user) { Fabricate(:user) }
+
+      before(:each) do
+        sign_in(user, scope: :user)
+        get :index, params: { admin_id: user.id }
+      end
+
+      it 'redirects to the root path' do
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'sets the flash error message' do
+        expect(flash[:error]).to be_present
+      end
+    end
+
+    context 'with non authenticated user' do
+      let(:user) { Fabricate(:user) }
+
+      before(:each) do
+        get :index, params: { admin_id: user.id }
+      end
+
+      it 'redirects to the sign in path' do
+        expect(response).to redirect_to(new_user_session_path)
+      end
+
+      it 'sets the flash alert message' do
+        expect(flash[:alert]).to be_present
+      end
+    end
+  end
+
+  describe 'GET show' do
+    let(:email) { Fabricate(:email) }
+
+    context 'with authenticated admin' do
+      let(:admin) { Fabricate(:user, admin: true) }
+
+      it 'renders the show page' do
+        sign_in(admin, scope: :user)
+        get :show, params: { admin_id: admin.id, id: email.id }
+        expect(response).to render_template(:show)
+      end
+    end
+
+    context 'with authenticated user without admin credentials' do
+      let(:user) { Fabricate(:user) }
+
+      before(:each) do
+        sign_in(user, scope: :user)
+        get :show, params: { admin_id: user.id, id: email.id }
+      end
+
+      it 'redirects to the root path' do
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'sets the flash error message' do
+        expect(flash[:error]).to be_present
+      end
+    end
+
+    context 'without authenticated user' do
+      let(:user) { Fabricate(:user) }
+
+      before(:each) do
+        get :show, params: { admin_id: user.id, id: email.id }
+      end
+
+      it 'redirects to the root path' do
+        expect(response).to redirect_to(new_user_session_path)
+      end
+
+      it 'sets the flash error message' do
+        expect(flash[:alert]).to be_present
+      end
+    end
+  end
 end
