@@ -8,7 +8,6 @@ class TestimonialsController < ApplicationController
       flash[:error] = 'An error was encountered while processing your request!'
        redirect_to expired_token_path
     end
-    #@testimonial = Testimonial.find_by(token: params[:token])
   end
 
   def create
