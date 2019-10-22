@@ -1,0 +1,5 @@
+= render partial: 'shared/nav', locals: { active: '' }
+%section.text-center.min-vh-100
+  %h2.h4.token_error
+    That token has expired or has been used. If you believe you have reached this
+    page in error please contact #{mail_to 'support@frankenkopter.com'}

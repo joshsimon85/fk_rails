@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   post '/contact', to: 'emails#create'
   get '/testimonial/:token', to: 'testimonials#new', as: 'new_user_testimonial'
   post '/testimonial/:token', to: 'testimonials#create'
+  get 'expired_token', to: 'testimonials#expired_token', as: 'expired_token'
 end

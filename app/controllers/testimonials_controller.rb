@@ -5,7 +5,8 @@ class TestimonialsController < ApplicationController
     if @user
       @testimonial = Testimonial.new
     else
-       # redirect_to expired token path
+      flash[:error] = 'An error was encountered while processing your request!'
+       redirect_to expired_token_path
     end
     #@testimonial = Testimonial.find_by(token: params[:token])
   end
@@ -21,6 +22,8 @@ class TestimonialsController < ApplicationController
       render 'new'
     end
   end
+
+  def expired_token; end
 
   private
 
