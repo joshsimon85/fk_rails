@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       collection do
         delete 'destroy_multiple'
       end
-    end 
+    end
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'
   end
@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   get '/about', to: 'pages#about'
   get '/contact', to: 'emails#new'
   post '/contact', to: 'emails#create'
+  get '/testimonial/:token', to: 'testimonials#new', as: 'new_user_testimonial'
+  post '/testimonial/:token', to: 'testimonials#create'
 end

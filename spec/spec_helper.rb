@@ -13,8 +13,8 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'capybara/email/rspec'
 require 'capybara/rspec'
+require 'capybara/email/rspec'
 require 'sidekiq/testing'
 
 Sidekiq::Testing.inline!
@@ -99,7 +99,8 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-  
+  config.order = :random
+
   config.before(:suite) do
    if config.use_transactional_fixtures?
      raise(<<-MSG)

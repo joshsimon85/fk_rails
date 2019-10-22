@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe EmailsController do
   describe 'POST create' do
-    before do
+    before(:each) do
       sleep(0.1)
       ActionMailer::Base.deliveries.clear
     end
 
     context 'with all valid inputs' do
-      before do
+      before(:each) do
         post :create, params: { email: Fabricate.attributes_for(:email , full_name: 'Jon Doe', phone_number: Faker::PhoneNumber.phone_number) }
       end
 
