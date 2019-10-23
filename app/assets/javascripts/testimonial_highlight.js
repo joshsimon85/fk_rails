@@ -1,4 +1,4 @@
 $(function() {
-  const CHARS_REMAINING = $('#characters_remaining');
-  const HIGHLIGHT = $('#testimonial_highlight');
+  var chars_remaining = $('#characters_remaining');
+  var chars_remaining = $('#testimonial_highlight');
 });
