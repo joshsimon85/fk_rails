@@ -1,12 +1,6 @@
-class EmailsController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :show, :delete, :destroy]
-  before_action :require_admin!, only: [:index, :show, :delete, :destroy, :multiple_delete]
-  before_action :set_records_count!, except: [:new, :create]
-  before_action :set_current_page!, except: [:new, :create, :show]
-  before_action :set_order!, except: [:new, :create, :show]
-
+class EmailsController < AdminsController
   def index
-    @emails = Email.limit_and_sort_emails(10 * (@current_page - 1), @order)
+    @emails = Email.limit_and_sort(10 * (@current_page - 1), @order)
   end
 
   def new
@@ -43,30 +37,6 @@ class EmailsController < ApplicationController
   end
 
   private
-
-  def set_records_count!
-    @records_count = Email.count
-  end
-
-  def set_current_page!
-    total_pages = (@records_count / 10.0).ceil
-    page = params[:page].to_i
-    if page == 0
-      @current_page = 1
-    elsif total_pages < page
-      @current_page = total_pages
-    else
-      @current_page = page
-    end
-  end
-
-  def set_order!
-    if %w(desc asc).include?(params[:order])
-      @order = params[:order]
-    else
-      @order = 'desc'
-    end
-  end
 
   def email_params
     params.require(:email).permit(:full_name, :email, :phone_number, :message)

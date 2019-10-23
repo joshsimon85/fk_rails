@@ -1,0 +1,61 @@
+<%= javascript_pack_tag 'application' %>
+<%= javascript_include_tag  'testimonial_highlight'%>
+<%= render partial: 'shared/nav', locals: { active: 'dashboard'} %>
+<div class="container-fluid">
+  <div class="row">
+    <%= render partial: 'admins/shared/side_nav' %>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <header class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">
+          Dashboard
+          <span class="lead">/ Testimonials / Show</span>
+        </h1>
+      </header>
+      <section class="bg-light p-3 mb-3">
+        <%= form_for @testimonial, url: admin_testimonial_path(current_user, @testimonial), method: :patch do |f| %>
+          <section class="row">
+            <dl class="col-sm">
+              <dt>Full Name:</dt>
+              <dd><%= @testimonial.user.full_name.titleize %></dd>
+            </dl>
+            <dl class="col-sm">
+              <dt>Email Address:</dt>
+              <dd><%= @testimonial.user.email %></dd>
+            </dl>
+            <dl class="col-sm">
+              <dt>Submitted:</dt>
+              <dd><%= format_datetime(@testimonial.created_at) %></dd>
+            </dl>
+            <dl class="col-sm">
+              <dt>Published:</dt>
+              <% if @testimonial.published == true %>
+                <dd class="text-success"><%= @testimonial.published %></dd>
+              <% else %>
+                <dd class="text-danger"><%= @testimonial.published %></dd>
+              <% end %>
+            </dl>
+          </section>
+          <hr class="my-4">
+          <section class="row">
+            <dl class="col-sm">
+              <dt>Message:</dt>
+              <dd class="px-5 pt-5"><%= @testimonial.message %></dd>
+            </dl>
+          </section>
+          <hr class="my-4">
+          <section class="row">
+            <dl class="col-sm-12">
+              <dt class="mb-3">Highlight: <span>(Truncated Version)</span></dt>
+              <dd>
+                <%= f.rich_text_area :highlight %>
+              </dd>
+            </dl>
+            <p id="characters_remaining" class="text-success">(150 Characters Remaining)</p>
+          </section>
+          <hr class="my-4">
+          <%= f.submit 'Publish Testimonial', class: 'btn btn-outline-secondary' %>
+        <% end %>
+      </section>
+    </main>
+  </div>
+</div>

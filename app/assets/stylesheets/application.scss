@@ -99,7 +99,7 @@ ul.navbar-nav {
 }
 
 // Trix text editor
-#email_message, #testimonial_message {
+#email_message, #testimonial_message, #testimonial_highlight {
   background: #fff;
   min-height: 200px;
 }
@@ -129,6 +129,17 @@ ul.navbar-nav {
 .token_error > a {
   color: #dc3545;
   font-weight: bold;
+}
+
+// Dl list
+dt > span {
+  color: #6C757D;
+  font-weight: normal;
+}
+
+// Testimonials
+#characters_remaining {
+  padding-left: 15px;
 }
 
 // Break points

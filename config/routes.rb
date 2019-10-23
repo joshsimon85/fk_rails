@@ -10,6 +10,13 @@ Rails.application.routes.draw do
         delete 'destroy_multiple'
       end
     end
+
+    resources :testimonials, only: [:index, :show, :delete, :destroy, :patch, :update] do
+      collection do
+        delete 'destroy_multiple'
+      end
+    end
+
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'
   end

@@ -6,3 +6,6 @@ user_2 = User.create(full_name: Faker::Name.name, email: 'user2@test.com', phone
 21.times do
   Email.create(full_name: Faker::Name.name, email: Faker::Internet.email, phone_number: Faker::PhoneNumber.phone_number, message: Faker::Lorem.paragraphs(number: 4).join(','))
 end
+
+Testimonial.create(user_id: 1, message: Faker::Lorem.paragraphs(number: 4).join(','))
+Testimonial.create(user_id: 2, message: Faker::Lorem.paragraphs(number: 4).join(','), published: true)
