@@ -37,8 +37,19 @@ class TestimonialsController < AdminsController
   end
 
   def update
-    #params[:testimonial]
-    #first check if it is valid create custom validations
+    @testimonial = Testimonial.find(params[:id])
+    @testimonial.update(
+      :created_by => params[:testimonial][:created_by],
+      :highlight => params[:testimonial][:highlight],
+      :published => params[:testimonial][:published]
+    )
+    if @testimonial.valid?
+      flash[:success] = 'The testimonial has been published'
+      redirect_to admin_testimonials_path(current_user)
+    else
+      flash.now[:error] = 'The testimonial could not be updated'
+      render :show
+    end
   end
 
   def expired_token; end

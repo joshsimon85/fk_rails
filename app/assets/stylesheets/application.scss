@@ -108,7 +108,7 @@ ul.navbar-nav {
   display: none;
 }
 
-#email_message.field_with_errors {
+#email_message.field_with_errors, #testimonial_message.field_with_errors, #testimonial_highlight.field_with_errors {
   outline: 0;
   box-shadow: 0 0 0 3px rgba(114, 28, 36, .6);
 }
@@ -132,8 +132,9 @@ ul.navbar-nav {
 }
 
 // Dl list
-dt > span {
+dt > label > span {
   color: #6C757D;
+  font-size: 14px;
   font-weight: normal;
 }
 
@@ -144,6 +145,13 @@ dt > span {
 
 #testimonial_created_by {
   border-radius: 4px;
+}
+
+.edit_testimonial select {
+  display: block;
+  height: 35px;
+  margin-top: 8px;
+  width: 65px;
 }
 
 // Break points

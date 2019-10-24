@@ -12,6 +12,25 @@
       </header>
       <section class="bg-light p-3 mb-3">
         <%= form_for @testimonial, url: admin_testimonial_path(current_user, @testimonial), method: :patch do |f| %>
+          <% if @testimonial.errors.present? %>
+            <section class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+              <%= button_tag(type: 'button', class: 'close', data: {dismiss: 'alert'}, aria: {label: 'Close'}) do %>
+                <%= content_tag :span, aria: {hidden: 'true'} do %>
+                  &times;
+                <% end %>
+              <% end %>
+              <% error_count = @testimonial.errors.count %>
+              <h4 class="lead bold">
+                The following <%= pluralize(error_count, 'error') %>
+                prevented your email from being sent:
+              </h4>
+              <ul>
+                <% @testimonial.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </section>
+          <% end %>
           <section class="row">
             <dl class="col-sm">
               <dt>Full Name:</dt>
@@ -34,11 +53,26 @@
               <% end %>
             </dl>
             <dl class="col-sm-12">
-              <dt>Viewable Name:</dt>
-              <dd><%= f.text_field :created_by, value: format_name(@testimonial.user.full_name), class: 'bg-light'%></dd>
+              <dt>
+                <%= label_tag 'testimonial[created_by]' do %>
+                  Created By:
+                  <span>(publically viewed)</span>
+                <% end %>
+              </dt>
+              <dd>
+                <%= f.text_field :created_by, value: format_name(@testimonial.user.full_name), class: 'bg-light'%>
+              </dd>
+            </dl>
+            <dl class="col-sm-12">
+              <dt>
+                <%= label_tag 'testimonial[published]', 'Publish?' %>
+              </dt>
+              <dd>
+                <%= f.select :published, options_for_select([['Yes', true], ['No', false]], @testimonial.published) %>
+              </dd>
             </dl>
           </section>
-          <hr class="my-4">
+          <hr class="my-2">
           <section class="row">
             <dl class="col-sm">
               <dt>Message:</dt>
@@ -48,16 +82,21 @@
           <hr class="my-4">
           <section class="row">
             <dl class="col-sm-12">
-              <dt class="mb-3">Highlight: <span>(Truncated Version)</span></dt>
+              <dt class="mb-3">
+                <%= label_tag 'testimonial[testimonial_highlight]' do %>
+                  Highlight:
+                  <span>(Truncated Version)</span>
+                <% end %>
+              </dt>
               <dd>
-                <%= f.rich_text_area :highlight %>
+                <%= f.rich_text_area :highlight, value: @testimonial.highlight, class: ('field_with_errors' if @testimonial.errors.keys.include?(:highlight)) %>
               </dd>
             </dl>
-            <p id="characters_remaining" class="text-success">(150 Characters Remaining)</p>
+            <p id="characters_remaining" class="text-success"></p>
           </section>
           <hr class="my-4">
           <section class="row">
-            <%= f.submit 'Publish', class: 'btn btn-outline-secondary col-lg-2' %>
+            <%= f.submit 'Update', class: 'btn btn-outline-secondary col-lg-2' %>
             <%= link_to 'Delete', admin_testimonial_path(current_user, @testimonial), method: :delete, class: 'btn btn-outline-danger col-lg-2' %>
           </section>
         <% end %>
@@ -68,16 +107,17 @@
 <script>
   const $REMAINING = $('#characters_remaining');
   const TOTAL = 150;
-
+  const EDITOR = $('trix-editor').get(0);
   const testimonial = {
     init: function() {
       this.bindEvents();
+      this.calculateCount(EDITOR);
     },
     bindEvents: function() {
       $('trix-editor').on('trix-change', this.calculateCount.bind(this));
     },
-    calculateCount: function(e) {
-      const { editor } = event.target
+    calculateCount: function() {
+      const { editor } = EDITOR
       const string = editor.getDocument().toString()
       const characterCount = string.length - 1
       this.changeRemainingCount(characterCount)
