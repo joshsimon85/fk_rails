@@ -142,6 +142,10 @@ dt > span {
   padding-left: 15px;
 }
 
+#testimonial_created_by {
+  border-radius: 4px;
+}
+
 // Break points
 @media (min-width: 576px) {
   .partial-38 {
@@ -160,6 +164,10 @@ dt > span {
   .partial-38 {
     width: 38%;
     margin: 40px auto;
+  }
+
+  .edit_testimonial input[type="submit"] {
+    margin-right: 15px;
   }
 }
 

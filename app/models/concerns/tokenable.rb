@@ -7,5 +7,9 @@ module Tokenable
     def generate_token
       self.testimonial_token = SecureRandom.urlsafe_base64
     end
+
+    def self.generate_token
+      SecureRandom.urlsafe_base64
+    end
   end
 end

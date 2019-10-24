@@ -19,8 +19,7 @@ class TestimonialsController < AdminsController
     if @user
       @testimonial = Testimonial.create(testimonial_params.merge({user_id: @user.id}))
       if @testimonial.valid? && @user
-        @user.generate_token
-        @user.save
+        @user.update(:testimonial_token => User.generate_token)
         flash[:success] = 'Your testimonial has been added!'
         redirect_to root_path
       else
@@ -35,6 +34,12 @@ class TestimonialsController < AdminsController
 
   def show
     @testimonial = Testimonial.find(params[:id])
+  end
+
+  def update
+    binding.pry
+    #params[:testimonial]
+    #first check if it is valid create custom validations
   end
 
   def expired_token; end

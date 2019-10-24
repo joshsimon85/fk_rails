@@ -17,7 +17,7 @@
         <hr class="my-4">
         <section>
           <h2 class="h4">Testimonials</h2>
-          <p class="lead">You have 1 new testimonial!</p>
+          <p class="lead">You have  <%= Testimonial.count %> stored <%= 'testimonial'.pluralize(Testimonial.count) %>!</p>
           <%= link_to 'Testimonials Awaiting Approval', nil %>
         </section>
       </section>
