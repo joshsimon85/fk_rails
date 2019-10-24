@@ -37,7 +37,6 @@ class TestimonialsController < AdminsController
   end
 
   def update
-    binding.pry
     #params[:testimonial]
     #first check if it is valid create custom validations
   end
