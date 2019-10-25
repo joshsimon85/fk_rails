@@ -21,32 +21,32 @@
         <% end %>
       </header>
       <section class="bg-light p-3 mb-3">
+        <ul class="nav nav-tabs mb-4">
+          <li class="nav-item">
+            <% if @filter == nil %>
+              <%= link_to 'All', admin_testimonials_path(current_user), class: 'nav-link active' %>
+            <% else %>
+              <%= link_to 'All', admin_testimonials_path(current_user), class: 'nav-link' %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <% if @filter == 'true' %>
+              <%= link_to 'Published', admin_testimonials_path(current_user, :published => :true), class: 'nav-link active' %>
+            <% else %>
+              <%= link_to 'Published', admin_testimonials_path(current_user, :published => :true), class: 'nav-link' %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <% if @filter == 'false' %>
+              <%= link_to 'Unpublished', admin_testimonials_path(current_user, :published => :false), class: 'nav-link active' %>
+            <% else %>
+              <%= link_to 'Unpublished', admin_testimonials_path(current_user, :published => :false), class: 'nav-link' %>
+            <% end %>
+          </li>
+        </ul>
         <% if @records_count == 0 %>
-          <h2 class="h3">You don't have any stored testimonials!</h2>
+          <h2 class="h3">You don't have any testimonials to show!</h2>
         <% else %>
-          <ul class="nav nav-tabs mb-4">
-            <li class="nav-item">
-              <% if @filter == nil %>
-                <%= link_to 'All', admin_testimonials_path(current_user), class: 'nav-link active' %>
-              <% else %>
-                <%= link_to 'All', admin_testimonials_path(current_user), class: 'nav-link' %>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <% if @filter == 'true' %>
-                <%= link_to 'Published', admin_testimonials_path(current_user, :published => :true), class: 'nav-link active' %>
-              <% else %>
-                <%= link_to 'Published', admin_testimonials_path(current_user, :published => :true), class: 'nav-link' %>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <% if @filter == 'false' %>
-                <%= link_to 'Unpublished', admin_testimonials_path(current_user, :published => :false), class: 'nav-link active' %>
-              <% else %>
-                <%= link_to 'Unpublished', admin_testimonials_path(current_user, :published => :false), class: 'nav-link' %>
-              <% end %>
-            </li>
-          </ul>
           <%= form_for :testimonials, url: destroy_multiple_admin_testimonials_path(current_user, @testimonial, :page => @current_page, :order => @order), method: :delete do |f| %>
             <% @testimonials.each_with_index do |testimonial, idx| %>
               <dl class="row">
