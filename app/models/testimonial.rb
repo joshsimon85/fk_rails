@@ -17,7 +17,7 @@ class Testimonial < ApplicationRecord
     html_string = self.highlight.body.to_s
     text = ActionView::Base.full_sanitizer.sanitize(html_string).strip
     unless text.length <= 150
-      errors.add(:highlight, 'must not be longer than 150 characters')
+      errors.add(:highlight, 'must be less than 151 characters')
     end
   end
 end

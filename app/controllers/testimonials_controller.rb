@@ -1,11 +1,13 @@
 class TestimonialsController < AdminsController
+  before_action :set_filter!, only: [:index]
+
   def index
-    @testimonials = Testimonial.limit_and_sort(10 * (@current_page - 1), @order)
+    reset_records_count!
+    @testimonials = Testimonial.limit_and_sort(10 * (@current_page - 1), @order, set_filter_query)
   end
 
   def new
     @user = User.find_by(testimonial_token: params[:token])
-
     if @user
       @testimonial = Testimonial.new
     else
@@ -58,5 +60,37 @@ class TestimonialsController < AdminsController
 
   def testimonial_params
     params.require(:testimonial).permit(:message)
+  end
+
+  def set_filter!
+    if %w(all published unpublished).include?(params[:filter])
+      @filter = params[:filter]
+    else
+      @filter = 'all'
+    end
+  end
+
+  def reset_records_count!
+    if @filter == 'unpublished'
+      @records_count = Testimonial.where(:published => true).count
+    elsif @filter == 'published'
+      @records_count = Testimonial.where(:published => true).count
+    else
+      @records_count = Testimonial.count
+    end
+  end
+
+  def set_filter_query
+    query = :all
+
+    if @filter = 'published'
+      query = {:published => true}
+    end
+
+    if @filter = 'unpublished'
+      query = {:published => false}
+    end
+
+    query
   end
 end
