@@ -26,13 +26,25 @@
         <% else %>
           <ul class="nav nav-tabs mb-4">
             <li class="nav-item">
-              <%= link_to 'All', admin_testimonials_path(current_user, :filter => :all), class: 'nav-link active' %>
+              <% if @filter == nil %>
+                <%= link_to 'All', admin_testimonials_path(current_user), class: 'nav-link active' %>
+              <% else %>
+                <%= link_to 'All', admin_testimonials_path(current_user), class: 'nav-link' %>
+              <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Published', admin_testimonials_path(current_user, :filter => :published), class: 'nav-link' %>
+              <% if @filter == 'true' %>
+                <%= link_to 'Published', admin_testimonials_path(current_user, :published => :true), class: 'nav-link active' %>
+              <% else %>
+                <%= link_to 'Published', admin_testimonials_path(current_user, :published => :true), class: 'nav-link' %>
+              <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Unpublished', admin_testimonials_path(current_user, :filter => :unpublished), class: 'nav-link' %>
+              <% if @filter == 'false' %>
+                <%= link_to 'Unpublished', admin_testimonials_path(current_user, :published => :false), class: 'nav-link active' %>
+              <% else %>
+                <%= link_to 'Unpublished', admin_testimonials_path(current_user, :published => :false), class: 'nav-link' %>
+              <% end %>
             </li>
           </ul>
           <%= form_for :testimonials, url: destroy_multiple_admin_testimonials_path(current_user, @testimonial, :page => @current_page, :order => @order), method: :delete do |f| %>

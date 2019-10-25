@@ -3,7 +3,7 @@ class TestimonialsController < AdminsController
 
   def index
     reset_records_count!
-    @testimonials = Testimonial.limit_and_sort(10 * (@current_page - 1), @order, set_filter_query)
+    @testimonials = Testimonial.limit_and_sort(10 * (@current_page - 1), @order, build_filter)
   end
 
   def new
@@ -63,32 +63,26 @@ class TestimonialsController < AdminsController
   end
 
   def set_filter!
-    if %w(all published unpublished).include?(params[:filter])
-      @filter = params[:filter]
+    if %w(true false).include?(params[:published])
+      @filter = params[:published]
     else
-      @filter = 'all'
+      @filter = nil
     end
   end
 
   def reset_records_count!
-    if @filter == 'unpublished'
-      @records_count = Testimonial.where(:published => true).count
-    elsif @filter == 'published'
-      @records_count = Testimonial.where(:published => true).count
+    if @filter
+      @records_count = Testimonial.where(:published => @filter).count
     else
       @records_count = Testimonial.count
     end
   end
 
-  def set_filter_query
-    query = :all
+  def build_filter
+    query = nil
 
-    if @filter = 'published'
-      query = {:published => true}
-    end
-
-    if @filter = 'unpublished'
-      query = {:published => false}
+    if @filter
+      query = {:published => @filter}
     end
 
     query
