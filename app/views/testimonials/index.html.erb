@@ -9,12 +9,12 @@
           <span class="lead">/ Testimonials</span>
         </h1>
         <% if @order == 'desc' %>
-          <%= link_to admin_testimonials_path(current_user, :page => @current_page, :order => 'asc'), class: 'btn btn-sm btn-outline-secondary'  do %>
+          <%= link_to admin_testimonials_path(current_user, build_query_params(:page => @current_page, :order => 'asc', :published => @filter)), class: 'btn btn-sm btn-outline-secondary'  do %>
             <%= fa_icon 'caret-up', class: 'pr-1' %>
             Sort By Ascending
           <% end %>
         <% else %>
-          <%= link_to admin_testimonials_path(current_user, :page => @current_page, :order => 'desc'), class: 'btn btn-sm btn-outline-secondary'  do %>
+          <%= link_to admin_testimonials_path(current_user, build_query_params(:page => @current_page, :order => 'desc', :published => @filter)), class: 'btn btn-sm btn-outline-secondary'  do %>
             <%= fa_icon 'caret-down', class: 'pr-1' %>
             Sort By Descending
           <% end %>
@@ -31,9 +31,9 @@
           </li>
           <li class="nav-item">
             <% if @filter == 'true' %>
-              <%= link_to 'Published', admin_testimonials_path(current_user, :published => :true), class: 'nav-link active' %>
+              <%= link_to 'Published', admin_testimonials_path(current_user, build_query_params(:published => :true)), class: 'nav-link active' %>
             <% else %>
-              <%= link_to 'Published', admin_testimonials_path(current_user, :published => :true), class: 'nav-link' %>
+              <%= link_to 'Published', admin_testimonials_path(current_user, build_query_params(:published => :true)), class: 'nav-link' %>
             <% end %>
           </li>
           <li class="nav-item">
@@ -51,9 +51,9 @@
             <% @testimonials.each_with_index do |testimonial, idx| %>
               <dl class="row">
                 <dt class="col-lg-auto">Email:</dt>
-                <dd class="col-lg-auto"><%= testimonial.user.email %></dd>
+                <dd class="col-lg-auto"><%= testimonial.creator.email %></dd>
                 <dt class="col-lg-auto">Name:</dt>
-                <dd class="col-lg-auto"><%= testimonial.user.full_name %></dd>
+                <dd class="col-lg-auto"><%= testimonial.creator.full_name %></dd>
                 <dt class="col-lg-auto">Sent:</dt>
                 <dd class="col-lg-auto"><%= format_datetime(testimonial.created_at) %></dd>
               </dl>
@@ -100,7 +100,7 @@
         <% end %>
       </section>
       <% unless @records_count == 0 %>
-        <%= render partial: 'shared/pagination' %>
+        <%= render partial: 'testimonials_pagination' %>
       <% end %>
     </main>
   </div>

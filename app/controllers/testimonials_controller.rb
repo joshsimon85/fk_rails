@@ -19,7 +19,7 @@ class TestimonialsController < AdminsController
   def create
     @user = User.find_by(testimonial_token: params[:token])
     if @user
-      @testimonial = Testimonial.create(testimonial_params.merge({user_id: @user.id}))
+      @testimonial = Testimonial.create(testimonial_params.merge({user_id: @user.id, created_by: format_name(@user.full_name)}))
       if @testimonial.valid? && @user
         @user.update(:testimonial_token => User.generate_token)
         flash[:success] = 'Your testimonial has been added!'
@@ -38,15 +38,20 @@ class TestimonialsController < AdminsController
     @testimonial = Testimonial.find(params[:id])
   end
 
+  def edit
+    @testimonial = Testimonial.find(params[:id])
+  end
+
   def update
     @testimonial = Testimonial.find(params[:id])
     @testimonial.update(
       :created_by => params[:testimonial][:created_by],
       :highlight => params[:testimonial][:highlight],
+      :message => params[:testimonial][:message],
       :published => params[:testimonial][:published]
     )
     if @testimonial.valid?
-      flash[:success] = 'The testimonial has been published'
+      flash[:success] = 'The testimonial has been updated'
       redirect_to admin_testimonials_path(current_user)
     else
       flash.now[:error] = 'The testimonial could not be updated'
@@ -80,11 +85,14 @@ class TestimonialsController < AdminsController
 
   def build_filter
     query = nil
-
     if @filter
       query = {:published => @filter}
     end
-
     query
+  end
+
+  def format_name(creator)
+    name_list = creator.titleize.split(' ')
+    "#{name_list[0]} #{name_list[-1].slice(0)}."
   end
 end

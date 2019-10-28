@@ -7,8 +7,11 @@ module ApplicationHelper
     datetime.strftime('%a %m/%d/%Y %l:%M %P')
   end
 
-  def format_name(full_name)
-    name_list = full_name.titleize.split(' ')
-    "#{name_list[0]} #{name_list[-1].slice(0)}."
+  def build_query_params(options={})
+    query = { :page => options[:page], :order => options[:order] }
+    if options.keys.include?(:published)
+      query.merge!(:published => options[:published])
+    end
+    query
   end
 end

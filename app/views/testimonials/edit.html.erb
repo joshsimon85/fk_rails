@@ -22,7 +22,7 @@
               <% error_count = @testimonial.errors.count %>
               <h4 class="lead bold">
                 The following <%= pluralize(error_count, 'error') %>
-                prevented your email from being sent:
+                prevented your testimonial from being updated:
               </h4>
               <ul>
                 <% @testimonial.errors.full_messages.each do |msg| %>
@@ -32,7 +32,8 @@
             </section>
           <% end %>
           <section class="row">
-            <%= f.hidden_field :message %>
+            <%= f.hidden_field :highlight %>
+            <%= f.hidden_field :created_by %>
             <dl class="col-sm">
               <dt>Full Name:</dt>
               <dd><%= @testimonial.creator.full_name.titleize %></dd>
@@ -53,47 +54,16 @@
                 <dd class="text-danger"><%= @testimonial.published %></dd>
               <% end %>
             </dl>
-            <dl class="col-sm-12">
-              <dt>
-                <%= label_tag 'testimonial[created_by]' do %>
-                  Created By:
-                  <span>(publically viewed)</span>
-                <% end %>
-              </dt>
-              <dd>
-                <%= f.text_field :created_by, class: 'bg-light'%>
-              </dd>
-            </dl>
-            <dl class="col-sm-12">
-              <dt>
-                <%= label_tag 'testimonial[published]', 'Publish?' %>
-              </dt>
-              <dd>
-                <%= f.select :published, options_for_select([['Yes', true], ['No', false]], @testimonial.published) %>
-              </dd>
-            </dl>
           </section>
-          <hr class="my-2">
-          <section class="row">
-            <dl class="col-sm">
-              <dt>Testimonial:</dt>
-              <dd>
-                <%= @testimonial.message.body %>
-                <%= link_to 'Edit this testimonial', edit_admin_testimonial_path(current_user, @testimonial) %>
-              </dd>
-            </dl>
-          </section>
-          <hr class="my-4">
           <section class="row">
             <dl class="col-sm-12">
               <dt class="mb-3">
                 <%= label_tag 'testimonial[testimonial_highlight]' do %>
-                  Highlight:
-                  <span>(Truncated Version)</span>
+                  Testimonial:
                 <% end %>
               </dt>
               <dd>
-                <%= f.rich_text_area :highlight, value: @testimonial.highlight, class: ('field_with_errors' if @testimonial.errors.keys.include?(:highlight)) %>
+                <%= f.rich_text_area :message, value: @testimonial.message, class: ('field_with_errors' if @testimonial.errors.keys.include?(:message)) %>
               </dd>
             </dl>
             <p id="characters_remaining" class="text-success"></p>
@@ -101,53 +71,10 @@
           <hr class="my-4">
           <section class="row">
             <%= f.submit 'Update', class: 'btn btn-outline-secondary col-lg-2' %>
-            <%= link_to 'Delete', admin_testimonial_path(current_user, @testimonial), method: :delete, class: 'btn btn-outline-danger col-lg-2' %>
+            <%= link_to 'Cancel', admin_testimonial_path(current_user, @testimonial), class: 'btn btn-outline-secondary col-lg-2' %>
           </section>
         <% end %>
       </section>
     </main>
   </div>
 </div>
-<script>
-  const $REMAINING = $('#characters_remaining');
-  const TOTAL = 150;
-  const EDITOR = $('trix-editor').get(0);
-  const testimonial = {
-    init: function() {
-      this.bindEvents();
-      this.calculateCount(EDITOR);
-    },
-    bindEvents: function() {
-      $('trix-editor').on('trix-change', this.calculateCount.bind(this));
-    },
-    calculateCount: function() {
-      const { editor } = EDITOR
-      const string = editor.getDocument().toString()
-      const characterCount = string.length - 1
-      this.changeRemainingCount(characterCount)
-    },
-    changeRemainingCount: function(count) {
-      const charsRemaining = TOTAL - count;
-      $REMAINING.text('(' + charsRemaining + ' ' + this.pluralize('Character', charsRemaining) + ' Remaining)');
-      this.toggleClass(charsRemaining);
-    },
-    pluralize: function(string, count) {
-      if (count === 1 || count === -1) {
-        return string;
-      } else {
-        return string + "s";
-      }
-    },
-    toggleClass: function(charsRemaining) {
-      if (charsRemaining >= 0) {
-        $REMAINING.toggleClass('text-success', true);
-        $REMAINING.toggleClass('text-danger', false);
-      } else {
-        $REMAINING.toggleClass('text-success', false);
-        $REMAINING.toggleClass('text-danger', true);
-      }
-    }
-  };
-
-  setTimeout(testimonial.init());
-</script>
