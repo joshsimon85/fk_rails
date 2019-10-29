@@ -11,10 +11,12 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :testimonials, only: [:index, :show, :edit, :delete, :destroy, :patch, :update] do
+    resources :testimonials, only: [:index, :edit, :delete, :destroy, :update] do
       collection do
         delete 'destroy_multiple'
       end
+
+      resource :highlight, only: [:new, :create, :edit, :update]
     end
 
     require 'sidekiq/web'

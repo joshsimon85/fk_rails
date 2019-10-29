@@ -46,7 +46,6 @@ class TestimonialsController < AdminsController
     @testimonial = Testimonial.find(params[:id])
     @testimonial.update(
       :created_by => params[:testimonial][:created_by],
-      :highlight => params[:testimonial][:highlight],
       :message => params[:testimonial][:message],
       :published => params[:testimonial][:published]
     )
@@ -85,8 +84,8 @@ class TestimonialsController < AdminsController
 
   def build_filter
     query = nil
-    if @filter
-      query = {:published => @filter}
+    if %w(true false).include?(@filter)
+      query = { :published => @filter }
     end
     query
   end

@@ -18,11 +18,10 @@ end
 
 21.times do |n|
   user = User.find(n + 1)
-  if (n + 1) >= 1 && (n + 1) <= 10
-    message = Faker::Lorem.paragraphs(number: 10).join(',')
-    highlight = message.slice(0, 150)
-    Testimonial.create(user_id: n + 1, message: message, highlight: highlight, published: Faker::Boolean.boolean, created_by: format_name(user.full_name))
-  else
-    Testimonial.create(user_id: n + 1, message: Faker::Lorem.paragraphs(number: 10).join(','), published: Faker::Boolean.boolean, created_by: format_name(user.full_name))
-  end
+  message = Faker::Lorem.paragraphs(number: 10).join(',')
+  testimonial = Testimonial.create(user_id: n + 1, message: message, published: Faker::Boolean.boolean, created_by: format_name(user.full_name))
+  #highlight = message.slice(0, 150)
+  # if (n + 1) > 12
+  #   Highlight.create(testimonial_id: testimonial.id, highlight: highlight)
+  # end
 end

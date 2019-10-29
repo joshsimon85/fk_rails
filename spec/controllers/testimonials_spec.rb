@@ -132,4 +132,29 @@ RSpec.describe TestimonialsController do
       end
     end
   end
+
+  describe 'GET show' do
+    let(:user) { Fabricate(:user) }
+    let(:admin) { Fabricate(:user, admin: true) }
+    let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+
+    context 'with valid admin credentials' do
+      before do
+        sign_in(admin)
+        get :index, params: { admin_id: admin.id, id: testimonial.id }
+      end
+
+      it 'renders the show template' do
+        expect(response).to render_template :show
+      end
+    end
+
+    context 'with valid user credentials' do
+
+    end
+
+    context 'without sign in credentials' do
+
+    end
+  end
 end

@@ -100,8 +100,7 @@ ul.navbar-nav {
 
 // Trix text editor
 #email_message,
-#testimonial_message,
-#testimonial_highlight,
+#highlight_highlight,
 #testimonial_message {
   background: #fff;
   min-height: 200px;
@@ -112,8 +111,7 @@ ul.navbar-nav {
 }
 
 #email_message.field_with_errors,
-#testimonial_message.field_with_errors,
-#testimonial_highlight.field_with_errors,
+#highlight_highlight.field_with_errors,
 #testimonial_message.field_with_errors {
   outline: 0;
   box-shadow: 0 0 0 3px rgba(114, 28, 36, .6);

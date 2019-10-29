@@ -7,7 +7,7 @@
       <header class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">
           Dashboard
-          <span class="lead">/ Testimonials / Show</span>
+          <span class="lead">/ Testimonials / Edit</span>
         </h1>
       </header>
       <section class="bg-light p-3 mb-3">
@@ -22,7 +22,7 @@
               <% error_count = @testimonial.errors.count %>
               <h4 class="lead bold">
                 The following <%= pluralize(error_count, 'error') %>
-                prevented your testimonial from being updated:
+                prevented your email from being sent:
               </h4>
               <ul>
                 <% @testimonial.errors.full_messages.each do |msg| %>
@@ -32,8 +32,6 @@
             </section>
           <% end %>
           <section class="row">
-            <%= f.hidden_field :highlight %>
-            <%= f.hidden_field :created_by %>
             <dl class="col-sm">
               <dt>Full Name:</dt>
               <dd><%= @testimonial.creator.full_name.titleize %></dd>
@@ -54,24 +52,46 @@
                 <dd class="text-danger"><%= @testimonial.published %></dd>
               <% end %>
             </dl>
-          </section>
-          <section class="row">
             <dl class="col-sm-12">
-              <dt class="mb-3">
-                <%= label_tag 'testimonial[testimonial_highlight]' do %>
-                  Testimonial:
+              <dt>
+                <%= label_tag 'testimonial[created_by]' do %>
+                  Created By:
+                  <span>(publically viewed)</span>
                 <% end %>
               </dt>
               <dd>
-                <%= f.rich_text_area :message, value: @testimonial.message, class: ('field_with_errors' if @testimonial.errors.keys.include?(:message)) %>
+                <%= f.text_field :created_by, class: 'bg-light'%>
               </dd>
             </dl>
-            <p id="characters_remaining" class="text-success"></p>
+            <dl class="col-sm-12">
+              <dt>
+                <%= f.label 'testimonial[published]', 'Publish?' %>
+              </dt>
+              <dd>
+                <%= f.select :published, options_for_select([['Yes', true], ['No', false]], @testimonial.published) %>
+              </dd>
+            </dl>
           </section>
+          <hr class="my-2">
+          <section class="row">
+            <dl class="col-sm">
+              <dt>Testimonial:</dt>
+              <dd>
+                <%= f.rich_text_area :message, class: ('field_with_errors' if @testimonial.errors.keys.include?(:highlight)) %>
+              </dd>
+            </dl>
+          </section>
+          <p>
+            <% if !@testimonial.highlight %>
+              <%= link_to 'Add a highlight',   new_admin_testimonial_highlight_path(current_user, @testimonial), class: 'btn btn-outline-secondary' %>
+            <% else %>
+              <%= link_to 'Edit highlight',  edit_admin_testimonial_highlight_path(current_user, @testimonial), class: 'btn btn-outline-secondary' %>
+            <% end %>
+          </p>
           <hr class="my-4">
           <section class="row">
             <%= f.submit 'Update', class: 'btn btn-outline-secondary col-lg-2' %>
-            <%= link_to 'Cancel', admin_testimonial_path(current_user, @testimonial), class: 'btn btn-outline-secondary col-lg-2' %>
+            <%= link_to 'Delete', admin_testimonial_path(current_user, @testimonial), method: :delete, class: 'btn btn-outline-danger col-lg-2' %>
           </section>
         <% end %>
       </section>
