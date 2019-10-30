@@ -25,7 +25,6 @@ class HighlightsController < AdminsController
     @testimonial = Testimonial.find(params[:testimonial_id])
     @highlight = @testimonial.highlight
     @highlight.update(highlight_params)
-    binding.pry
     if @highlight.valid?
       flash[:success] = 'Your highlight has been updated'
       redirect_to edit_admin_testimonial_path(current_user, @testimonial)
