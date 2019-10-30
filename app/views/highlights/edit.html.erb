@@ -85,10 +85,10 @@
   </div>
 </div>
 <script>
-  const $REMAINING = $('#characters_remaining');
-  const TOTAL = 150;
-  const EDITOR = $('trix-editor').get(0);
-  const testimonial = {
+  var $REMAINING = $('#characters_remaining');
+  var TOTAL = 150;
+  var EDITOR = $('trix-editor').get(0);
+  var highlight = {
     init: function() {
       this.bindEvents();
       this.calculateCount(EDITOR);
@@ -125,5 +125,5 @@
     }
   };
 
-  setTimeout(testimonial.init(), 1000);
+  setTimeout(highlight.init(), 1000);
 </script>

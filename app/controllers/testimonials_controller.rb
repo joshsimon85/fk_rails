@@ -1,5 +1,7 @@
 class TestimonialsController < AdminsController
   before_action :set_filter!, only: [:index]
+  before_action :authenticate_user!, only: [:index, :edit, :delete, :destroy]
+  before_action :require_admin!, only: [:index, :edit, :delete, :destroy, :multiple_delete]
 
   def index
     reset_records_count!
@@ -34,9 +36,9 @@ class TestimonialsController < AdminsController
     end
   end
 
-  def show
-    @testimonial = Testimonial.find(params[:id])
-  end
+  # def show
+  #   @testimonial = Testimonial.find(params[:id])
+  # end
 
   def edit
     @testimonial = Testimonial.find(params[:id])
@@ -54,7 +56,7 @@ class TestimonialsController < AdminsController
       redirect_to admin_testimonials_path(current_user)
     else
       flash.now[:error] = 'The testimonial could not be updated'
-      render :show
+      render :edit
     end
   end
 

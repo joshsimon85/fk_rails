@@ -7,4 +7,5 @@ class Testimonial < ApplicationRecord
 
   validates_presence_of :message
   validates_presence_of :user_id
+  validates_presence_of :created_by
 end

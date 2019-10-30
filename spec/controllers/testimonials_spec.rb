@@ -133,7 +133,7 @@ RSpec.describe TestimonialsController do
     end
   end
 
-  describe 'GET show' do
+  describe 'GET edit' do
     let(:user) { Fabricate(:user) }
     let(:admin) { Fabricate(:user, admin: true) }
     let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
@@ -141,19 +141,93 @@ RSpec.describe TestimonialsController do
     context 'with valid admin credentials' do
       before do
         sign_in(admin)
-        get :index, params: { admin_id: admin.id, id: testimonial.id }
+        get :edit, params: { admin_id: admin.id, id: testimonial.id }
       end
 
-      it 'renders the show template' do
-        expect(response).to render_template :show
+      it 'renders the edit template' do
+        expect(response).to render_template :edit
       end
     end
 
     context 'with valid user credentials' do
+      before do
+        sign_in(user)
+        get :edit, params: { admin_id: admin.id, id: testimonial.id }
+      end
 
+      it 'sets the flash message' do
+        expect(flash[:error]).to be_present
+      end
+
+      it 'does not render the edit template' do
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context 'with valid user credentials and user params' do
+      before do
+        sign_in(user)
+        get :edit, params: { admin_id: user.id, id: testimonial.id }
+      end
+
+      it 'redirect to the root path' do
+        expect(response).to redirect_to root_path
+      end
     end
 
     context 'without sign in credentials' do
+      before do
+        get :edit, params: { admin_id: admin.id, id: testimonial.id }
+      end
+
+      it 'sets the flash message' do
+        expect(flash[:alert]).to be_present
+      end
+
+      it 'redirects to the root path' do
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+  end
+
+  describe 'POST update' do
+    let(:user) { Fabricate(:user) }
+    let(:admin) { Fabricate(:user, admin: true) }
+    let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+
+    context 'with valid admin credentials and valid testimonial' do
+      before do
+        sign_in(admin)
+        post :update, params: { admin_id: user.id, id: testimonial.id, :testimonial => { :created_by => 'Jon D.', :message => 'Testing', :published => true } }
+      end
+
+      it 'sets the flash success message' do
+        expect(flash[:success]).to be_present
+      end
+
+      it 'redirects to the admin testimonials path' do
+        expect(response).to redirect_to admin_testimonials_path(admin)
+      end
+
+      it 'updated the testimonial' do
+        expect(Testimonial.first.created_by).to eq('Jon D.')
+        expect(Testimonial.first.message.body.to_s).to include('Testing')
+        expect(Testimonial.first.published).to eq(true)
+      end
+    end
+
+    context 'with valid admin credentials and invalid testimonial' do
+      before do
+        sign_in(admin)
+        post :update, params: { admin_id: user.id, :id => testimonial.id, :testimonial => { :created_by => 'Jon D.', :message => '', :published => true } }
+      end
+
+      it 'sets the error message' do
+        expect(flash[:error]).to be_present
+      end
+    end
+
+    context 'with invalid credentials' do
 
     end
   end
