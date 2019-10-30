@@ -82,14 +82,14 @@
             </dl>
           </section>
           <p>
-            <% if !@testimonial.highlight %>
-              <%= link_to 'Add a highlight',   new_admin_testimonial_highlight_path(current_user, @testimonial), class: 'btn btn-outline-secondary' %>
-            <% else %>
+            <% if @testimonial.highlight %>
               <%= link_to 'Edit highlight',  edit_admin_testimonial_highlight_path(current_user, @testimonial), class: 'btn btn-outline-secondary' %>
+            <% else %>
+              <%= link_to 'Add a highlight',   new_admin_testimonial_highlight_path(current_user, @testimonial), class: 'btn btn-outline-secondary' %>
             <% end %>
           </p>
           <hr class="my-4">
-          <section class="row">
+          <section class="row form-actions">
             <%= f.submit 'Update', class: 'btn btn-outline-secondary col-lg-2' %>
             <%= link_to 'Delete', admin_testimonial_path(current_user, @testimonial), method: :delete, class: 'btn btn-outline-danger col-lg-2' %>
           </section>

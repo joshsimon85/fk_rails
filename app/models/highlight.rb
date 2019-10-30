@@ -5,7 +5,7 @@ class Highlight < ApplicationRecord
 
   validates_presence_of :testimonial_id
   validates_presence_of :highlight
-  
+
   private
 
   def highlight_length
@@ -14,10 +14,6 @@ class Highlight < ApplicationRecord
 
     if text.length > 150
       errors.add(:highlight, 'must be less than 151 characters')
-    end
-
-    if text.length == 0
-      errors.add(:highlight, "can't be blank")
     end
   end
 end

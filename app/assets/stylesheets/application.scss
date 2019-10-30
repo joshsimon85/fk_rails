@@ -181,6 +181,11 @@ dt > label > span {
   .edit_testimonial input[type="submit"] {
     margin-right: 15px;
   }
+
+  // Forms
+  .form-actions > input[type="submit"] {
+    margin-right: 10px;
+  }
 }
 
 @media (min-width: 1200px) {

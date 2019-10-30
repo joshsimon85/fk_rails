@@ -226,9 +226,5 @@ RSpec.describe TestimonialsController do
         expect(flash[:error]).to be_present
       end
     end
-
-    context 'with invalid credentials' do
-
-    end
   end
 end
