@@ -138,4 +138,72 @@ RSpec.describe Admin::TestimonialsController do
       end
     end
   end
+
+  describe 'DELETE destroy' do
+    let(:user) { Fabricate(:user) }
+    let(:admin) { Fabricate(:user, admin: true) }
+    let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+
+    it_behaves_like 'requires admin' do
+      let(:action) { delete :destroy, params: { :id => 1 } }
+    end
+
+    it_behaves_like 'requires sign in' do
+      let(:action) { delete :destroy, params: { :id => 1 } }
+    end
+
+    context 'with valid admin credentials' do
+      before do
+        sign_in(admin)
+        delete :destroy, params: { :id => testimonial.id }
+      end
+
+      it 'sets the flash success message' do
+        expect(flash[:success]).to be_present
+      end
+
+      it 'removes the testimonial from the database' do
+        expect(Testimonial.count).to eq(0)
+      end
+
+      it 'redirects to the testimonail path' do
+        expect(response).to redirect_to admin_testimonials_path
+      end
+    end
+  end
+
+  describe 'DELETE destroy_multiple' do
+    let(:user) { Fabricate(:user) }
+    let(:user_2) { Fabricate(:user) }
+    let(:admin) { Fabricate(:user, admin: true) }
+    let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+    let(:testimonial_2) { Fabricate(:testimonial, user_id: user_2.id) }
+
+    it_behaves_like 'requires admin' do
+      let(:action) { delete :destroy_multiple, params: { :id => 1 } }
+    end
+
+    it_behaves_like 'requires sign in' do
+      let(:action) { delete :destroy_multiple, params: { :id => 1 } }
+    end
+
+    context 'with valid admin credentials' do
+      before do
+        sign_in(admin)
+        delete :destroy_multiple, params: { testimonials: { "#{testimonial.id}": 'true', "#{testimonial_2.id}": 'true'} }
+      end
+
+      it 'sets the flash success message' do
+        expect(flash[:success]).to be_present
+      end
+
+      it 'removes the testimonial from the database' do
+        expect(Testimonial.count).to eq(0)
+      end
+
+      it 'redirects to the testimonail path' do
+        expect(response).to redirect_to admin_testimonials_path
+      end
+    end
+  end
 end

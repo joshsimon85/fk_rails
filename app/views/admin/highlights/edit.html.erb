@@ -76,8 +76,9 @@
             <p id="characters_remaining" class="text-success"></p>
           </section>
           <hr>
-          <section class="row container">
+          <section class="form-controls">
             <%= f.submit 'Update', class: 'btn btn-outline-secondary' %>
+            <%= link_to 'Delete', admin_testimonial_highlight_path(@testimonial), method: :delete, class: "btn btn-outline-danger" %>
           </section>
         <% end %>
       </section>

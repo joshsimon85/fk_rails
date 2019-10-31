@@ -27,6 +27,19 @@ class Admin::TestimonialsController < Admin::BaseController
     end
   end
 
+  def destroy
+    Testimonial.find(params[:id]).delete
+    flash[:success] = 'The selected testimoial has been deleted'
+    redirect_to admin_testimonials_path
+  end
+
+  def destroy_multiple
+    testimonial_ids = params[:testimonials].keys.map(&:to_i)
+    Testimonial.where(id: testimonial_ids).delete_all
+    flash[:success] = 'The selected testimonials have been deleted'
+    redirect_to admin_testimonials_path
+  end
+
   private
 
   def set_records_count!

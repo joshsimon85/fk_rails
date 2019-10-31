@@ -65,14 +65,16 @@
                   <dd class="col-lg-auto text-danger">False</dd>
                 <% end %>
               </dl>
-              <% if testimonial.highlight != nil %>
-                <dl class="row">
-                  <dt class="col-lg-auto">Highlight:</dt>
-                  <dd class="col-lg-auto">
-                    <%= link_to 'Attached', edit_admin_testimonial_highlight_path(testimonial)%>
-                  </dd>
-                </dl>
-              <% end %>
+              <dl class="row">
+                <dt class="col-lg-auto">Highlight:</dt>
+                <dd class="col-lg-auto">
+                  <% if testimonial.highlight %>
+                    <%= link_to 'Edit', edit_admin_testimonial_highlight_path(testimonial) %>
+                  <% else %>
+                    <%= link_to 'Create', new_admin_testimonial_highlight_path(testimonial) %>
+                  <% end %>
+                </dd>
+              </dl>
               <div class="row">
                 <div class="col-sm-12">
                   <%= check_box_tag "testimonials[#{testimonial.id}]", true %>

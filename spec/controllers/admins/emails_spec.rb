@@ -160,7 +160,7 @@ RSpec.describe Admin::EmailsController do
     context 'with authenticated admin' do
       before(:each) do
         sign_in(admin, scope: :user)
-        delete :destroy_multiple, params: { emails: { "#{email.id}": 'true', "#{email_2.id}": 'true'}}
+        delete :destroy_multiple, params: { emails: { "#{email.id}": 'true', "#{email_2.id}": 'true' } }
       end
 
       it 'sets the flash success message' do

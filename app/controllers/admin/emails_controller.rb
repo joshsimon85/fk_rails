@@ -12,14 +12,14 @@ class Admin::EmailsController < Admin::BaseController
 
   def destroy
     Email.destroy(params[:id])
-    flash[:success] = 'The email record has been removed'
+    flash[:success] = 'The email has been removed'
     redirect_to admin_emails_path(:page => @current_page, :order => @order)
   end
 
   def destroy_multiple
     email_ids = params[:emails].keys.map(&:to_i)
     Email.where(id: email_ids).delete_all
-    flash[:success] = 'The email records have been removed'
+    flash[:success] = 'The selected emails have been removed'
     redirect_to admin_emails_path(:page => @current_page, :order => @order)
   end
 
