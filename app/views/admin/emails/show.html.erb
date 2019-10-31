@@ -10,7 +10,7 @@
         </h1>
       </header>
       <section class="bg-light p-3 mb-3">
-        <%= form_for @email, url: admin_email_path(@email), method: :delete do |f| %>
+        <%= form_with model: @email, url: admin_email_path(@email), method: :delete, local: :true do |f| %>
           <section class="row">
             <dl class="col-sm">
               <dt>Full Name:</dt>

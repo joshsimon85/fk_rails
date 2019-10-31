@@ -9,6 +9,16 @@
       "js.map": [
         "/packs/js/application-28436a7412efa4c8158a.js.map"
       ]
+    },
+    "text_counter": {
+      "js": [
+        "/packs/js/text_counter-26bdc5dc036b259bfa9b.js"
+      ],
+      "js.map": [
+        "/packs/js/text_counter-26bdc5dc036b259bfa9b.js.map"
+      ]
     }
-  }
+  },
+  "text_counter.js": "/packs/js/text_counter-26bdc5dc036b259bfa9b.js",
+  "text_counter.js.map": "/packs/js/text_counter-26bdc5dc036b259bfa9b.js.map"
 }

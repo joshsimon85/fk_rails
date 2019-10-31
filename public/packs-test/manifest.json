@@ -9,6 +9,16 @@
       "js.map": [
         "/packs-test/js/application-b6ec39d0533f3938f6aa.js.map"
       ]
+    },
+    "text_counter": {
+      "js": [
+        "/packs-test/js/text_counter-406d129f4a417b136527.js"
+      ],
+      "js.map": [
+        "/packs-test/js/text_counter-406d129f4a417b136527.js.map"
+      ]
     }
-  }
+  },
+  "text_counter.js": "/packs-test/js/text_counter-406d129f4a417b136527.js",
+  "text_counter.js.map": "/packs-test/js/text_counter-406d129f4a417b136527.js.map"
 }

@@ -47,7 +47,7 @@
         <% if @records_count == 0 %>
           <h2 class="h3">You don't have any testimonials to show!</h2>
         <% else %>
-          <%= form_for :testimonials, url: destroy_multiple_admin_testimonials_path(@testimonial, :page => @current_page, :order => @order), method: :delete do |f| %>
+          <%= form_with url: destroy_multiple_admin_testimonials_path(@testimonial, :page => @current_page, :order => @order), method: :delete, local: :true do |f| %>
             <% @testimonials.each_with_index do |testimonial, idx| %>
               <dl class="row">
                 <dt class="col-lg-auto">Email:</dt>

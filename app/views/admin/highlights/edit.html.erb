@@ -1,4 +1,3 @@
-<%= javascript_pack_tag 'application' %>
 <%= render partial: 'shared/nav', locals: { active: 'dashboard'} %>
 <div class="container-fluid">
   <div class="row">
@@ -11,7 +10,7 @@
         </h1>
       </header>
       <section class="bg-light p-3 mb-3">
-        <%= form_for @highlight, url: admin_testimonial_highlight_path(@testimonial), method: :patch, remote: false do |f| %>
+        <%= form_with model: @highlight, url: admin_testimonial_highlight_path(@testimonial), method: :patch, local: :true do |f| %>
           <% if @highlight.errors.present? %>
             <section class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
               <%= button_tag(type: 'button', class: 'close', data: {dismiss: 'alert'}, aria: {label: 'Close'}) do %>
@@ -85,46 +84,5 @@
     </main>
   </div>
 </div>
-<script>
-  var $REMAINING = $('#characters_remaining');
-  var TOTAL = 150;
-  var EDITOR = $('trix-editor').get(0);
-  var highlight = {
-    init: function() {
-      this.bindEvents();
-      this.calculateCount(EDITOR);
-    },
-    bindEvents: function() {
-      $('trix-editor').on('trix-change', this.calculateCount.bind(this));
-    },
-    calculateCount: function() {
-      const { editor } = EDITOR
-      const string = editor.getDocument().toString()
-      const characterCount = string.length - 1
-      this.changeRemainingCount(characterCount)
-    },
-    changeRemainingCount: function(count) {
-      const charsRemaining = TOTAL - count;
-      $REMAINING.text('(' + charsRemaining + ' ' + this.pluralize('Character', charsRemaining) + ' Remaining)');
-      this.toggleClass(charsRemaining);
-    },
-    pluralize: function(string, count) {
-      if (count === 1 || count === -1) {
-        return string;
-      } else {
-        return string + "s";
-      }
-    },
-    toggleClass: function(charsRemaining) {
-      if (charsRemaining >= 0) {
-        $REMAINING.toggleClass('text-success', true);
-        $REMAINING.toggleClass('text-danger', false);
-      } else {
-        $REMAINING.toggleClass('text-success', false);
-        $REMAINING.toggleClass('text-danger', true);
-      }
-    }
-  };
-
-  setTimeout(highlight.init(), 1000);
-</script>
+<%= javascript_pack_tag 'application' %>
+<%= javascript_pack_tag 'text_counter' %>
