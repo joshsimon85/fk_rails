@@ -34,7 +34,7 @@ RSpec.feature 'Admin interacts with email' do
     click_delete_checkbox(3)
 
     click_bulk_delete_selected_emails
-    expect(page).to have_content('The email records have been removed')
+    expect(page).to have_content('The selected emails have been removed')
 
     log_out
 
