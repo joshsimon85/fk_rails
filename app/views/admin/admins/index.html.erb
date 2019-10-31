@@ -1,7 +1,7 @@
 <%= render partial: 'shared/nav', locals: { active: 'dashboard'} %>
 <div class="container-fluid">
   <div class="row">
-    <%= render partial: 'admins/shared/side_nav' %>
+    <%= render partial: 'admin/shared/side_nav' %>
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <header class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard
@@ -12,13 +12,13 @@
         <section>
           <h2 class="h4">Emails</h2>
           <p class="lead">You have <%= @records_count %> stored <%= 'email'.pluralize(@email_count) %>!</p>
-          <%= link_to 'Stored Emails', admin_emails_path(current_user) %>
+          <%= link_to 'Stored Emails', admin_emails_path %>
         </section>
         <hr class="my-4">
         <section>
           <h2 class="h4">Testimonials</h2>
           <p class="lead">You have  <%= Testimonial.count %> stored <%= 'testimonial'.pluralize(Testimonial.count) %>!</p>
-          <%= link_to 'Testimonials Awaiting Approval',  admin_testimonials_path(current_user, :published => false) %>
+          <%= link_to 'Testimonials Awaiting Approval',  admin_testimonials_path(:published => false) %>
         </section>
       </section>
     </main>

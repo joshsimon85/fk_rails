@@ -1,7 +1,7 @@
 <%= render partial: 'shared/nav', locals: { active: 'dashboard'} %>
 <div class="container-fluid">
   <div class="row">
-    <%= render partial: 'admins/shared/side_nav' %>
+    <%= render partial: 'admin/shared/side_nav' %>
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <header class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">
@@ -9,12 +9,12 @@
           <span class="lead">/ Emails</span>
         </h1>
         <% if @order == 'desc' %>
-          <%= link_to admin_emails_path(current_user, :page => @current_page, :order => 'asc'), class: 'btn btn-sm btn-outline-secondary'  do %>
+          <%= link_to admin_emails_path(:page => @current_page, :order => 'asc'), class: 'btn btn-sm btn-outline-secondary'  do %>
             <%= fa_icon 'caret-up', class: 'pr-1' %>
             Sort By Ascending
           <% end %>
         <% else %>
-          <%= link_to admin_emails_path(current_user, :page => @current_page, :order => 'desc'), class: 'btn btn-sm btn-outline-secondary'  do %>
+          <%= link_to admin_emails_path(:page => @current_page, :order => 'desc'), class: 'btn btn-sm btn-outline-secondary'  do %>
             <%= fa_icon 'caret-down', class: 'pr-1' %>
             Sort By Descending
           <% end %>
@@ -24,7 +24,7 @@
         <% if @records_count == 0 %>
           <h2 class="h3">You don't have any stored emails!</h2>
         <% else %>
-          <%= form_for :emails, url: destroy_multiple_admin_emails_path(current_user, @email, :page => @current_page, :order => @order), method: :delete do |f| %>
+          <%= form_for :emails, url: destroy_multiple_admin_emails_path(@email, :page => @current_page, :order => @order), method: :delete do |f| %>
             <% @emails.each_with_index do |email, idx| %>
               <dl class="row container">
                 <dt class="col-lg-auto">Email:</dt>
@@ -37,7 +37,7 @@
               <div class="row">
                 <div class="col-sm-12">
                   <%= check_box_tag "emails[#{email.id}]", true %>
-                  <%= link_to 'View', admin_email_path(current_user, email), class: "btn btn-sm btn-outline-secondary ml-2" %>
+                  <%= link_to 'View', admin_email_path(email), class: "btn btn-sm btn-outline-secondary ml-2" %>
                   <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#email-<%= email.id %>">
                     Delete
                   </button>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                          <%= link_to 'Delete', admin_email_path(current_user, email, :page => @current_page, :order => @order), method: :delete, class: 'btn btn-outline-danger' %>
+                          <%= link_to 'Delete', admin_email_path(email, :page => @current_page, :order => @order), method: :delete, class: 'btn btn-outline-danger' %>
                         </div>
                       </div>
                     </div>
@@ -69,7 +69,7 @@
         <% end %>
       </section>
       <% unless @records_count == 0 %>
-        <%= render partial: 'shared/pagination' %>
+        <%= render partial: 'admin/shared/pagination' %>
       <% end %>
     </main>
   </div>

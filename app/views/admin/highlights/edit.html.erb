@@ -1,16 +1,17 @@
+<%= javascript_pack_tag 'application' %>
 <%= render partial: 'shared/nav', locals: { active: 'dashboard'} %>
 <div class="container-fluid">
   <div class="row">
-    <%= render partial: 'admins/shared/side_nav' %>
+    <%= render partial: 'admin/shared/side_nav' %>
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <header class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">
           Dashboard
-          <span class="lead">/ Testimonials / Highlights / New</span>
+          <span class="lead">/ Testimonials / Highlights / Edit</span>
         </h1>
       </header>
       <section class="bg-light p-3 mb-3">
-        <%= form_for @highlight, url: admin_testimonial_highlight_path(current_user, @testimonial), method: :post, remote: false  do |f| %>
+        <%= form_for @highlight, url: admin_testimonial_highlight_path(@testimonial), method: :patch, remote: false do |f| %>
           <% if @highlight.errors.present? %>
             <section class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
               <%= button_tag(type: 'button', class: 'close', data: {dismiss: 'alert'}, aria: {label: 'Close'}) do %>
@@ -62,7 +63,7 @@
           </section>
           <section class="row">
             <dl class="col-sm-12">
-              <dt class="mb-2">
+              <dt class="mb-3">
                 <%= label_tag 'testimonial[testimonial_highlight]' do %>
                   Highlight:
                   <span>(Truncated Version)</span>
@@ -74,16 +75,15 @@
             </dl>
             <p id="characters_remaining" class="text-success"></p>
           </section>
-          <hr class="pb-2">
+          <hr>
           <section class="row container">
-            <%= f.submit 'Create', class: 'btn btn-outline-secondary col-lg-2' %>
+            <%= f.submit 'Update', class: 'btn btn-outline-secondary' %>
           </section>
         <% end %>
       </section>
     </main>
   </div>
 </div>
-<%= javascript_pack_tag 'application' %>
 <script>
   var $REMAINING = $('#characters_remaining');
   var TOTAL = 150;

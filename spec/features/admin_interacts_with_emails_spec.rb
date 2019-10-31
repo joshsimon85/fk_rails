@@ -68,7 +68,7 @@ RSpec.feature 'Admin interacts with email' do
   end
 
   def visit_contact_page
-    visit new_email_path
+    visit contact_path
   end
 
   def sort_emails_by_ascending_order

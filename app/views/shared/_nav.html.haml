@@ -28,12 +28,12 @@
     -if user_signed_in? && current_user.admin?
       -if active['dashboard']
         %li.nav-item.active
-          =link_to admins_path, class: 'nav-link' do
+          =link_to admin_root_path, class: 'nav-link' do
             Dashboard
             %span.sr-only (current)
       -else
         %li.nav-item
-          =link_to 'Dashboard', admins_path, class: 'nav-link'
+          =link_to 'Dashboard', admin_root_path, class: 'nav-link'
     -if user_signed_in?
       =render partial: 'shared/signed_in_dropdown', locals: {active: active}
     -else

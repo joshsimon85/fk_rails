@@ -6,7 +6,7 @@
     </h6>
     <ul class="nav flex-column">
       <li class="nav-item">
-        <%= link_to admins_path, class: 'nav-link active' do %>
+        <%= link_to admin_root_path, class: 'nav-link active' do %>
           <%= fa_icon 'home', class: 'pr-1' %>
           Home
         <% end %>
@@ -18,14 +18,14 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to admin_emails_path(current_user), class: 'nav-link' do %>
+        <%= link_to admin_emails_path, class: 'nav-link' do %>
           <%= fa_icon 'envelope', class: 'pr-1' %>
           Emails
           <span class="badge badge-primary badge-pill pull-right"><%= Email.count %></span>
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to admin_testimonials_path(current_user), class: 'nav-link' do %>
+        <%= link_to admin_testimonials_path, class: 'nav-link' do %>
           <%= fa_icon 'pencil', class: 'pr-1' %>
           Testimonials
           <span class="badge badge-primary badge-pill pull-right"><%= Testimonial.count %></span>
@@ -44,7 +44,7 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to admin_sidekiq_web_path(current_user), class: 'nav-link' do %>
+        <%= link_to admin_sidekiq_web_path, class: 'nav-link' do %>
           <%= fa_icon 'database', class: 'pr-1' %>
           Queue
         <% end %>
