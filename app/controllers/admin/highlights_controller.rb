@@ -34,6 +34,13 @@ class Admin::HighlightsController < Admin::BaseController
     end
   end
 
+  def destroy
+    @testimonial = Testimonial.find(params[:testimonial_id])
+    @testimonial.highlight.delete
+    flash[:success] = 'The highlight has been deleted'
+    redirect_to edit_admin_testimonial_path(@testimonial)
+  end
+
   private
 
   def highlight_params

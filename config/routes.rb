@@ -17,7 +17,7 @@ Rails.application.routes.draw do
         delete 'destroy_multiple'
       end
 
-      resource :highlight, only: [:new, :create, :edit, :update]
+      resource :highlight, only: [:new, :create, :edit, :update, :destroy]
     end
 
     require 'sidekiq/web'

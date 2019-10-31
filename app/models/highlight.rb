@@ -5,6 +5,7 @@ class Highlight < ApplicationRecord
 
   validates_presence_of :testimonial_id
   validates_presence_of :highlight
+  validate :highlight_length
 
   private
 
