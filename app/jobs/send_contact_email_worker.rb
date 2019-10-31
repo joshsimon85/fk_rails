@@ -1,4 +1,4 @@
-class EmailWorker < ApplicationJob
+class SendContactEmailWorker < ApplicationJob
   queue_as :default
 
   def perform(type, email_id)
@@ -18,5 +18,4 @@ class EmailWorker < ApplicationJob
   def send_admin_email(email_id)
     AdminMailer.contact_page_email(email_id).deliver_now
   end
-
 end
