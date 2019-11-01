@@ -11,12 +11,12 @@
         <% if @order == 'desc' %>
           <%= link_to admin_customers_path(:page => @current_page, :order => 'asc'), class: 'btn btn-sm btn-outline-secondary'  do %>
             <%= fa_icon 'caret-up', class: 'pr-1' %>
-            Sort By Ascending
+            Ascending (First Name)
           <% end %>
         <% else %>
           <%= link_to admin_customers_path(:page => @current_page, :order => 'desc'), class: 'btn btn-sm btn-outline-secondary'  do %>
             <%= fa_icon 'caret-down', class: 'pr-1' %>
-            Sort By Descending
+            Descending (First Name)
           <% end %>
         <% end %>
       </header>
@@ -25,10 +25,34 @@
           <h2 class="h3">You don't have any customers!</h2>
         <% else %>
           <% @customers.each do |customer| %>
-            <dl>
-              <dt>Cutomer</dt>
-              <dd><%= customer.full_name%></dd>
-            </dl>
+            <section class="row">
+              <dl class="col-sm-12 col-md">
+                <dt>Full Name</dt>
+                <dd><%= customer.full_name%></dd>
+              </dl>
+              <dl class="col-sm-12 col-md">
+                <dt>Email</dt>
+                <dd><%= customer.email %></dd>
+              </dl>
+              <% if customer.phone_number %>
+                <dl class="col-sm-12 col-md">
+                  <dt>Phone Number</dt>
+                  <dd><%= customer.phone_number %></dd>
+                </dl>
+              <% end %>
+              <dl class="col-sm-12">
+                <dt>Testimonial Completed</dt>
+                <% if customer.testimonial %>
+                  <dd>True</dd>
+                <% else %>
+                  <dd>False</dd>
+                <% end %>
+              </dl>
+              <% unless customer.testimonial %>
+                <%= link_to 'Send testimonial link', nil, class: "col-sm-12" %>
+              <% end %>
+            </section>
+            <hr class="mb-4">
           <% end %>
         <% end %>
       </section>

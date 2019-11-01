@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
 
     get '/customers', to: 'users#index'
+    post '/send_testimonial_link/:id', to: 'users#send_testimonial_link'
   end
 
   root to: 'pages#index'
