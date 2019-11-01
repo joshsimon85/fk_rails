@@ -49,7 +49,7 @@
                 <% end %>
               </dl>
               <% unless customer.testimonial %>
-                <%= link_to 'Send testimonial link', nil, class: "col-sm-12" %>
+                <%= link_to 'Send testimonial link', admin_path(customer.id), method: :post, class: "col-sm-12" %>
               <% end %>
             </section>
             <hr class="mb-4">

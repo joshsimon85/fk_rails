@@ -1,6 +1,6 @@
 class SendContactEmailWorker < ApplicationJob
   queue_as :default
-
+  
   def perform(type, email_id)
     if type == 'admin'
       send_admin_email(email_id)
