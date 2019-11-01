@@ -3,7 +3,7 @@ class Admin::EmailsController < Admin::BaseController
   before_action :set_pagination_values!, except: :show
 
   def index
-    @emails = Email.limit_and_sort(10 * (@current_page - 1), @order)
+    @emails = Email.limit_and_sort(10 * (@current_page - 1), :created_at => @order)
   end
 
   def show

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'
+
+    get '/customers', to: 'users#index'
   end
 
   root to: 'pages#index'

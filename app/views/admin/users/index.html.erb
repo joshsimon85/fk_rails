@@ -1,0 +1,40 @@
+<%= render partial: 'shared/nav', locals: { active: 'dashboard'} %>
+<div class="container-fluid">
+  <div class="row">
+    <%= render partial: 'admin/shared/side_nav' %>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <header class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">
+          Dashboard
+          <span class="lead">/ Customers</span>
+        </h1>
+        <% if @order == 'desc' %>
+          <%= link_to admin_customers_path(:page => @current_page, :order => 'asc'), class: 'btn btn-sm btn-outline-secondary'  do %>
+            <%= fa_icon 'caret-up', class: 'pr-1' %>
+            Sort By Ascending
+          <% end %>
+        <% else %>
+          <%= link_to admin_customers_path(:page => @current_page, :order => 'desc'), class: 'btn btn-sm btn-outline-secondary'  do %>
+            <%= fa_icon 'caret-down', class: 'pr-1' %>
+            Sort By Descending
+          <% end %>
+        <% end %>
+      </header>
+      <section class="bg-light p-3 mb-3">
+        <% if @records_count == 0 %>
+          <h2 class="h3">You don't have any customers!</h2>
+        <% else %>
+          <% @customers.each do |customer| %>
+            <dl>
+              <dt>Cutomer</dt>
+              <dd><%= customer.full_name%></dd>
+            </dl>
+          <% end %>
+        <% end %>
+      </section>
+      <% unless @records_count == 0 %>
+        <%= render partial: 'admin/shared/users_pagination' %>
+      <% end %>
+    </main>
+  </div>
+</div>

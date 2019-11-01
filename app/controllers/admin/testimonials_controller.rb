@@ -4,7 +4,7 @@ class Admin::TestimonialsController < Admin::BaseController
   before_action :set_pagination_values!, only: :index
 
   def index
-    @testimonials = Testimonial.limit_and_sort(10 * (@current_page - 1), @order, build_filter)
+    @testimonials = Testimonial.limit_and_sort(10 * (@current_page - 1), { :created_at => @order }, build_filter)
   end
 
   def edit

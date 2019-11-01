@@ -4,9 +4,9 @@ module Paginationable
   included do
     def self.limit_and_sort(offset, order, filter=nil, limit=10)
       if filter
-        self.where(filter).offset(offset).order(:created_at => order)
+        self.where(filter).offset(offset).order(order)
       else
-        self.limit(limit).offset(offset).order(:created_at => order)
+        self.limit(limit).offset(offset).order(order)
       end
     end
   end
