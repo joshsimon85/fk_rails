@@ -6,7 +6,7 @@ RSpec.describe Users::EmailsController do
       sleep(0.1)
       ActionMailer::Base.deliveries.clear
     end
-#skip_db_cleaner: true
+
     context 'with all valid inputs' do
       before(:each) do
         post :create, params: { email: Fabricate.attributes_for(:email , full_name: 'Jon Doe', phone_number: Faker::PhoneNumber.phone_number) }

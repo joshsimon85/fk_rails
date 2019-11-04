@@ -7,7 +7,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def send_testimonial_link
-    SendTestimonialLinkEmailWorker.perform_later(params[:id])
+    SendTestimonialLinkEmailJob.perform_later(params[:id])
     flash[:success] = 'A link for the testimonial has been sent'
     redirect_to admin_customers_path
   end

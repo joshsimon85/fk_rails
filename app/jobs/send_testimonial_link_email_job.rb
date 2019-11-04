@@ -1,4 +1,4 @@
-class SendTestimonialLinkEmailWorker < ApplicationJob
+class SendTestimonialLinkEmailJob < ApplicationJob
   queue_as :default
 
   def perform(user_id)

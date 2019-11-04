@@ -15,6 +15,8 @@ class Users::TestimonialsController < ApplicationController
       @testimonial = Testimonial.create(testimonial_params.merge({user_id: @user.id, created_by: format_name(@user.full_name)}))
       if @testimonial.valid? && @user
         @user.update(:testimonial_token => User.generate_token)
+        SendThankYouEmailJob.perform_later('user', @user.id)
+        SendThankYouEmailJob.perform_later('admin', @user.id)
         flash[:success] = 'Your testimonial has been added!'
         redirect_to root_path
       else

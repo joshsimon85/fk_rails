@@ -12,4 +12,10 @@ class UserMailer < ApplicationMailer
     @url = 'https://www.frankenkopter.com/testimonial'
     mail(to: @user.email, subject: 'Your feedback is very important to us!')
   end
+
+  def thank_you_email(user_id)
+    @user = User.find(user_id)
+    @url = 'https://www.frankenkopter.com/testimonial'
+    mail(to:@user.email, subject: 'Thank you for your feedback!')
+  end
 end
