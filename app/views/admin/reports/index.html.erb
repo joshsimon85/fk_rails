@@ -1,0 +1,83 @@
+<%= render partial: 'shared/nav', locals: { active: 'dashboard'} %>
+<div class="container-fluid">
+  <div class="row">
+    <%= render partial: 'admin/shared/side_nav' %>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <header class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">
+          Dashboard
+          <span class="lead">/ Reports</span>
+        </h1>
+        <% if @order == 'desc' %>
+          <%= link_to admin_reports_path(:page => @current_page, :order => 'asc'), class: 'btn btn-sm btn-outline-secondary'  do %>
+            <%= fa_icon 'caret-up', class: 'pr-1' %>
+            Sort By Ascending
+          <% end %>
+        <% else %>
+          <%= link_to admin_reports_path(:page => @current_page, :order => 'desc'), class: 'btn btn-sm btn-outline-secondary'  do %>
+            <%= fa_icon 'caret-down', class: 'pr-1' %>
+            Sort By Descending
+          <% end %>
+        <% end %>
+      </header>
+      <section class="bg-light p-3">
+        <% if @records_count == 0 %>
+          <h2 class="h3">You don't have any stored reports!</h2>
+        <% else %>
+          <%= form_with url: destroy_multiple_admin_reports_path(@report, :page => @current_page, :order => @order), method: :delete, local: :true do |f| %>
+            <% @reports.each_with_index do |report, idx| %>
+              <section class="row container">
+                <dl class="col-sm-12 col-md">
+                  <dt>Error Type</dt>
+                  <dd><%= report.error_type %></dd>
+                </dl>
+                <dl class="col-sm-12 col-md">
+                  <dt>Proccess</dt>
+                  <dd><%= report.process %></dd>
+                </dl>
+                <dl class="col-sm-12 col-md">
+                  <dt>Error Message</dt>
+                  <dd><%= report.message %></dd>
+                </dl>
+                <dl class="col-sm-12 col-md">
+                  <dt>Date Occured</dt>
+                  <dd><%= format_datetime(report.created_at) %></dd>
+                </dl>
+                <div class="col-sm-12">
+                  <%= check_box_tag "reports[#{report.id}]", true %>
+                  <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#report-<%= report.id %>">
+                    Delete
+                  </button>
+                  <div class="modal fade" id="report-<%= report.id %>" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="modal-title-<%= report.id %>">Are you sure you want to delete this report?</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          This action can't be undone
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                          <%= link_to 'Delete', admin_report_path(report, :page => @current_page, :order => @order), method: :delete, class: 'btn btn-outline-danger' %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <hr class="my-4">
+            <% end %>
+            <%= f.submit 'Delete Selected', class: "btn btn-outline-danger" %>
+          <% end %>
+        <% end %>
+      </section>
+      <% unless @records_count == 0 %>
+        <%= render partial: 'admin/shared/report_pagination' %>
+      <% end %>
+    </main>
+  </div>
+</div>

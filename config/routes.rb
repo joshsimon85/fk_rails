@@ -20,6 +20,12 @@ Rails.application.routes.draw do
       resource :highlight, only: [:new, :create, :edit, :update, :destroy]
     end
 
+    resources :reports, only: [:index, :delete, :destroy] do
+      collection do
+        delete 'destroy_multiple'
+      end 
+    end
+
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'
 

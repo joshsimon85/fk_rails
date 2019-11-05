@@ -1,6 +1,14 @@
 class SendThankYouEmailJob < ApplicationJob
   queue_as :default
 
+  rescue_from(ActiveRecord::RecordNotFound) do |exception|
+     Report.create(
+       error_type: 'Record Not Found',
+       process: 'Send Thank You Email',
+       message: exception
+     )
+  end
+
   def perform(type, user_id)
     if type == 'admin'
       send_admin_email(user_id)

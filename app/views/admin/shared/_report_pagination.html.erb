@@ -1,0 +1,44 @@
+<nav aria-label="page navigation">
+  <ul class="pagination">
+    <% if @current_page == 1 %>
+      <li class="page-item disabled">
+        <%= link_to admin_reports_path(:page => @current_page - 1, :order => @order), class: "page-link", aria: {label: "Previous"} do %>
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="page-item">
+        <%= link_to admin_reports_path(:page => @current_page - 1, :order => @order), class: "page-link", aria: {label: "Previous"} do %>
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        <% end %>
+      </li>
+    <% end %>
+    <% (@records_count / 10.0).ceil.times do |n| %>
+      <% if @current_page == n + 1 %>
+        <li class="page-item active" %>
+          <%= link_to n + 1, admin_reports_path(:page => n + 1, :order => @order), class: "page-link" %>
+      <% else %>
+        <li class="page-item" %>
+          <%= link_to n + 1, admin_reports_path(:page => n + 1, :order => @order), class: "page-link" %>
+        </li>
+      <% end %>
+    <% end %>
+    <% if @current_page < (@records_count / 10.0).ceil %>
+      <li class="page-item">
+        <%= link_to admin_reports_path(:page => @current_page + 1, :order => @order), class: "page-link", aria: {label: "Next"} do %>
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="page-item disabled">
+        <%= link_to admin_reports_path(:page => @current_page + 1, :order => @order), class: "page-link", aria: {label: "Next"} do %>
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</nav>

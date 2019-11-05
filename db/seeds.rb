@@ -20,8 +20,19 @@ end
   user = User.find(n + 1)
   message = Faker::Lorem.paragraphs(number: 10).join(',')
   testimonial = Testimonial.create(user_id: n + 1, message: message, published: Faker::Boolean.boolean, created_by: format_name(user.full_name))
-  #highlight = message.slice(0, 150)
-  # if (n + 1) > 12
-  #   Highlight.create(testimonial_id: testimonial.id, highlight: highlight)
-  # end
+  highlight = message.slice(0, 150)
+  if (n + 1) > 12
+     Highlight.create(testimonial_id: testimonial.id, highlight: highlight)
+   end
+end
+
+21.times do
+  error_type = Faker::Lorem.words(number: 3).join(' ')
+  process = Faker::Lorem.words(number: 4).join(' ')
+  message = Faker::Lorem.sentences(number: 4).join(' ')
+  Report.create(
+    :error_type => error_type,
+    :process => process,
+    :message => message
+  )
 end

@@ -38,9 +38,10 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to nil, class: 'nav-link' do %>
+        <%= link_to admin_reports_path, class: 'nav-link' do %>
           <%= fa_icon 'folder-open', class: 'pr-1' %>
           Reports
+          <span class="badge badge-primary badge-pill pull-right"><%= Report.count %></span>
         <% end %>
       </li>
       <li class="nav-item">
