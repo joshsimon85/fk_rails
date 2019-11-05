@@ -1,1 +1,5 @@
-=@email.message.body
+=@email.message.to_plain_text
+
+-if @email.phone_number
+  Phone Number:
+  =@email.phone_number

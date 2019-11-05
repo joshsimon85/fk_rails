@@ -1,1 +1,6 @@
 =@email.message.body
+%br
+-if @email.phone_number
+  %dl
+    %dt Phone Number:
+    %dd= @email.phone_number

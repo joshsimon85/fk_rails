@@ -39,5 +39,4 @@ yarn-debug.log*
 
 # Ignore Env vars
 .env
-
 todo.txt
