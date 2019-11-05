@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::BaseController
   before_action :set_pagination_values!, only: :index
 
   def index
-    @customers = User.limit_and_sort(10 * (@current_page - 1), { :full_name => @order }, { admin: false })
+    @customers = User.limit_and_sort(10 * (@current_page - 1), { :full_name => @order }, { :admin => false })
   end
 
   def send_testimonial_link

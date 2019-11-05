@@ -4,7 +4,7 @@ module Paginationable
   included do
     def self.limit_and_sort(offset, order, filter=nil, limit=10)
       if filter
-        self.where(filter).offset(offset).order(order)
+        self.where(filter).offset(offset).order(order).limit(limit)
       else
         self.limit(limit).offset(offset).order(order)
       end
