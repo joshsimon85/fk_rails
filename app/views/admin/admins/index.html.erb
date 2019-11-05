@@ -11,7 +11,7 @@
       <section class="jumbotron">
         <section>
           <h2 class="h4">Emails</h2>
-          <p class="lead">You have <%= @records_count %> stored <%= 'email'.pluralize(@email_count) %>!</p>
+          <p class="lead">You have <%= Email.count %> stored <%= 'email'.pluralize(@email_count) %>!</p>
           <%= link_to 'Stored Emails', admin_emails_path %>
         </section>
         <hr class="my-4">
