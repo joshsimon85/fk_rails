@@ -38,5 +38,5 @@ yarn-debug.log*
 .yarn-integrity
 
 # Ignore Env vars
-.env
+env
 todo.txt
