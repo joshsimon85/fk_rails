@@ -8,7 +8,8 @@ RSpec.describe SendTestimonialLinkEmailJob do
     }.to have_enqueued_job.with(1)
   end
 
-  it 'creates a record with error information when the user does not exist' do
+  it 'creates a report with error information when the user does not exist' do
+    ActiveJob::Base.queue_adapter = :test
     SendTestimonialLinkEmailJob.perform_now(10)
     expect(Report.count).to eq(1)
     expect(Report.first.error_type).to eq('Record Not Found')

@@ -119,15 +119,11 @@ RSpec.configure do |config|
    end
   end
 
-  config.before(:each) do |example|
-    unless example.metadata[:skip_db_cleaner]
-      DatabaseCleaner.start
-    end
+  config.before(:each) do 
+    DatabaseCleaner.start
   end
 
-  config.append_after(:each) do |example|
-    unless example.metadata[:skip_db_cleaner]
-      DatabaseCleaner.clean
-    end
+  config.append_after(:each) do
+    DatabaseCleaner.clean
   end
 end

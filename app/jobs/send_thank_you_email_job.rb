@@ -4,7 +4,7 @@ class SendThankYouEmailJob < ApplicationJob
   rescue_from(ActiveRecord::RecordNotFound) do |exception|
      Report.create(
        error_type: 'Record Not Found',
-       process: 'Send Thank You Email',
+       origin: 'Send Thank You Email',
        message: exception
      )
   end

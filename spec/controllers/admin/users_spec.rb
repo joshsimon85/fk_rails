@@ -32,12 +32,11 @@ RSpec.describe Admin::UsersController do
       let(:action) { post :send_testimonial_link, params: { id: 1 } }
     end
 
-    context 'with valid admin credentials and valid user', skip_db_cleaner: true do
+    context 'with valid admin credentials and valid user' do
       let(:admin) { Fabricate(:user, admin: true) }
       let(:user) { Fabricate(:user) }
 
       before(:each) do
-        sleep(0.1)
         ActionMailer::Base.deliveries.clear
         sign_in(admin)
         post :send_testimonial_link, params: { id: user.id }
@@ -52,7 +51,6 @@ RSpec.describe Admin::UsersController do
       end
 
       it 'sends out an email to the customer' do
-        sleep(0.1)
         expect(ActionMailer::Base.deliveries.count).to eq(1)
       end
     end

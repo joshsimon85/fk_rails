@@ -4,7 +4,7 @@ class SendTestimonialLinkEmailJob < ApplicationJob
   rescue_from(ActiveRecord::RecordNotFound) do |exception|
      Report.create(
        error_type: 'Record Not Found',
-       process: 'Send Testimonial Link Email',
+       origin: 'Send Testimonial Link Email',
        message: exception
      )
   end

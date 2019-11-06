@@ -15,7 +15,8 @@ RSpec.describe SendThankYouEmailJob do
     }.to have_enqueued_job.with('user', 2)
   end
 
-  it 'creates a record with error details' do
+  it 'creates a report with error details' do
+    ActiveJob::Base.queue_adapter = :test
     SendThankYouEmailJob.perform_now('user', 2)
     expect(Report.count).to eq(1)
     expect(Report.first.error_type).to eq('Record Not Found')

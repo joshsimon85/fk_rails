@@ -27,12 +27,5 @@ end
 end
 
 21.times do
-  error_type = Faker::Lorem.words(number: 3).join(' ')
-  process = Faker::Lorem.words(number: 4).join(' ')
-  message = Faker::Lorem.sentences(number: 4).join(' ')
-  Report.create(
-    :error_type => error_type,
-    :process => process,
-    :message => message
-  )
+  Fabricate(:report)
 end
