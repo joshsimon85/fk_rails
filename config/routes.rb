@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'admins#index'
+
     resources :emails, only: [:index, :show, :delete, :destroy] do
       collection do
         delete 'destroy_multiple'
@@ -23,13 +24,14 @@ Rails.application.routes.draw do
     resources :reports, only: [:index, :delete, :destroy] do
       collection do
         delete 'destroy_multiple'
-      end 
+      end
     end
 
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'
 
     get '/customers', to: 'users#index'
+    get '/profile', to: 'admins#edit'
     post '/send_testimonial_link/:id', to: 'users#send_testimonial_link'
   end
 

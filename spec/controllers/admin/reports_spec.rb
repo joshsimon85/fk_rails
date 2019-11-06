@@ -43,7 +43,7 @@ RSpec.describe Admin::ReportsController do
       end
 
       it 'redirects to the admin reports path' do
-        expect(response).to redirect_to admin_reports_path(order: 'desc', page: '1')
+        expect(response).to redirect_to admin_reports_path
       end
 
       it 'deletes the record from the database' do
@@ -75,7 +75,7 @@ RSpec.describe Admin::ReportsController do
       end
 
       it 'redirect to the admin reports path' do
-        expect(response).to redirect_to admin_reports_path(order: 'desc', page: '1')
+        expect(response).to redirect_to admin_reports_path
       end
 
       it 'deletes the records that are specified' do

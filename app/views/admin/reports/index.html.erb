@@ -24,7 +24,7 @@
         <% if @records_count == 0 %>
           <h2 class="h3">You don't have any stored reports!</h2>
         <% else %>
-          <%= form_with url: destroy_multiple_admin_reports_path(@report, :page => @current_page, :order => @order), method: :delete, local: :true do |f| %>
+          <%= form_with url: destroy_multiple_admin_reports_path, method: :delete, local: :true do |f| %>
             <% @reports.each_with_index do |report, idx| %>
               <section class="row container">
                 <dl class="col-sm-12 col-md">
@@ -45,7 +45,7 @@
                 </dl>
                 <div class="col-sm-12">
                   <%= check_box_tag "reports[#{report.id}]", true %>
-                  <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#report-<%= report.id %>">
+                  <button type="button" class="btn btn-sm btn-outline-danger ml-2" data-toggle="modal" data-target="#report-<%= report.id %>">
                     Delete
                   </button>
                   <div class="modal fade" id="report-<%= report.id %>" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
@@ -62,7 +62,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                          <%= link_to 'Delete', admin_report_path(report, :page => @current_page, :order => @order), method: :delete, class: 'btn btn-outline-danger' %>
+                          <%= link_to 'Delete', admin_report_path(report), method: :delete, class: 'btn btn-outline-danger' %>
                         </div>
                       </div>
                     </div>

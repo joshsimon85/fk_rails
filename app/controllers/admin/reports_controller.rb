@@ -9,14 +9,14 @@ class Admin::ReportsController < Admin::BaseController
   def destroy
     Report.delete(params[:id])
     flash[:success] = 'The report has been deleted'
-    redirect_to admin_reports_path(:page => @current_page, :order => @order)
+    redirect_to admin_reports_path
   end
 
   def destroy_multiple
     report_ids = params[:reports].keys.map(&:to_i)
     Report.where(id: report_ids).delete_all
     flash[:success] = 'The selected reports have been removed'
-    redirect_to admin_reports_path(:page => @current_page, :order => @order)
+    redirect_to admin_reports_path
   end
 
   private
