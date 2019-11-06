@@ -54,7 +54,6 @@ RSpec.describe Admin::ReportsController do
 
   describe 'DELETE delete_multiple' do
     let(:report) { Fabricate(:report) }
-    let(:report_1) { Fabricate(:report) }
     let(:report_2) { Fabricate(:report) }
 
     it_behaves_like 'requires admin' do
@@ -80,7 +79,7 @@ RSpec.describe Admin::ReportsController do
       end
 
       it 'deletes the records that are specified' do
-        expect(Report.count).to eq(1)
+        expect(Report.count).to eq(0)
       end
     end
   end
