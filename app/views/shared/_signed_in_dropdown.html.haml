@@ -4,10 +4,14 @@
     =link_to nil, class: 'nav-link dropdown-toggle', id: 'navbarDropdown', role: 'button', data: {toggle: 'dropdown'}, aria: {haspopup: 'true', expanded: 'false'} do
       Accounts
     %ul.dropdown-menu{ aria: {labelledby: 'navbarDropdown'}}
+      -unless current_user.admin?
+        %li
+          =link_to 'My Account', nil, class: 'dropdown-item'
       %li
-        =link_to 'My Account', nil, class: 'dropdown-item'
-      %li
-        =link_to 'Edit My Account', nil, class: 'dropdown-item'
+        -if current_user.admin?
+          =link_to 'Edit My Account', admin_profile_edit_path, class: 'dropdown-item'
+        -else
+          =link_to 'Edit My Account', nil, class: 'dropdown-item'
       %li.dropdown-divider
       %li
         =link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item'
@@ -17,10 +21,14 @@
     =link_to nil, class: 'nav-link dropdown-toggle', id: 'navbarDropdown', role: 'button', data: {toggle: 'dropdown'}, aria: {haspopup: 'true', expanded: 'false'} do
       Accounts
     %ul.dropdown-menu{ aria: {labelledby: 'navbarDropdown'}}
+      -unless current_user.admin?
+        %li
+          =link_to 'My Account', nil, class: 'dropdown-item'
       %li
-        =link_to 'My Account', nil, class: 'dropdown-item'
-      %li
-        =link_to 'Edit My Account', nil, class: 'dropdown-item'
+        -if current_user.admin?
+          =link_to 'Edit My Account', admin_profile_edit_path, class: 'dropdown-item'
+        -else
+          =link_to 'Edit My Account', nil, class: 'dropdown-item'
       %li.dropdown-divider
       %li
         =link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item'

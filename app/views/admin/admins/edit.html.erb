@@ -1,0 +1,50 @@
+<%= render partial: 'shared/nav', locals: { active: 'accounts' } %>
+<main>
+  <section class="partial-38 bg-light p-3">
+    <h1 class="h3 text-center">Edit Your Profile</h1>
+    <% if @user.errors.present? %>
+      <section class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+        <%= button_tag(type: 'button', class: 'close', data: {dismiss: 'alert'}, aria: {label: 'Close'}) do %>
+          <%= content_tag :span, aria: {hidden: 'true'} do %>
+            &times;
+          <% end %>
+        <% end %>
+        <% error_count = @user.errors.count %>
+        <h4 class="lead bold">
+          The following <%= pluralize(error_count, 'error') %>
+          prevented your account from being updated:
+        </h4>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </section>
+    <% end %>
+    <%= form_with model: @user, url: admin_profile_edit_path, local: true, method: :patch do |f| %>
+      <dl>
+        <dt class="mb-2">Full Name</dt>
+        <dd><%= f.text_field :full_name, class: "form-control" %></dd>
+      </dl>
+      <dl>
+        <dt class="mb-2">Phone Number</dt>
+        <dd><%= f.text_field :phone_number, class: "form-control" %></dd>
+      </dl>
+      <dl>
+        <dt class="mb-2">Email Address</dt>
+        <dd><%= f.text_field :email, class: "form-control" %></dd>
+      </dl>
+      <dl>
+        <dt class="mb-2">Last Sign In</dt>
+        <dd>
+          <%= format_datetime(@user.last_sign_in_at) %>
+        </dd>
+      </dl>
+      <hr class="my-4">
+      <div>
+        <%= f.submit 'Update', class: "btn btn-outline-secondary btn-block mb-2" %>
+        <%= link_to 'Change Password', nil %>
+      </div>
+    <% end %>
+  </section>
+</main>
