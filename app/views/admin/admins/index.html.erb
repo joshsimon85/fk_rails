@@ -17,7 +17,8 @@
         <hr class="my-4">
         <section>
           <h2 class="h4">Testimonials</h2>
-          <p class="lead">You have  <%= Testimonial.count %> stored <%= 'testimonial'.pluralize(Testimonial.count) %>!</p>
+          <% testimonial_count = Testimonial.where(:published => false).count %>
+          <p class="lead">You have  <%= testimonial_count %> stored <%= 'testimonial'.pluralize(testimonial_count) %> waiting for approval!</p>
           <%= link_to 'Testimonials Awaiting Approval',  admin_testimonials_path(:published => false) %>
         </section>
       </section>

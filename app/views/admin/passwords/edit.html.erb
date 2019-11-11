@@ -1,0 +1,54 @@
+<%= render partial: 'shared/nav', locals: { active: 'accounts' } %>
+<section class="partial-38 bg-light px-4">
+  <h1 class="mb-3 h3 text-center text-primary">Update Password</h1>
+
+  <%= form_with model: @user, url: admin_password_edit_path, method: :patch, local: true do |f| %>
+    <% if @user.errors.present? %>
+      <section class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+        <%= button_tag(type: 'button', class: 'close', data: {dismiss: 'alert'}, aria: {label: 'Close'}) do %>
+          <%= content_tag :span, aria: {hidden: 'true'} do %>
+            &times;
+          <% end %>
+        <% end %>
+        <% error_count = @user.errors.count %>
+        <h4 class="lead bold">
+          The following <%= pluralize(error_count, 'error') %>
+          prevented your email from being sent:
+        </h4>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </section>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :email, 'Email Address' %>
+      <%= f.email_field :email, autofocus: false, autocomplete: "email", readonly: true, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+      <em>6 characters minimum</em>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="actions">
+      <%= f.submit "Update", class: 'btn btn-outline-secondary w-100' %>
+      <%= link_to "Cancel?", :back, class: 'd-block text-secondary mt-2' %>
+    </div>
+  <% end %>
+</section>

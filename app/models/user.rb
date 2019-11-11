@@ -10,4 +10,11 @@ class User < ApplicationRecord
          :trackable, :timeoutable, :omniauthable
 
   validates_presence_of :full_name
+
+  private
+
+  def self.authenticate(email, password)
+    user = self.find_for_authentication(:email => email)
+    user && user.valid_password?(password) ? user : nil
+  end
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
   }
 
   namespace :admin do
@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     get '/profile/edit', to: 'admins#edit'
     patch '/profile/edit', to: 'admins#update'
     post '/send_testimonial_link/:id', to: 'users#send_testimonial_link'
+    get '/password/edit', to: 'passwords#edit'
+    patch '/password/edit', to: 'passwords#update'
   end
 
   root to: 'pages#index'

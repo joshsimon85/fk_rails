@@ -43,7 +43,8 @@
       <hr class="my-4">
       <div>
         <%= f.submit 'Update', class: "btn btn-outline-secondary btn-block mb-2" %>
-        <%= link_to 'Change Password', nil %>
+        <%= link_to 'Change Password?', admin_password_edit_path, class: 'd-block text-secondary' %>
+        <%= link_to 'Cancel?', admin_root_path, class: 'd-block text-secondary' %>
       </div>
     <% end %>
   </section>

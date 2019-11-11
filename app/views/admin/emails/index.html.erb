@@ -22,7 +22,7 @@
       </header>
       <section class="bg-light p-3 mb-3">
         <% if @records_count == 0 %>
-          <h2 class="h3">You don't have any stored emails!</h2>
+          <h2 class="h4">You don't have any stored emails!</h2>
         <% else %>
           <%= form_with url: destroy_multiple_admin_emails_path(@email, :page => @current_page, :order => @order), method: :delete, local: :true do |f| %>
             <% @emails.each_with_index do |email, idx| %>

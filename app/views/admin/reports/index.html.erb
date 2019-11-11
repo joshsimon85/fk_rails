@@ -22,7 +22,7 @@
       </header>
       <section class="bg-light p-3">
         <% if @records_count == 0 %>
-          <h2 class="h3">You don't have any stored reports!</h2>
+          <h2 class="h4">You don't have any stored reports!</h2>
         <% else %>
           <%= form_with url: destroy_multiple_admin_reports_path, method: :delete, local: :true do |f| %>
             <% @reports.each_with_index do |report, idx| %>
