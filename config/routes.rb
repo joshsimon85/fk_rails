@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
+  devise_for :users, :path => '/user', controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
   }
+
+  namespace :users, path: '/user' do
+    get '/testimonial', to: 'testimonials#edit'
+    patch '/testimonial', to: 'testimonials#update'
+    delete '/testimonial', to: 'testimonials#destroy'
+  end
 
   namespace :admin do
     root 'admins#index'

@@ -1,4 +1,6 @@
 class Users::TestimonialsController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+
   def new
     @user = User.find_by(testimonial_token: params[:token])
     if @user
@@ -27,6 +29,29 @@ class Users::TestimonialsController < ApplicationController
       flash[:error] = 'An error was encountered while processing your request!'
       redirect_to expired_token_path
     end
+  end
+
+  def edit
+    @user = current_user
+    @testimonial = @user.testimonial
+  end
+
+  def update
+    @testimonial = current_user.testimonial
+    @testimonial.update(:message => params[:testimonial][:message])
+    if @testimonial.valid?
+      flash[:success] = 'Your testimonail has been updated'
+      redirect_to edit_user_registration_path
+    else
+      flash.now[:error] = 'Your testimonial could not be updated'
+      render :edit
+    end
+  end
+
+  def destroy
+    Testimonial.delete(current_user.testimonial.id)
+    flash[:success] = 'Your testimonial has been removed'
+    redirect_to edit_user_registration_path
   end
 
   def expired_token; end

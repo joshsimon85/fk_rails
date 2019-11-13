@@ -1,9 +1,9 @@
 = javascript_pack_tag 'application'
 = render partial: 'shared/nav', locals: { active: 'contact' }
-%section.bg-light.container
+%section.container.shadow.border.rounded.my-5
   %div.row
-    %div.col-sm-12.mt-5
-      %h1.mb-1.text-primary GET IN TOUCH WITH US
+    %div.col-sm-12
+      %h1.mb-1.text-primary.pt-3 GET IN TOUCH WITH US
       %p.lead We'll get back to you as soon as possible.
   - if @email.errors.present?
     %div.alert.alert-danger.alert-dismissible.fade.show{role: 'alert'}
@@ -28,5 +28,5 @@
         %div.col
           = f.rich_text_area :message, placeholder: 'Message', class: ('field_with_errors' if @email.errors[:message].present?)
       %hr
-      %div.form-row.mt-3.mb-5
+      %div.form-actions.mt-3.mb-3
         = f.submit 'Submit', class: 'col-sm-2 btn btn-primary'

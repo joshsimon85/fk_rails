@@ -1,0 +1,35 @@
+<%= javascript_pack_tag 'application' %>
+<%= render partial: 'shared/nav', locals: { active: 'accounts' } %>
+<main class="partial-60 my-5">
+  <%= render partial: 'devise/shared/sub_nav', locals: { active: 'testimonial' } %>
+  <section class="border border-top-0 rounded-bottom shadow px-4">
+    <h2 class="py-3 text-center">My Testimonial</h2>
+    <%= form_with model: @testimonial, url: users_testimonial_path, method: :patch, local: true do |f| %>
+      <% if @testimonial.errors.present? %>
+        <section class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+          <%= button_tag(type: 'button', class: 'close', data: {dismiss: 'alert'}, aria: {label: 'Close'}) do %>
+            <%= content_tag :span, aria: {hidden: 'true'} do %>
+              &times;
+            <% end %>
+          <% end %>
+          <% error_count = @testimonial.errors.count %>
+          <h4 class="lead bold">
+            The following <%= pluralize(error_count, 'error') %>
+            prevented your testimonial from being updated:
+          </h4>
+          <ul>
+            <% @testimonial.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </section>
+      <% end %>
+      <%= f.rich_text_area :message, class: ('field_with_errors' if @testimonial.errors.keys.include?(:message)) %>
+      <div class="form-actions mt-5">
+        <%= f.submit 'Update', class: "mb-2 btn btn-outline-secondary" %>
+        <%= link_to "Delete", users_testimonial_path, data: { confirm: "Are you sure you want to delete your testimonial?" }, method: :delete, class: 'mb-2 btn btn-outline-danger' %>
+      </div>
+      <%= link_to "Cancel", :back, class: 'd-block mb-3' %>
+    <% end %>
+  </section>
+</main>

@@ -22,7 +22,7 @@
               <% error_count = @testimonial.errors.count %>
               <h4 class="lead bold">
                 The following <%= pluralize(error_count, 'error') %>
-                prevented your email from being sent:
+                prevented your testimonial from being saved:
               </h4>
               <ul>
                 <% @testimonial.errors.full_messages.each do |msg| %>

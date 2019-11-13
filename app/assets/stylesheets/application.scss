@@ -14,6 +14,7 @@
  * require_tree .
  * require_self
  */
+@import url('https://fonts.googleapis.com/css?family=Nosifer&display=swap');
 @import 'font-awesome';
 @import 'bootstrap';
 
@@ -71,6 +72,14 @@ h1 {
 }
 
 // Navbar global styling
+.navbar-brand {
+  font-family: 'Nosifer', cursive;
+}
+
+.navbar-brand span {
+  color: #84DF08;
+}
+
 #nav {
   background: #0c0c0c;
 }
@@ -163,6 +172,11 @@ dt > label > span {
   width: 65px;
 }
 
+// Froms
+.form-actions > input[type="submit"] {
+  margin-right: 10px;
+}
+
 // Break points
 @media (min-width: 576px) {
   .partial-38 {
@@ -170,6 +184,18 @@ dt > label > span {
     margin: 30px auto;
     padding: 10px;
     width: 90%;
+  }
+
+  .partial-60 {
+    margin: 0 auto;
+    width: 90%
+  }
+
+  .partial-60 .form-actions input,
+  .partial-60 .form-actions button,
+  .partial-60 .form-actions a {
+    display: block;
+    width: 100%;
   }
 }
 
@@ -183,13 +209,19 @@ dt > label > span {
     margin: 40px auto;
   }
 
-  .edit_testimonial input[type="submit"] {
-    margin-right: 15px;
+  .partial-60 {
+    width: 60%;
   }
 
-  // Forms
-  .form-actions > input[type="submit"] {
-    margin-right: 10px;
+  .partial-60 .form-actions input,
+  .partial-60 .form-actions button,
+  .partial-60 .form-actions a {
+    display: inline-block;
+    width: 150px;
+  }
+
+  .edit_testimonial input[type="submit"] {
+    margin-right: 15px;
   }
 }
 

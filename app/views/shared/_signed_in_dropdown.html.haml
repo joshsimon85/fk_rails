@@ -6,12 +6,10 @@
     %ul.dropdown-menu{ aria: {labelledby: 'navbarDropdown'}}
       -unless current_user.admin?
         %li
-          =link_to 'My Account', nil, class: 'dropdown-item'
+          =link_to 'My Account',  edit_user_registration_path, class: 'dropdown-item'
       %li
         -if current_user.admin?
           =link_to 'Edit My Account', admin_profile_edit_path, class: 'dropdown-item'
-        -else
-          =link_to 'Edit My Account', nil, class: 'dropdown-item'
       %li.dropdown-divider
       %li
         =link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item'
@@ -23,12 +21,10 @@
     %ul.dropdown-menu{ aria: {labelledby: 'navbarDropdown'}}
       -unless current_user.admin?
         %li
-          =link_to 'My Account', nil, class: 'dropdown-item'
+          =link_to 'My Account',  edit_user_registration_path, class: 'dropdown-item'
       %li
         -if current_user.admin?
           =link_to 'Edit My Account', admin_profile_edit_path, class: 'dropdown-item'
-        -else
-          =link_to 'Edit My Account', nil, class: 'dropdown-item'
       %li.dropdown-divider
       %li
         =link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item'

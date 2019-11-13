@@ -1,0 +1,18 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <% if active['account_settings'] %>
+      <%= link_to 'Account Settings', edit_user_registration_path, class: 'nav-link active' %>
+    <% else %>
+      <%= link_to 'Account Settings', edit_user_registration_path, class: 'nav-link' %>
+    <% end %>
+  </li>
+  <% if current_user.testimonial %>
+    <li class="nav-item">
+      <% if active['testimonial'] %>
+        <%= link_to 'Testimonial', users_testimonial_path, class: 'nav-link active' %>
+      <% else %>
+        <%= link_to 'Testimonial', users_testimonial_path, class: 'nav-link' %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
