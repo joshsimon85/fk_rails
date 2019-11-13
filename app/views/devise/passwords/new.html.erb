@@ -1,16 +1,25 @@
-<h2>Forgot your password?</h2>
+<%= render partial: 'shared/nav', locals: { active: 'accounts' } %>
+<main class="partial-60 my-5">
+  <section class="border border-top-0 rounded-bottom shadow p-4 my-3">
+    <h2 class="mb-4">Forgot your password?</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <dl class="row form-group">
+        <dt class="col-sm-12">
+          <%= f.label :email %>
+        </dt>
+        <dd class="col-sm-12 col-lg-7">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </dd>
+      </dl>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+      <div class="form-actions mb-3">
+        <%= f.submit "Send reset password instructions", class: "btn btn-outline-secondary", id: "password-reset" %>
+      </div>
+    <% end %>
+    <hr>
+    <%= render "devise/shared/links" %>
+  </section>
+</main>

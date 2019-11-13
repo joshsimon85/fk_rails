@@ -10,6 +10,14 @@
         "/packs/js/application-28436a7412efa4c8158a.js.map"
       ]
     },
+    "navbar": {
+      "js": [
+        "/packs/js/navbar-2731c1f9433bd6730cdf.js"
+      ],
+      "js.map": [
+        "/packs/js/navbar-2731c1f9433bd6730cdf.js.map"
+      ]
+    },
     "text_counter": {
       "js": [
         "/packs/js/text_counter-26bdc5dc036b259bfa9b.js"
@@ -19,6 +27,8 @@
       ]
     }
   },
+  "navbar.js": "/packs/js/navbar-2731c1f9433bd6730cdf.js",
+  "navbar.js.map": "/packs/js/navbar-2731c1f9433bd6730cdf.js.map",
   "text_counter.js": "/packs/js/text_counter-26bdc5dc036b259bfa9b.js",
   "text_counter.js.map": "/packs/js/text_counter-26bdc5dc036b259bfa9b.js.map"
 }

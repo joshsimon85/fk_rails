@@ -4,24 +4,29 @@
     <title>FrankenKopter</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <meta name="viewport" content="width-device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'navbar.js' %>
   </head>
 
   <body>
     <%= render partial: 'shared/flash_notice' %>
+
     <nav id="search-bar" class="navbar navbar-dark">
       <%= link_to root_path, class: 'navbar-brand' do %>
         <span>FrankenKopter</span>
       <% end %>
-      <form class="form-inline">
-        <input class="form-control mr-1" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-          <%= fa_icon 'search' %>
-        </button>
-      </form>
+      <% if current_user && current_user.admin %>
+        <form id="search-form" class="form-inline">
+          <input class="form-control mr-1" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            <%= fa_icon 'search' %>
+          </button>
+        </form>
+      <% end %>
     </nav>
+
     <%= yield %>
   </body>
 </html>

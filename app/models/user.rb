@@ -2,7 +2,7 @@ class User < ApplicationRecord
   include Tokenable
   include Paginationable
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :lockable, :timeoutable
   has_one :testimonial
 
   devise :database_authenticatable, :registerable,

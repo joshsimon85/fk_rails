@@ -1,0 +1,34 @@
+<% if active['search'] %>
+  <li id="search-dropdown" class="nav-item dropdown active">
+    <span class="sr-only">(current)</span>
+    <%= link_to nil, class: 'nav-link dropdown-toggle', id: 'searchBarDropdown', role: 'button', data: {toggle: 'dropdown'}, aria: {haspopup: 'true', expanded: 'false'} do %>
+      Search
+    <% end %>
+    <ul class="dropdown-menu" aria-labelledby="searchBarDropdown">
+      <li>
+        <form id="search-form-2" class="dropdown-item form-inline">
+          <input class="form-control mr-1" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            <%= fa_icon 'search' %>
+          </button>
+        </form>
+      </li>
+    </ul>
+  </li>
+<% else %>
+<li id="search-dropdown" class="nav-item dropdown">
+  <%= link_to nil, class: 'nav-link dropdown-toggle', id: 'searchBarDropdown', role: 'button', data: {toggle: 'dropdown'}, aria: {haspopup: 'true', expanded: 'false'} do %>
+    Search
+  <% end %>
+    <ul class="dropdown-menu" aria-labelledby="searchBarDropdown">
+      <li>
+        <form id="search-form-2" class="dropdown-item form-inline">
+          <input class="form-control mr-1" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            <%= fa_icon 'search' %>
+          </button>
+        </form>
+      </li>
+    </ul>
+  </li>
+<% end %>

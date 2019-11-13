@@ -1,0 +1,72 @@
+<nav id="nav" class="navbar navbar-expand-lg navbar-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <ul class="navbar-nav">
+      <% if active['home'] %>
+        <li class="nav-item active">
+          <%= link_to root_path, class: 'nav-link' do %>
+            Home
+            <span class="sr-only">(current)</span>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'Home', root_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+      <% if active['about'] %>
+        <li class="nav-item active">
+          <%= link_to about_path, class: 'nav-link' do %>
+            About
+            <span class="sr-only">(current)<span>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'About', about_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+      <% if active['contact'] %>
+        <li class="nav-item active">
+          <%= link_to contact_path, class: 'nav-link' do %>
+            Contact
+            <span class="sr-only">(current)</span>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'Contact', contact_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+      <% if user_signed_in? && current_user.admin? %>
+        <% if active['dashboard'] %>
+          <li class="nav-item active">
+            <%= link_to admin_root_path, class: 'nav-link' do %>
+              Dashboard
+              <span class="sr-only">(current)</span>
+            <% end %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Dashboard', admin_root_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+      <% end %>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= render partial: 'shared/search_dropdown', locals: { active: active } %>
+      <% end %>
+      <% if user_signed_in? %>
+        <%= render partial: 'shared/signed_in_dropdown', locals: { active: active } %>
+      <% else %>
+        <%= render partial: 'shared/signed_out_dropdown', locals: { active: active } %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="navbar-nav">
+    <% if user_signed_in? %>
+      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, id: "sign-out-button", class: 'btn btn-outline-primary' %>
+    <% end %>
+  </div>
+</nav>

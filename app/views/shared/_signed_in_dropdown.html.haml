@@ -2,8 +2,8 @@
   %li.nav-item.dropdown.active
     %span.sr-only (current)
     =link_to nil, class: 'nav-link dropdown-toggle', id: 'navbarDropdown', role: 'button', data: {toggle: 'dropdown'}, aria: {haspopup: 'true', expanded: 'false'} do
-      Accounts
-    %ul.dropdown-menu{ aria: {labelledby: 'navbarDropdown'}}
+      Account
+    %ul.dropdown-menu{ aria: {labelledby: 'navbarDropdown'} }
       -unless current_user.admin?
         %li
           =link_to 'My Account',  edit_user_registration_path, class: 'dropdown-item'
@@ -17,7 +17,7 @@
   %li.nav-item.dropdown
     %span.sr-only (current)
     =link_to nil, class: 'nav-link dropdown-toggle', id: 'navbarDropdown', role: 'button', data: {toggle: 'dropdown'}, aria: {haspopup: 'true', expanded: 'false'} do
-      Accounts
+      Account
     %ul.dropdown-menu{ aria: {labelledby: 'navbarDropdown'}}
       -unless current_user.admin?
         %li

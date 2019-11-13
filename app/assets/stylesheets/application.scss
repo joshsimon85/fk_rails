@@ -178,7 +178,20 @@ dt > label > span {
 }
 
 // Break points
-@media (min-width: 576px) {
+@media (min-width: 0px) {
+  #searchBarDropdown::after {
+    display: none;
+  }
+
+  #search-form {
+    display: none;
+  }
+
+  .navbar-brand {
+    display: inline-block;
+    margin: 0 auto;
+  }
+
   .partial-38 {
     border-radius: 4px;
     margin: 30px auto;
@@ -197,6 +210,22 @@ dt > label > span {
     display: block;
     width: 100%;
   }
+
+  #navbarNavAltMarkup {
+    text-align: center;
+  }
+
+  #navbarDropdown::after {
+    display: none;
+  }
+
+  .dropdown-menu .dropdown-divider {
+    display: none;
+  }
+}
+
+@media (min-width: 576px) {
+
 }
 
 @media (min-width: 768px) {
@@ -204,6 +233,27 @@ dt > label > span {
 }
 
 @media (min-width: 992px) {
+  #search-dropdown {
+    display: none;
+  }
+
+  #navbarDropdown::after {
+    display: inline-block;
+  }
+
+  #search-form {
+    display: inline-block;
+  }
+
+  .dropdown-menu .dropdown-divider {
+    display: block;
+  }
+
+  .navbar-brand {
+    display: inline-block;
+    margin: 0;
+  }
+
   .partial-38 {
     width: 38%;
     margin: 40px auto;
@@ -222,6 +272,10 @@ dt > label > span {
 
   .edit_testimonial input[type="submit"] {
     margin-right: 15px;
+  }
+
+  .form-actions #password-reset {
+    width: auto;
   }
 }
 
