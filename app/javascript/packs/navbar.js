@@ -7,7 +7,6 @@ $(function() {
   const navbar = {
     changeSignOutState: function(e) {
       if ($NAVBARALT.hasClass('show')) {
-        console.log('hide me')
         $SIGNOUTBTN.finish().delay(500).fadeToggle('slow');
       } else {
         $SIGNOUTBTN.finish().hide();
