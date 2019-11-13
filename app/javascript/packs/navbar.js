@@ -6,14 +6,24 @@ $(function() {
 
   const navbar = {
     changeSignOutState: function(e) {
-      if ($NAVBARALT.hasClass('show')) {
+      if ($TOGGLER.attr('aria-expanded') === 'true') {
         $SIGNOUTBTN.finish().delay(500).fadeToggle('slow');
+      } else {
+        $SIGNOUTBTN.finish().hide();
+      }
+    },
+    changeBtnState: function() {
+      if ($(window).width() >= 992) {
+        $SIGNOUTBTN.finish().show();
+      } else if ($(window).width() < 992 && ($TOGGLER.attr('aria-expanded') !== 'true')) {
+        $SIGNOUTBTN.finish().show();
       } else {
         $SIGNOUTBTN.finish().hide();
       }
     },
     bindEvents: function() {
       $TOGGLER.on('click', this.changeSignOutState.bind(this));
+      $(window).on('resize', this.changeBtnState.bind(this));
     },
     init: function() {
       this.bindEvents();
