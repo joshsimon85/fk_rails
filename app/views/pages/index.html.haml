@@ -1,10 +1,11 @@
 = render partial: 'shared/nav', locals: { active: 'home'}
-%div.jumbotron.text-center
-  %h1.display-4
-    Freakish Performance
-  %p.lead
-    Performance Packages for RotorWay Helicopters
-  %hr.my-4
-  %p
-    = link_to 'Contact Us', contact_path, class: 'btn btn-primary btn-md', role: 'button'
+%main.min-vh-75
+  %div.jumbotron.text-center
+    %h1.display-4
+      Freakish Performance
+    %p.lead
+      Performance Packages for RotorWay Helicopters
+    %hr.my-4
+    %p
+      = link_to 'Contact Us', contact_path, class: 'btn btn-primary btn-md', role: 'button'
 = render partial: 'shared/footer'
