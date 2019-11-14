@@ -21,9 +21,17 @@ $(function() {
         $SIGNOUTBTN.finish().hide();
       }
     },
+    changeNavBarState: function() {
+      if ($(window).scrollTop() > 115) {
+        $NAVBAR.addClass('fixed-top enlarged');
+      } else {
+        $NAVBAR.removeClass('fixed-top enlarged');
+      }
+    },
     bindEvents: function() {
       $TOGGLER.on('click', this.changeSignOutState.bind(this));
       $(window).on('resize', this.changeBtnState.bind(this));
+      $(window).on('scroll', this.changeNavBarState.bind(this));
     },
     init: function() {
       this.bindEvents();
