@@ -23,6 +23,10 @@ a:hover {
   text-decoration: none;
 }
 
+a:focus {
+  outline: none;
+}
+
 // heading global
 h1 {
   font-size: 36px;
@@ -72,6 +76,10 @@ h1 {
 }
 
 // Navbar global styling
+.enlarged {
+  height: 60px;
+}
+
 .navbar-brand {
   font-family: 'Nosifer', cursive;
 }
@@ -105,12 +113,6 @@ ul.navbar-nav {
 .dropdown-item:hover {
   background: inherit;
   color: #fff;
-}
-
-// Navbar
-
-.enlarged {
-  height: 60px;
 }
 
 // Search Bar global styling

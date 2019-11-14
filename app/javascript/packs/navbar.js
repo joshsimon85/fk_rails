@@ -22,7 +22,7 @@ $(function() {
       }
     },
     changeNavBarState: function() {
-      if ($(window).scrollTop() > 115) {
+      if ($(window).scrollTop() > 55) {
         $NAVBAR.addClass('fixed-top enlarged');
       } else {
         $NAVBAR.removeClass('fixed-top enlarged');
