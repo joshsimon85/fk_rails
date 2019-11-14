@@ -50,7 +50,7 @@ class Users::TestimonialsController < ApplicationController
 
   def destroy
     Testimonial.delete(current_user.testimonial.id)
-    flash[:success] = 'Your testimonial has been removed'
+    flash[:success] = 'Your testimonial has been deleted'
     redirect_to edit_user_registration_path
   end
 

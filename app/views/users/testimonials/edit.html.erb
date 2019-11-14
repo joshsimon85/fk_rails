@@ -27,7 +27,28 @@
       <%= f.rich_text_area :message, class: ('field_with_errors' if @testimonial.errors.keys.include?(:message)) %>
       <div class="form-actions mt-5">
         <%= f.submit 'Update', class: "mb-2 btn btn-outline-secondary" %>
-        <%= link_to "Delete", users_testimonial_path, data: { confirm: "Are you sure you want to delete your testimonial?" }, method: :delete, class: 'mb-2 btn btn-outline-danger' %>
+        <button type="button" class="mb-2 btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">
+          Delete
+        </button>
+
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-center">
+                Are you sure you want to delete your testimonial?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                <%= link_to 'Delete', users_testimonial_path, method: :delete, class: 'btn btn-outline-danger' %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <%= link_to "Cancel", :back, class: 'd-block mb-3' %>
     <% end %>
