@@ -1,3 +1,4 @@
+<!-- d-none d-md-block-->
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
   <div class="sidebar-sticky">
     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -7,46 +8,46 @@
     <ul class="nav flex-column">
       <li class="nav-item">
         <%= link_to admin_root_path, class: 'nav-link active' do %>
-          <%= fa_icon 'home', class: 'pr-1' %>
+          <%= fa_icon 'home', class: 'pr-1 d-none d-lg-inline' %>
           Home
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to nil, class: 'nav-link' do %>
-          <%= fa_icon 'credit-card', class: 'pr-1' %>
+          <%= fa_icon 'credit-card', class: 'pr-1 d-none d-lg-inline' %>
           Payments
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to admin_emails_path, class: 'nav-link' do %>
-          <%= fa_icon 'envelope', class: 'pr-1' %>
+          <%= fa_icon 'envelope', class: 'pr-1 d-none d-lg-inline' %>
           Emails
           <span class="badge badge-primary badge-pill pull-right"><%= Email.count %></span>
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to admin_testimonials_path, class: 'nav-link' do %>
-          <%= fa_icon 'pencil', class: 'pr-1' %>
+          <%= fa_icon 'pencil', class: 'pr-1 d-none d-lg-inline' %>
           Testimonials
           <span class="badge badge-primary badge-pill pull-right"><%= Testimonial.count %></span>
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to admin_customers_path, class: 'nav-link' do %>
-          <%= fa_icon 'users', class: 'pr-1' %>
+          <%= fa_icon 'users', class: 'pr-1 d-none d-lg-inline' %>
           Customers
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to admin_reports_path, class: 'nav-link' do %>
-          <%= fa_icon 'folder-open', class: 'pr-1' %>
+          <%= fa_icon 'folder-open', class: 'pr-1 d-none d-lg-inline' %>
           Reports
           <span class="badge badge-primary badge-pill pull-right"><%= Report.count %></span>
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to admin_sidekiq_web_path, class: 'nav-link' do %>
-          <%= fa_icon 'database', class: 'pr-1' %>
+          <%= fa_icon 'database', class: 'pr-1 d-none d-lg-inline' %>
           Queue
         <% end %>
       </li>

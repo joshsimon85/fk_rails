@@ -1,5 +1,5 @@
 <%= render partial: 'shared/nav', locals: { active: 'accounts' } %>
-<section class="partial-38 bg-light px-4">
+<section class="partial-38 shadow border rounded px-4">
   <h1 class="mb-3 h3 text-center text-primary">Update Password</h1>
 
   <%= form_with model: @user, url: admin_password_edit_path, method: :patch, local: true do |f| %>
@@ -23,26 +23,37 @@
       </section>
     <% end %>
 
-    <div class="form-group">
-      <%= f.label :email, 'Email Address' %>
-      <%= f.email_field :email, autofocus: false, autocomplete: "email", readonly: true, class: 'form-control' %>
-    </div>
+    <%= f.hidden_field :email %>
 
-    <div class="form-group">
-      <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
-      <em>6 characters minimum</em>
-    </div>
+    <dl class="row form-group">
+      <dt class="col-sm-12">
+        <%= f.label :password %>
+      </dt>
+      <dd class="col-sm-12">
+        <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+      </dd>
+      <dd class="col-sm-12">
+        <em>6 characters minimum</em>
+      </dd>
+    </dl>
 
-    <div class="form-group">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
-    </div>
+    <dl class="row form-group">
+      <dt class="col-sm-12">
+        <%= f.label :password_confirmation %>
+      </dt>
+      <dd class="col-sm-12">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+      </dd>
+    </dl>
 
-    <div class="form-group">
-      <%= f.label :current_password %>
-      <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
-    </div>
+    <dl class="row form-group">
+      <dt class="col-sm-12">
+        <%= f.label :current_password %>
+      </dt>
+      <dd class="col-sm-12">
+        <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
+      </dd>
+    </dl>
 
     <hr class="my-4">
 

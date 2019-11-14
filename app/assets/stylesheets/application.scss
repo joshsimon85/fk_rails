@@ -179,6 +179,10 @@ dt > label > span {
 
 // Break points
 @media (min-width: 0px) {
+  #admin-side-nav {
+    display: none;
+  }
+
   #searchBarDropdown::after {
     display: none;
   }

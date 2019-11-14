@@ -1,0 +1,44 @@
+<ul class="nav justify-content-center d-md-none">
+  <li class="nav-item">
+    <%= link_to admin_root_path, class: 'nav-link' do %>
+      <%= fa_icon 'home', class: 'pr-1 d-none d-lg-inline' %>
+      Home
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to nil, class: 'nav-link' do %>
+      <%= fa_icon 'credit-card', class: 'pr-1' %>
+      Payments
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to admin_emails_path, class: 'nav-link' do %>
+      <%= fa_icon 'envelope', class: 'pr-1' %>
+      Emails
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to admin_testimonials_path, class: 'nav-link' do %>
+      <%= fa_icon 'pencil', class: 'pr-1' %>
+      Testimonials
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to admin_customers_path, class: 'nav-link' do %>
+      <%= fa_icon 'users', class: 'pr-1' %>
+      Customers
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to admin_reports_path, class: 'nav-link' do %>
+      <%= fa_icon 'folder-open', class: 'pr-1' %>
+      Reports
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to admin_sidekiq_web_path, class: 'nav-link' do %>
+      <%= fa_icon 'database', class: 'pr-1' %>
+      Queue
+    <% end %>
+  </li>
+</ul>
