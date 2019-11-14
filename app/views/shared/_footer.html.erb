@@ -1,0 +1,23 @@
+<footer class="flex-rw pt-3">
+  <section class="footer-social-section flex-rw">
+      <span class="footer-social-overlap footer-social-connect">
+      CONNECT <span class="footer-social-small">with</span> US
+      </span>
+      <span class="footer-social-overlap footer-social-icons-wrapper">
+        <%= link_to contact_path, class: "generic-anchor" do %>
+          <%= fa_icon 'envelope' %>
+        <% end %>
+      </span>
+  </section>
+  <section class="footer-bottom-section flex-rw">
+    <div class="footer-bottom-wrapper">
+      <i class="fa fa-copyright" role="copyright"></i>
+      2019 FrankenKopter in
+      <address class="footer-address" role="company address">Bigfork, MT</address>
+      <span class="footer-bottom-rights"> - All Rights Reserved - </span>
+    </div>
+    <div class="footer-bottom-wrapper">
+      <%= link_to 'Privacy', privacy_policy_path, class: 'generic-anchor' %>
+    </div>
+  </section>
+</footer>

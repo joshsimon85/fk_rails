@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   root to: 'pages#index'
 
   get '/about', to: 'pages#about'
+  get '/privacy-policy', to: 'pages#privacy_policy'
   get '/contact', to: 'users/emails#new'
   post '/contact', to: 'users/emails#create'
   get '/testimonial/:token', to: 'users/testimonials#new', as: 'new_user_testimonial'

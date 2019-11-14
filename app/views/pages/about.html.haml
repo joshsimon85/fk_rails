@@ -1,6 +1,7 @@
 = render partial: 'shared/nav', locals: { active: 'about' }
 %main
-  %section.hero
+  %section.partial-60.shadow.border.rounded.p-3.my-5
+    %h1.h3.text-center A little About Us
     %p
       FrankenKopter Performance Engineering (FPE) was founded out of the need for
       a viable/available engine overhaul/upgrades to existing Helicopters. The
@@ -25,3 +26,4 @@
       The goal of FrankenKopter is to provide the highest quality performance
       enhancements to your helicopter to allow you to fly places not previously
       possible.
+=render partial: 'shared/footer'

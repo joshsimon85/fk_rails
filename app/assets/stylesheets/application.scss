@@ -112,6 +112,94 @@ ul.navbar-nav {
   background: #000;
 }
 
+// Footer
+footer {
+  background: black;
+  margin-top: auto;
+  width: 100%;
+}
+footer .generic-anchor {
+  font-size: 13px;
+  margin-right: 7px;
+  color: #868686;
+}
+
+footer .flex-rw {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.footer-social-section {
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  margin-top: 5px;
+}
+
+.footer-social-section::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 10px;
+  border-top: 1px solid #868686;
+  width: calc(100% - 20px)
+}
+
+.footer-social-overlap {
+  position: relative;
+  z-index: 2;
+  background: black;
+  padding: 0 20px
+}
+
+.footer-social-connect {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #868686;
+}
+
+.footer-social-small {
+  font-size: 0.6em;
+  padding: 0px 20px
+}
+
+.footer-social-overlap > a {
+  color: #868686;
+  font-size: 1.5em;
+}
+
+.footer-social-overlap > a:not(:first-child) {
+  margin-left: 0.38em
+}
+
+.footer-bottom-section {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px
+}
+
+.footer-bottom-section > div:first-child {
+  margin-right: auto
+}
+
+.footer-bottom-wrapper {
+  font-size: 14px;
+  color: #868686;
+}
+
+.footer-address {
+  display: inline;
+  font-style: normal
+}
+
+// Privacy Policy
+#privacy-policy p {
+  font-size: 13px;
+}
+
 // Trix text editor
 #email_message,
 #highlight_highlight,
