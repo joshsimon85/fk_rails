@@ -13,7 +13,7 @@ end
 end
 
 21.times do |n|
-  Fabricate(:user)
+  Fabricate(:user, password: 'password')
 end
 
 10.times do |n|
