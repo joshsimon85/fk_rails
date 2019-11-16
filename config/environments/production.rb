@@ -97,6 +97,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   Raven.configure do |config|
-    config.dsn = 'https://decd842151d14262a38a63da06608056:535d760f02604038885d59d1b25bbd7e@sentry.io/1823226'
+    config.dsn = ENV['SENTRY_DSN']
   end
 end
