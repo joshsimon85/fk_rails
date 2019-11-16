@@ -1,5 +1,11 @@
 class Users::TestimonialsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :set_records_count!, only: :index
+  before_action :set_pagination_values!, only: :index
+
+  def index
+    @testimonials = Testimonial.limit_and_sort(10 * (@current_page - 1), { :created_at => 'desc' })
+  end
 
   def new
     @user = User.find_by(testimonial_token: params[:token])
@@ -65,5 +71,9 @@ class Users::TestimonialsController < ApplicationController
   def format_name(creator)
     name_list = creator.titleize.split(' ')
     "#{name_list[0]} #{name_list[-1].slice(0)}."
+  end
+
+  def set_records_count!
+    @records_count = Testimonial.where(:published => true).count
   end
 end

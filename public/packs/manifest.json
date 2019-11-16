@@ -12,10 +12,10 @@
     },
     "navbar": {
       "js": [
-        "/packs/js/navbar-3e8b66d50ff67eddc93c.js"
+        "/packs/js/navbar-2bfa05ffbd93af49b6b3.js"
       ],
       "js.map": [
-        "/packs/js/navbar-3e8b66d50ff67eddc93c.js.map"
+        "/packs/js/navbar-2bfa05ffbd93af49b6b3.js.map"
       ]
     },
     "text_counter": {
@@ -27,8 +27,8 @@
       ]
     }
   },
-  "navbar.js": "/packs/js/navbar-3e8b66d50ff67eddc93c.js",
-  "navbar.js.map": "/packs/js/navbar-3e8b66d50ff67eddc93c.js.map",
+  "navbar.js": "/packs/js/navbar-2bfa05ffbd93af49b6b3.js",
+  "navbar.js.map": "/packs/js/navbar-2bfa05ffbd93af49b6b3.js.map",
   "text_counter.js": "/packs/js/text_counter-26bdc5dc036b259bfa9b.js",
   "text_counter.js.map": "/packs/js/text_counter-26bdc5dc036b259bfa9b.js.map"
 }

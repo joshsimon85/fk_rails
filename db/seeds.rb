@@ -16,14 +16,20 @@ end
   Fabricate(:user)
 end
 
-21.times do |n|
+10.times do |n|
   user = User.find(n + 1)
-  message = Faker::Lorem.paragraphs(number: 10).join(',')
+  message = Faker::Lorem.paragraphs(number: 20).join(',')
   testimonial = Testimonial.create(user_id: n + 1, message: message, published: Faker::Boolean.boolean, created_by: format_name(user.full_name))
   highlight = message.slice(0, 150)
-  if (n + 1) > 12
+  if (n + 1) < 12
      Highlight.create(testimonial_id: testimonial.id, highlight: highlight)
    end
+end
+
+11.times do |n|
+  user = User.find(n + 11)
+  message = Faker::Lorem.paragraphs(number: 10).join(',')
+  testimonial = Testimonial.create(user_id: user.id, message: message, published: Faker::Boolean.boolean, created_by: format_name(user.full_name))
 end
 
 21.times do

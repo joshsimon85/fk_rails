@@ -1,5 +1,5 @@
 = render partial: 'shared/nav', locals: { active: 'home'}
-%main.min-vh-75
+%main
   %div.jumbotron.text-center
     %h1.display-4
       Freakish Performance
@@ -8,4 +8,5 @@
     %hr.my-4
     %p
       = link_to 'Contact Us', contact_path, class: 'btn btn-primary btn-md', role: 'button'
+      = link_to 'What our customers are saying', testimonials_path, class: 'btn btn-primary'
 = render partial: 'shared/footer'

@@ -1,33 +1,35 @@
 = javascript_pack_tag 'application'
 = render partial: 'shared/nav', locals: { active: 'contact' }
-%section.container.shadow.border.rounded.my-5
-  %div.row
-    %div.col-sm-12
-      %h1.mb-1.text-primary.pt-3 GET IN TOUCH WITH US
-      %p.lead We'll get back to you as soon as possible.
-  - if @email.errors.present?
-    %div.alert.alert-danger.alert-dismissible.fade.show{role: 'alert'}
-      = button_tag(type: 'button', class: 'close', data: {dismiss: 'alert'}, aria: {label: 'Close'}) do
-        = content_tag :span, aria: {hidden: 'true'} do
-          &times;
-      - error_count = @email.errors.count
-      %h4.lead.bold The following #{pluralize(error_count, 'error')} prevented your email from being sent:
-      %ul
-        - @email.errors.full_messages.each do |msg|
-          %li= msg
-  %div.row.mt-3
-    = form_with url: contact_path, method: 'post', scope: 'email', local: true, class: 'col' do |f|
-      %div.form-row.mb-3
-        %div.col-sm-12.col-md
-          = f.text_field :full_name, class: 'form-control form-control-minimal', placeholder: 'Full Name'
-        %div.col-sm-12.col-md
-          = f.text_field :email, class: 'form-control form-control-minimal', placeholder: 'Email'
-        %div.col-sm-12.col-md
-          = f.text_field :phone_number, class: 'form-control form-control-minimal', placeholder: 'Phone Number'
-      %div.form-row.mb-3.mt-5
-        %div.col
-          = f.rich_text_area :message, placeholder: 'Message', class: ('field_with_errors' if @email.errors[:message].present?)
-      %hr
-      %div.form-actions.mt-3.mb-3
-        = f.submit 'Submit', class: 'col-sm-2 btn btn-primary'
+%main
+  %section.container.shadow.border.rounded.my-4
+    %div.row
+      %header.col-sm-12.text-center.email-header.mt-4.mb-3
+        %h1.text-primary.mb-0.pb-0 GET IN TOUCH WITH US
+        %hr.break
+        %p.lead We'll get back to you as soon as possible.
+    - if @email.errors.present?
+      %div.alert.alert-danger.alert-dismissible.fade.show{role: 'alert'}
+        = button_tag(type: 'button', class: 'close', data: {dismiss: 'alert'}, aria: {label: 'Close'}) do
+          = content_tag :span, aria: {hidden: 'true'} do
+            &times;
+        - error_count = @email.errors.count
+        %h4.lead.bold The following #{pluralize(error_count, 'error')} prevented your email from being sent:
+        %ul
+          - @email.errors.full_messages.each do |msg|
+            %li= msg
+    %div.row.mt-3
+      = form_with url: contact_path, method: 'post', scope: 'email', local: true, class: 'col' do |f|
+        %div.form-row.mb-3
+          %div.col-sm-12.col-md
+            = f.text_field :full_name, class: 'form-control form-control-minimal', placeholder: 'Full Name'
+          %div.col-sm-12.col-md
+            = f.text_field :email, class: 'form-control form-control-minimal', placeholder: 'Email'
+          %div.col-sm-12.col-md
+            = f.text_field :phone_number, class: 'form-control form-control-minimal', placeholder: 'Phone Number'
+        %div.form-row.mb-3.mt-5
+          %div.col
+            = f.rich_text_area :message, placeholder: 'Message', class: ('field_with_errors' if @email.errors[:message].present?)
+        %hr
+        %div.form-actions.mt-3.mb-3
+          = f.submit 'Submit', class: 'col-sm-2 btn btn-primary'
 = render partial: 'shared/footer'

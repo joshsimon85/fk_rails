@@ -1,7 +1,7 @@
 <%= render partial: 'shared/nav', locals: { active: 'accounts' } %>
 <main class="partial-60 my-5">
   <section class="border border-top-0 rounded-bottom shadow p-4 my-3">
-    <h2 class="mb-4">Change your password</h2>
+    <h1 class="mb-4 text-primary">Change your password</h1>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
@@ -38,3 +38,4 @@
     <%= render "devise/shared/links" %>
   </section>
 </main>
+<%= render partial: 'shared/footer' %>

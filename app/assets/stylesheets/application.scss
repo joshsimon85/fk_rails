@@ -18,6 +18,12 @@
 @import 'font-awesome';
 @import 'bootstrap';
 
+// Main For Footer
+main {
+  min-height: 63vh;
+  position: relative;
+}
+
 // links
 a:hover {
   text-decoration: none;
@@ -32,6 +38,12 @@ h1 {
   font-size: 36px;
 }
 
+// Horizontal Rule
+.break {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  width: 15%;
+}
 // font weights
 .bold {
   font-weight: bold;
@@ -40,6 +52,17 @@ h1 {
 .emphasize {
   font-size: 18px;
   text-decoration: underline;
+}
+
+// Sign Out Button
+#sign-out-button {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+}
+
+#sign-out-button.lowered {
+  top: 12px;
 }
 
 // flash error global styling
@@ -251,6 +274,35 @@ dt > label > span {
   font-weight: normal;
 }
 
+// Users Testimonials
+.card-columns .card {
+  position: relative;
+  transition: .8s opacity, .8s transform;
+}
+
+.card-columns:hover .card {
+  opacity: 0.3;
+  transform: scale(1);
+}
+.card-columns:hover .card:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.testimonial-quote {
+  color: #868686;
+  font-size: 28px;
+  position: absolute;
+  top: -10px;
+  left: -12px;
+  z-index: 1;
+}
+
+.testimonial-header .lead,
+.email-header .lead {
+  font-size: 16px;
+}
+
 // Testimonials
 #characters_remaining {
   padding-left: 15px;
@@ -296,11 +348,12 @@ dt > label > span {
     margin: 30px auto;
     padding: 10px;
     width: 90%;
+    position: absolute;
   }
 
   .partial-60 {
     margin: 0 auto;
-    width: 90%
+    width: 90%;
   }
 
   .partial-60 .form-actions input,

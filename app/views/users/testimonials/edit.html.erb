@@ -3,7 +3,7 @@
 <main class="partial-60 my-5">
   <%= render partial: 'devise/shared/sub_nav', locals: { active: 'testimonial' } %>
   <section class="border border-top-0 rounded-bottom shadow px-4">
-    <h2 class="py-3 text-center">My Testimonial</h2>
+    <h1 class="py-3 text-primary text-center">My Testimonial</h2>
     <%= form_with model: @testimonial, url: users_testimonial_path, method: :patch, local: true do |f| %>
       <% if @testimonial.errors.present? %>
         <section class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
@@ -54,3 +54,4 @@
     <% end %>
   </section>
 </main>
+<%= render partial: 'shared/footer' %>

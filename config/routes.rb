@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   get '/privacy-policy', to: 'pages#privacy_policy'
   get '/contact', to: 'users/emails#new'
   post '/contact', to: 'users/emails#create'
+  get '/testimonials', to: 'users/testimonials#index'
   get '/testimonial/:token', to: 'users/testimonials#new', as: 'new_user_testimonial'
   post '/testimonial/:token', to: 'users/testimonials#create'
   get 'expired_token', to: 'users/testimonials#expired_token', as: 'expired_token'

@@ -24,8 +24,12 @@ $(function() {
     changeNavBarState: function() {
       if ($(window).scrollTop() > 55) {
         $NAVBAR.addClass('fixed-top enlarged');
+        $SIGNOUTBTN.addClass('lowered');
+        $('body').css('margin-top', '60px');
       } else {
         $NAVBAR.removeClass('fixed-top enlarged');
+        $SIGNOUTBTN.removeClass('lowered');
+        $('body').removeAttr('style');
       }
     },
     bindEvents: function() {

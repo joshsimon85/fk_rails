@@ -1,29 +1,31 @@
 = javascript_pack_tag 'application'
 = render partial: 'shared/nav', locals: { active: '' }
-%section.bg-light.container
-  %div.row
-    %div.col-sm-12.mt-5
-      %h1.mb-1.text-primary LEAVE A TESTIMONIAL
-      %p.lead
-        We appreciate your feedback
-        %span.bold #{@user.full_name.titleize}
-        !
-  - if @testimonial.errors.present?
-    %div.alert.alert-danger.alert-dismissible.fade.show{role: 'alert'}
-      = button_tag(type: 'button', class: 'close', data: {dismiss: 'alert'}, aria: {label: 'Close'}) do
-        = content_tag :span, aria: {hidden: 'true'} do
-          &times;
-      - error_count = @testimonial.errors.count
-      %h4.lead.bold The following #{pluralize(error_count, 'error')} prevented your Testimonial from being saved:
-      %ul
-        - @testimonial.errors.full_messages.each do |msg|
-          %li= msg
-  %div.row.mt-3
-    = form_with url: new_user_testimonial_path, method: 'post', scope: 'testimonial', local: true, class: 'col' do |f|
-      %div.form-row.mb-3.mt-3
-        = hidden_field_tag :token, @user.testimonial_token
-        %div.col
-          = f.rich_text_area :message, placeholder: 'Message and Images', id: 'testimonial_message', class: ('field_with_errors' if @testimonial.errors[:message].present?)
-      %hr
-      %div.form-row.mt-3.mb-5
-        = f.submit 'Submit', class: 'col-sm-2 btn btn-primary'
+%main
+  %section.bg-light.container
+    %div.row
+      %div.col-sm-12.mt-5
+        %h1.mb-1.text-primary LEAVE A TESTIMONIAL
+        %p.lead
+          We appreciate your feedback
+          %span.bold #{@user.full_name.titleize}
+          !
+    - if @testimonial.errors.present?
+      %div.alert.alert-danger.alert-dismissible.fade.show{role: 'alert'}
+        = button_tag(type: 'button', class: 'close', data: {dismiss: 'alert'}, aria: {label: 'Close'}) do
+          = content_tag :span, aria: {hidden: 'true'} do
+            &times;
+        - error_count = @testimonial.errors.count
+        %h4.lead.bold The following #{pluralize(error_count, 'error')} prevented your Testimonial from being saved:
+        %ul
+          - @testimonial.errors.full_messages.each do |msg|
+            %li= msg
+    %div.row.mt-3
+      = form_with url: new_user_testimonial_path, method: 'post', scope: 'testimonial', local: true, class: 'col' do |f|
+        %div.form-row.mb-3.mt-3
+          = hidden_field_tag :token, @user.testimonial_token
+          %div.col
+            = f.rich_text_area :message, placeholder: 'Message and Images', id: 'testimonial_message', class: ('field_with_errors' if @testimonial.errors[:message].present?)
+        %hr
+        %div.form-row.mt-3.mb-5
+          = f.submit 'Submit', class: 'col-sm-2 btn btn-primary'
+= render partial: 'shared/footer'
