@@ -47,6 +47,7 @@ gem 'jquery-rails'
 gem 'image_processing', '~> 1.9', '>= 1.9.3'
 gem 'omniauth', '~> 1.9'
 gem 'pg', '~> 1.1', '>= 1.1.4'
+gem 'recaptcha', '~> 5.2', '>= 5.2.1'
 gem 'sidekiq', '~> 4.2'
 gem 'webpacker', '~> 4.0', '>= 4.0.7'
 
