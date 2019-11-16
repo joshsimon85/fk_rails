@@ -53,17 +53,6 @@ h1 {
   text-decoration: underline;
 }
 
-// Sign Out Button
-#sign-out-button {
-  position: absolute;
-  right: 10px;
-  top: 8px;
-}
-
-#sign-out-button.lowered {
-  top: 12px;
-}
-
 // flash error global styling
 .alert-error {
   background-color: #f2dede;
@@ -98,10 +87,6 @@ h1 {
 }
 
 // Navbar global styling
-.enlarged {
-  height: 60px;
-}
-
 .navbar-brand {
   font-family: 'Nosifer', cursive;
 }
