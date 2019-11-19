@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    @testimonial = Testimonial.find_by(:user_id => resource.id)
+    @testimonial = Testimonial.find_by(:creator_email => resource.email)
     super
   end
 
