@@ -26,6 +26,7 @@
           <h2 class="h4">You don't have any customers!</h2>
         <% else %>
           <% @customers.each do |customer| %>
+            <% testimonial = Testimonial.find_by(:creator_email => customer.email) %>
             <section class="row">
               <dl class="col-sm-12 col-md">
                 <dt>Full Name</dt>
@@ -43,13 +44,13 @@
               <% end %>
               <dl class="col-sm-12">
                 <dt>Testimonial Completed</dt>
-                <% if customer.testimonial %>
+                <% if testimonial %>
                   <dd>True</dd>
                 <% else %>
                   <dd>False</dd>
                 <% end %>
               </dl>
-              <% unless customer.testimonial %>
+              <% unless testimonial %>
                 <%= link_to 'Send testimonial link', admin_path(customer.id), method: :post, class: "col-sm-12" %>
               <% end %>
             </section>
