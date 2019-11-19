@@ -22,7 +22,6 @@ class Users::TestimonialsController < ApplicationController
     if @user
       @testimonial = Testimonial.create(testimonial_params.merge(
         {
-          user_id: @user.id,
           creator: params[:creator],
           creator_email: params[:creator_email],
           creator_avatar_url: params[:creator_avatar_url]
@@ -51,7 +50,7 @@ class Users::TestimonialsController < ApplicationController
   end
 
   def update
-    @testimonial = current_user.testimonial
+    @testimonial = Testimonial.find(:creator_email => current_user.email)
     @testimonial.update(:message => params[:testimonial][:message])
     if @testimonial.valid?
       flash[:success] = 'Your testimonail has been updated'

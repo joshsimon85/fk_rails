@@ -6,5 +6,6 @@ class Testimonial < ApplicationRecord
 
   validates_presence_of :message
   validates_presence_of :creator
+  validates_presence_of :creator_email
   validates_presence_of :creator_avatar_url
 end

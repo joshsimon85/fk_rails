@@ -1,8 +1,10 @@
 = render partial: 'shared/nav', locals: { active: '' }
 %main
-  %section.text-center.min-vh-100
-    %h2.h4.token_error
+  %section.partial-60.shadow.rounded.my-5.p-4
+    %h1.token_error.text-center.pt-0
+      Token Error
+    %p.token_error.text-center
       That token has expired or has been used. If you believe you have reached this
       page in error please
-      =link_to 'contact us!', new_email_path
-= render partial: 'shared/nav' %>
+      =link_to 'contact us!', contact_path
+=render partial: 'shared/footer'

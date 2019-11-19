@@ -247,7 +247,6 @@ footer .flex-rw {
 .token_error {
   background: #fff;
   color: #dc3545;
-  padding-top: 10%;
 }
 
 .token_error > a {
@@ -255,6 +254,9 @@ footer .flex-rw {
   font-weight: bold;
 }
 
+p.token_error {
+  font-size: 1.25em;
+}
 // Dl list
 dt > label > span {
   color: #6C757D;

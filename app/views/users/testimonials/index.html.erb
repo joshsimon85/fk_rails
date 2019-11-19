@@ -8,7 +8,7 @@
   <section class="card-columns mt-5">
     <% @testimonials.each do |testimonial| %>
       <section class="card shadow border rounded p-4 my-3 text-center">
-        <%= image_tag("https://www.gravatar.com/avatar/#{testimonial.creator_avatar_url}?s=60", class: 'mb-3') %>
+        <%= image_tag("https://www.gravatar.com/avatar/#{testimonial.creator_avatar_url}&s=60", class: 'mb-3') %>
         <%= fa_icon 'quote-right', class: 'testimonial-quote'%>
         <%= testimonial.message %>
         <p class="text-center mt-3 mb-0"><strong><em><%= testimonial.creator.titleize %></em></strong></p>

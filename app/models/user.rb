@@ -22,6 +22,6 @@ class User < ApplicationRecord
   def create_avatar_url
     email_address = self.email.downcase
     hash = Digest::MD5.hexdigest(email_address)
-    self.avatar_url = hash
+    self.avatar_url = "#{hash}?d=mm"
   end
 end
