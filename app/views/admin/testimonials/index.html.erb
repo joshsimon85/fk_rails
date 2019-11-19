@@ -52,9 +52,9 @@
             <% @testimonials.each_with_index do |testimonial, idx| %>
               <dl class="row">
                 <dt class="col-lg-auto">Email:</dt>
-                <dd class="col-lg-auto"><%= testimonial.creator.email %></dd>
+                <dd class="col-lg-auto"><%= testimonial.creator_email %></dd>
                 <dt class="col-lg-auto">Name:</dt>
-                <dd class="col-lg-auto"><%= testimonial.creator.full_name %></dd>
+                <dd class="col-lg-auto"><%= testimonial.creator %></dd>
                 <dt class="col-lg-auto">Sent:</dt>
                 <dd class="col-lg-auto"><%= format_datetime(testimonial.created_at) %></dd>
               </dl>

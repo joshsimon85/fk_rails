@@ -7,6 +7,11 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
+      <dl class="row mt-3">
+        <dt class="col-sm-auto"><%= image_tag("https://www.gravatar.com/avatar/#{resource.avatar_url}?s=50") %></dt>
+        <dd class="col-sm-auto"><%= link_to 'Add/Edit avatar image', 'https://en.gravatar.com/support/how-to-sign-up/', :target => '_blank', class: 'd-inline-block mt-2' %></dd>
+      </dl>
+
       <dl class="row form-group">
         <dt class="col-sm-12">
           <%= f.label :email %>

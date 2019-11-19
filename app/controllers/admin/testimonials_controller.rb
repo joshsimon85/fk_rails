@@ -14,7 +14,6 @@ class Admin::TestimonialsController < Admin::BaseController
   def update
     @testimonial = Testimonial.find(params[:id])
     @testimonial.update(
-      :created_by => params[:testimonial][:created_by],
       :message => params[:testimonial][:message],
       :published => params[:testimonial][:published]
     )

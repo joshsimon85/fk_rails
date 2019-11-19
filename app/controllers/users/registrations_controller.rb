@@ -15,9 +15,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    @testimonial = Testimonial.find_by(:user_id => resource.id)
+    super
+  end
 
   # PUT /resource
   # def update

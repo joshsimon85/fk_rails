@@ -1,9 +1,9 @@
 = javascript_pack_tag 'application'
 = render partial: 'shared/nav', locals: { active: '' }
 %main
-  %section.bg-light.container
+  %section.bg-light.partial-60.shadow.rounded.px-4.my-4
     %div.row
-      %div.col-sm-12.mt-5
+      %div.col-sm-12.mt-4
         %h1.mb-1.text-primary LEAVE A TESTIMONIAL
         %p.lead
           We appreciate your feedback
@@ -23,6 +23,9 @@
       = form_with url: new_user_testimonial_path, method: 'post', scope: 'testimonial', local: true, class: 'col' do |f|
         %div.form-row.mb-3.mt-3
           = hidden_field_tag :token, @user.testimonial_token
+          = hidden_field_tag :creator_avatar_url, @user.avatar_url
+          = hidden_field_tag :creator, @user.full_name
+          = hidden_field_tag :creator_email, @user.email
           %div.col
             = f.rich_text_area :message, placeholder: 'Message and Images', id: 'testimonial_message', class: ('field_with_errors' if @testimonial.errors[:message].present?)
         %hr

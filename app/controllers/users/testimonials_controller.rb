@@ -20,7 +20,15 @@ class Users::TestimonialsController < ApplicationController
   def create
     @user = User.find_by(testimonial_token: params[:token])
     if @user
-      @testimonial = Testimonial.create(testimonial_params.merge({user_id: @user.id, created_by: format_name(@user.full_name)}))
+      @testimonial = Testimonial.create(testimonial_params.merge(
+        {
+          user_id: @user.id,
+          creator: params[:creator],
+          creator_email: params[:creator_email],
+          creator_avatar_url: params[:creator_avatar_url]
+        }
+      ))
+
       if @testimonial.valid? && @user
         @user.update(:testimonial_token => User.generate_token)
         SendThankYouEmailJob.perform_later('user', @user.id)
@@ -39,7 +47,7 @@ class Users::TestimonialsController < ApplicationController
 
   def edit
     @user = current_user
-    @testimonial = @user.testimonial
+    @testimonial = Testimonial.find_by(:creator_email => @user.email)
   end
 
   def update
@@ -55,7 +63,7 @@ class Users::TestimonialsController < ApplicationController
   end
 
   def destroy
-    Testimonial.delete(current_user.testimonial.id)
+    Testimonial.find_by(:creator_email => current_user.email).delete
     flash[:success] = 'Your testimonial has been deleted'
     redirect_to edit_user_registration_path
   end
@@ -66,11 +74,6 @@ class Users::TestimonialsController < ApplicationController
 
   def testimonial_params
     params.require(:testimonial).permit(:message)
-  end
-
-  def format_name(creator)
-    name_list = creator.titleize.split(' ')
-    "#{name_list[0]} #{name_list[-1].slice(0)}."
   end
 
   def set_records_count!

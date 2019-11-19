@@ -35,11 +35,11 @@
           <section class="row">
             <dl class="col-sm">
               <dt>Full Name:</dt>
-              <dd><%= @testimonial.creator.full_name.titleize %></dd>
+              <dd><%= @testimonial.creator.titleize %></dd>
             </dl>
             <dl class="col-sm">
               <dt>Email Address:</dt>
-              <dd><%= @testimonial.creator.email %></dd>
+              <dd><%= @testimonial.creator_email %></dd>
             </dl>
             <dl class="col-sm">
               <dt>Submitted:</dt>
@@ -52,17 +52,6 @@
               <% else %>
                 <dd class="text-danger"><%= @testimonial.published %></dd>
               <% end %>
-            </dl>
-            <dl class="col-sm-12">
-              <dt>
-                <%= label_tag 'testimonial[created_by]' do %>
-                  Created By:
-                  <span>(publically viewed)</span>
-                <% end %>
-              </dt>
-              <dd>
-                <%= f.text_field :created_by, class: 'bg-light'%>
-              </dd>
             </dl>
             <dl class="col-sm-12">
               <dt>

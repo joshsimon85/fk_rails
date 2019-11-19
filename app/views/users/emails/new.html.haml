@@ -1,7 +1,7 @@
 = javascript_pack_tag 'application'
 = render partial: 'shared/nav', locals: { active: 'contact' }
 %main
-  %section.container.shadow.border.rounded.my-4
+  %section.partial-60.shadow.border.rounded.px-4.my-4
     %div.row
       %header.col-sm-12.text-center.email-header.mt-4.mb-3
         %h1.text-primary.mb-0.pb-0 GET IN TOUCH WITH US
@@ -20,13 +20,13 @@
     %div.row.mt-3
       = form_with url: contact_path, method: 'post', scope: 'email', local: true, class: 'col' do |f|
         %div.form-row.mb-3
-          %div.col-sm-12.col-md
+          %div.col-sm-12.col-md.mb-3
             = f.text_field :full_name, class: 'form-control form-control-minimal', placeholder: 'Full Name'
-          %div.col-sm-12.col-md
+          %div.col-sm-12.col-md.mb-3
             = f.text_field :email, class: 'form-control form-control-minimal', placeholder: 'Email'
-          %div.col-sm-12.col-md
+          %div.col-sm-12.col-md.mb-3
             = f.text_field :phone_number, class: 'form-control form-control-minimal', placeholder: 'Phone Number'
-        %div.form-row.mb-3.mt-5
+        %div.form-row.mb-3
           %div.col
             = f.rich_text_area :message, placeholder: 'Message', class: ('field_with_errors' if @email.errors[:message].present?)
         %hr
