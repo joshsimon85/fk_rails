@@ -62,7 +62,7 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   config.active_job.queue_adapter     = :sidekiq
   #config.active_job.queue_name_prefix = "rails_franken_kopter_#{Rails.env}"
-
+  config.action_mailer.default_url_options = { :host => "www.frankenkopter.com" }
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
