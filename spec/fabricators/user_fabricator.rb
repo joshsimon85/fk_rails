@@ -12,4 +12,5 @@ Fabricator(:user) do
   created_at             { "2019-10-10 07:41:35" }
   updated_at             { "2019-10-10 07:41:35" }
   admin                  { false }
+  confirmed_at           { "2019-10-10 07:41:35" }
 end

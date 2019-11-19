@@ -37,7 +37,6 @@ RSpec.describe Admin::UsersController do
       let(:user) { Fabricate(:user) }
 
       before(:each) do
-        ActionMailer::Base.deliveries.clear
         sign_in(admin)
         post :send_testimonial_link, params: { id: user.id }
       end

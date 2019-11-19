@@ -47,7 +47,7 @@ RSpec.describe Admin::TestimonialsController do
   describe 'GET edit' do
     let(:user) { Fabricate(:user) }
     let(:admin) { Fabricate(:user, admin: true) }
-    let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+    let(:testimonial) { Fabricate(:testimonial, creator_email: user.email) }
 
     context 'with valid admin credentials' do
       before do
@@ -104,12 +104,12 @@ RSpec.describe Admin::TestimonialsController do
   describe 'POST update' do
     let(:user) { Fabricate(:user) }
     let(:admin) { Fabricate(:user, admin: true) }
-    let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+    let(:testimonial) { Fabricate(:testimonial, creator_email: user.email, creator: user.full_name) }
 
     context 'with valid admin credentials and valid testimonial' do
       before do
         sign_in(admin)
-        post :update, params: { id: testimonial.id, :testimonial => { :created_by => 'Jon D.', :message => 'Testing', :published => true } }
+        post :update, params: { id: testimonial.id, :testimonial => { :message => 'Testing', :published => true } }
       end
 
       it 'sets the flash success message' do
@@ -121,7 +121,7 @@ RSpec.describe Admin::TestimonialsController do
       end
 
       it 'updated the testimonial' do
-        expect(Testimonial.first.created_by).to eq('Jon D.')
+        expect(Testimonial.first.creator).to eq(user.full_name)
         expect(Testimonial.first.message.body.to_s).to include('Testing')
         expect(Testimonial.first.published).to eq(true)
       end
@@ -142,7 +142,7 @@ RSpec.describe Admin::TestimonialsController do
   describe 'DELETE destroy' do
     let(:user) { Fabricate(:user) }
     let(:admin) { Fabricate(:user, admin: true) }
-    let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+    let(:testimonial) { Fabricate(:testimonial, creator_email: user.email) }
 
     it_behaves_like 'requires admin' do
       let(:action) { delete :destroy, params: { :id => 1 } }
@@ -176,8 +176,8 @@ RSpec.describe Admin::TestimonialsController do
     let(:user) { Fabricate(:user) }
     let(:user_2) { Fabricate(:user) }
     let(:admin) { Fabricate(:user, admin: true) }
-    let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
-    let(:testimonial_2) { Fabricate(:testimonial, user_id: user_2.id) }
+    let(:testimonial) { Fabricate(:testimonial, creator_email: user.email) }
+    let(:testimonial_2) { Fabricate(:testimonial, creator_email: user_2.email) }
 
     it_behaves_like 'requires admin' do
       let(:action) { delete :destroy_multiple, params: { :id => 1 } }

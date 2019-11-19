@@ -50,7 +50,7 @@ class Users::TestimonialsController < ApplicationController
   end
 
   def update
-    @testimonial = Testimonial.find(:creator_email => current_user.email)
+    @testimonial = Testimonial.find_by(:creator_email => current_user.email)
     @testimonial.update(:message => params[:testimonial][:message])
     if @testimonial.valid?
       flash[:success] = 'Your testimonail has been updated'

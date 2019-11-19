@@ -69,10 +69,13 @@ RSpec.describe Users::TestimonialsController do
 
     context 'with valid token and valid message' do
       let(:user) { Fabricate(:user) }
-      let(:token) { user.testimonial_token }
 
       before  do
-        post :create, params: { token: user.testimonial_token, testimonial: { message: Faker::Lorem.paragraphs(number: 5).join(', ') } }
+        post :create, params: { token: user.testimonial_token, testimonial: { message: Faker::Lorem.paragraphs(number: 5).join(', ') },
+          creator: user.full_name,
+          creator_email: user.email,
+          creator_avatar_url: user.avatar_url
+        }
       end
 
       it 'sets the flash success message' do
@@ -88,6 +91,7 @@ RSpec.describe Users::TestimonialsController do
       end
 
       it 'generates a new user token for that user' do
+        token = user.testimonial_token
         user.reload
         expect(user.testimonial_token).not_to eq(token)
       end
@@ -110,8 +114,8 @@ RSpec.describe Users::TestimonialsController do
   end
 
   describe 'PATCH update' do
-    let!(:user) { Fabricate(:user) }
-    let!(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+    let(:user) { Fabricate(:user) }
+    let!(:testimonial) { Fabricate(:testimonial, creator: user.full_name, creator_email: user.email) }
 
     it_behaves_like 'requires sign in' do
       let(:action) { patch :update }
@@ -158,7 +162,7 @@ RSpec.describe Users::TestimonialsController do
 
   describe 'DELETE destroy' do
     let!(:user) { Fabricate(:user) }
-    let!(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+    let!(:testimonial) { Fabricate(:testimonial, creator_email: user.email) }
 
     it_behaves_like 'requires sign in' do
       let(:action) { delete :destroy }

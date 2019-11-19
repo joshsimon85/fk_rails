@@ -56,7 +56,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
   gem 'pry'
-  gem 'rspec-rails', '~> 4.0.0.beta2'
+  gem 'rspec-rails', '~> 4.0.0.beta3'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'
   gem 'shoulda-matchers', '~> 4.1', '>= 4.1.2'
 end

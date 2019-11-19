@@ -4,7 +4,7 @@ RSpec.describe Admin::HighlightsController do
   describe 'GET new' do
     let(:admin) { Fabricate(:user, admin: true) }
     let(:user) { Fabricate(:user) }
-    let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+    let(:testimonial) { Fabricate(:testimonial, creator_email: user.email) }
 
     context 'with valid admin credentials' do
       before do
@@ -48,7 +48,7 @@ RSpec.describe Admin::HighlightsController do
   describe 'POST create' do
     let(:admin) { Fabricate(:user, admin: true) }
     let(:user) { Fabricate(:user) }
-    let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+    let(:testimonial) { Fabricate(:testimonial, creator_email: user.email) }
 
     it_behaves_like 'requires admin' do
       let(:action) { post :create, params: { :testimonial_id => 1, :highlight => { :highlight => 'Highlight' } } }
@@ -99,7 +99,7 @@ RSpec.describe Admin::HighlightsController do
   describe 'GET edit' do
     let(:admin) { Fabricate(:user, admin: true) }
     let(:user) { Fabricate(:user) }
-    let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+    let(:testimonial) { Fabricate(:testimonial, creator_email: user.email) }
     let(:hightlight) { Fabricate(:highlight, testimonial_id: testimonial.id) }
 
     it_behaves_like 'requires admin' do
@@ -134,7 +134,7 @@ RSpec.describe Admin::HighlightsController do
     context 'with valid admin and blank highlight' do
       let(:admin) { Fabricate(:user, admin: true) }
       let(:user) { Fabricate(:user) }
-      let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+      let(:testimonial) { Fabricate(:testimonial, creator_email: user.email) }
 
       before do
         Highlight.create(testimonial_id: testimonial.id, highlight: 'Testing')
@@ -158,7 +158,7 @@ RSpec.describe Admin::HighlightsController do
     context 'with valid admin a highlight thats length is too long' do
       let(:admin) { Fabricate(:user, admin: true) }
       let(:user) { Fabricate(:user) }
-      let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+      let(:testimonial) { Fabricate(:testimonial, creator_email: user.email) }
 
       before do
         Highlight.create(testimonial_id: testimonial.id, highlight: 'Testing')
@@ -182,7 +182,7 @@ RSpec.describe Admin::HighlightsController do
     context 'with admin credentials and valid inputs' do
       let(:admin) { Fabricate(:user, admin: true) }
       let(:user) { Fabricate(:user) }
-      let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+      let(:testimonial) { Fabricate(:testimonial, creator_email: user.email) }
 
       before do
         Highlight.create(testimonial_id: testimonial.id, highlight: 'Testing')
@@ -218,7 +218,7 @@ RSpec.describe Admin::HighlightsController do
     context 'with valid admin and blank highlight' do
       let(:admin) { Fabricate(:user, admin: true) }
       let(:user) { Fabricate(:user) }
-      let(:testimonial) { Fabricate(:testimonial, user_id: user.id) }
+      let(:testimonial) { Fabricate(:testimonial, creator_email: user.email) }
 
       before do
         Highlight.create(testimonial_id: testimonial.id, highlight: 'Testing')
