@@ -46,6 +46,8 @@
             <% end %>
           </li>
         </ul>
+        <%= link_to 'Create A Testimonial', new_admin_testimonial_path, class: 'btn btn-outline-primary mb-2' %>
+        <hr>
         <% if @records_count == 0 %>
           <h2 class="h4">You don't have any testimonials to show!</h2>
         <% else %>

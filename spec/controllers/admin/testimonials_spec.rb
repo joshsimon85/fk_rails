@@ -206,4 +206,194 @@ RSpec.describe Admin::TestimonialsController do
       end
     end
   end
+
+  describe 'GET new' do
+    let(:admin) { Fabricate(:user, admin: true) }
+
+    it_behaves_like 'requires admin' do
+      let(:action) { get :new }
+    end
+
+    it_behaves_like 'requires sign in' do
+      let(:action) { get :new }
+    end
+
+    context 'with valid admin credentials' do
+      before do
+        sign_in(admin)
+        get :new
+      end
+
+      it 'renders the new template' do
+        expect(response).to render_template :new
+      end
+    end
+  end
+
+  describe 'POST create' do
+    let(:admin) { Fabricate(:user, admin: true) }
+
+    it_behaves_like 'requires admin' do
+      let(:action) { post :create }
+    end
+
+    it_behaves_like 'requires sign in' do
+      let(:action) { get :create }
+    end
+
+    context 'with valid admin credentials, valid testimonial and valid highlight' do
+      before do
+        sign_in(admin)
+        post :create, :params => {
+          :testimonial => {
+            :creator => 'Jon Doe',
+            :creator_email => 'testimonial@frankenkopter.com',
+            :message => 'Testimonial message',
+            :published => 'true',
+            :highlight  => 'Testimonial highlight'
+          }
+        }
+      end
+
+      it 'sets the flash success message' do
+        expect(flash[:success]).to be_present
+      end
+
+      it 'redirectes to the the admin testimonial path' do
+        expect(response).to redirect_to admin_testimonials_path
+      end
+
+      it 'creates the testimonial and saves it to the db' do
+        expect(Testimonial.first.creator).to eq('Jon Doe')
+      end
+
+      it 'sets the testimonial published to true' do
+        expect(Testimonial.first.published).to eq(true)
+      end
+
+      it 'creates the highlight and saves it to the db' do
+        expect(Testimonial.first.highlight).to be_present
+      end
+    end
+
+    context 'with valid admin credentials and valid testimonial' do
+      before do
+        sign_in(admin)
+        post :create, :params => {
+          :testimonial => {
+            :creator => 'Jon Doe',
+            :creator_email => 'testimonial@frankenkopter.com',
+            :message => 'Testimonial message',
+            :published => 'false',
+            :highlight => ''
+          }
+        }
+      end
+
+      it 'sets the flash success message' do
+        expect(flash[:success]).to be_present
+      end
+
+      it 'redirectes to the the admin testimonial path' do
+        expect(response).to redirect_to admin_testimonials_path
+      end
+
+      it 'creates the testimonial and saves it to the db' do
+        expect(Testimonial.first.creator).to eq('Jon Doe')
+      end
+
+      it 'sets the testimonial published to false' do
+        expect(Testimonial.first.published).to eq(false)
+      end
+
+      it 'creates the highlight and saves it to the db' do
+        expect(Testimonial.first.highlight).not_to be_present
+      end
+    end
+
+    context 'with valid admin credentials and invalid testimonial' do
+      before do
+        sign_in(admin)
+        post :create, :params => {
+          :testimonial => {
+            :creator => 'Jon Doe',
+            :creator_email => 'testimonial@frankenkopter.com',
+            :message => '',
+            :published => 'true',
+            :highlight => ''
+          }
+        }
+      end
+
+      it 'sets the flash error message' do
+        expect(flash[:error]).to be_present
+      end
+
+      it 'renders the new template' do
+        expect(response).to render_template :new
+      end
+
+      it 'creates the testimonial and saves it to the db' do
+        expect(Testimonial.first).not_to be_present
+      end
+    end
+
+    context 'with valid admin credentials and missing creator' do
+      before do
+        sign_in(admin)
+        post :create, :params => {
+          :testimonial => {
+            :creator => '',
+            :creator_email => 'testimonial@frankenkopter.com',
+            :message => 'Testimonial',
+            :published => 'true',
+            :highlight => ''
+          }
+        }
+      end
+
+      it 'sets the flash error message' do
+        expect(flash[:error]).to be_present
+      end
+
+      it 'renders the new template' do
+        expect(response).to render_template :new
+      end
+
+      it 'creates the testimonial and saves it to the db' do
+        expect(Testimonial.first).not_to be_present
+      end
+    end
+
+    context 'with valid admin credentials and invalid highlight' do
+      before do
+        sign_in(admin)
+        post :create, :params => {
+          :testimonial => {
+            :creator => 'Jon Doe',
+            :creator_email => 'testimonial@frankenkopter.com',
+            :message => 'Testimonial',
+            :published => 'true',
+            :highlight => Faker::Lorem.characters(number: 151)
+          }
+        }
+      end
+
+      it 'sets the flash error message' do
+        expect(flash[:error]).to be_present
+      end
+
+      it 'creates the testimonial and saves it to the db' do
+        expect(Testimonial.first).to be_present
+      end
+
+      it 'does not create and save the highlight' do
+        expect(Highlight.first).not_to be_present
+      end
+
+      it 'redirects to the new admin testimonail highlight path' do
+        expect(response).to redirect_to new_admin_testimonial_highlight_path(Testimonial.first.id)
+      end
+    end
+  end
 end

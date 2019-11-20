@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :testimonials, only: [:index, :edit, :update, :delete, :destroy] do
+    resources :testimonials do
       collection do
         delete 'destroy_multiple'
       end

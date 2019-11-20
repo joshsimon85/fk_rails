@@ -20,15 +20,15 @@
     },
     "text_counter": {
       "js": [
-        "/packs/js/text_counter-26bdc5dc036b259bfa9b.js"
+        "/packs/js/text_counter-d297ef483cdea0edf3ba.js"
       ],
       "js.map": [
-        "/packs/js/text_counter-26bdc5dc036b259bfa9b.js.map"
+        "/packs/js/text_counter-d297ef483cdea0edf3ba.js.map"
       ]
     }
   },
   "navbar.js": "/packs/js/navbar-5f55fd980bea7a27db36.js",
   "navbar.js.map": "/packs/js/navbar-5f55fd980bea7a27db36.js.map",
-  "text_counter.js": "/packs/js/text_counter-26bdc5dc036b259bfa9b.js",
-  "text_counter.js.map": "/packs/js/text_counter-26bdc5dc036b259bfa9b.js.map"
+  "text_counter.js": "/packs/js/text_counter-d297ef483cdea0edf3ba.js",
+  "text_counter.js.map": "/packs/js/text_counter-d297ef483cdea0edf3ba.js.map"
 }

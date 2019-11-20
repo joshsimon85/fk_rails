@@ -3,6 +3,32 @@ class Admin::TestimonialsController < Admin::BaseController
   before_action :set_records_count!, only: :index
   before_action :set_pagination_values!, only: :index
 
+  def new
+    @testimonial = Testimonial.new
+  end
+
+  def create
+    @testimonial = create_testimonial
+    if @testimonial.valid?
+      if params[:testimonial][:highlight].present?
+        @highlight = create_highlight
+        if @highlight.valid?
+          flash[:success] = 'Your testimonial has been created!'
+          redirect_to admin_testimonials_path
+        else
+          flash[:error] = 'A problem was encountered while submitting your hightlight'
+          redirect_to new_admin_testimonial_highlight_path(@testimonial)
+        end
+      else
+        flash[:success] = 'Your testimonial has been saved!'
+        redirect_to admin_testimonials_path
+      end
+    else
+      flash.now[:error] = 'Your testimonial could not be submitted'
+      render :new
+    end
+  end
+
   def index
     @testimonials = Testimonial.limit_and_sort(10 * (@current_page - 1), { :created_at => @order }, build_filter)
   end
@@ -40,6 +66,30 @@ class Admin::TestimonialsController < Admin::BaseController
   end
 
   private
+
+  def create_testimonial
+    Testimonial.create(
+      :creator => params[:testimonial][:creator],
+      :creator_email => params[:testimonial][:creator_email],
+      :creator_avatar_url => create_avatar_url(params[:testimonial][:creator_email]),
+      :message => params[:testimonial][:message],
+      :published => params[:testimonial][:published]
+    )
+  end
+
+  def create_highlight
+    Highlight.create(
+      :testimonial_id => @testimonial.id,
+      :highlight => params[:testimonial][:highlight]
+    )
+  end
+
+  def create_avatar_url(email)
+    return unless email
+    email_address = email.downcase
+    hash = Digest::MD5.hexdigest(email_address)
+    "#{hash}?d=mm"
+  end
 
   def set_records_count!
     if @filter

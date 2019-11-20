@@ -30,4 +30,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    attributes:
+      testimonial:
+        creator: 'Full Name'
+        creator_email: 'Email address'
+        message: 'Testimonial'
   hello: "Hello world"

@@ -1,0 +1,86 @@
+<% content_for :title, 'Create A Testimonial' %>
+<%= javascript_pack_tag 'application' %>
+<%= render partial: 'shared/nav', locals: { active: 'dashboard'} %>
+<%= render partial: 'admin/shared/small_nav' %>
+<div class="container-fluid">
+  <div class="row">
+    <%= render partial: 'admin/shared/side_nav' %>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <header class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">
+          Dashboard
+          <span class="lead">/ Testimonials / New</span>
+        </h1>
+      </header>
+      <section class="bg-light p-3 mb-3">
+        <%= form_with model: @testimonial, url: admin_testimonials_path, local: true do |f| %>
+          <% if @testimonial.errors.present? %>
+            <section class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+              <%= button_tag(type: 'button', class: 'close', data: {dismiss: 'alert'}, aria: {label: 'Close'}) do %>
+                <%= content_tag :span, aria: {hidden: 'true'} do %>
+                  &times;
+                <% end %>
+              <% end %>
+              <% error_count = @testimonial.errors.count %>
+              <h4 class="lead bold">
+                The following <%= pluralize(error_count, 'error') %>
+                prevented your testimonial from being saved:
+              </h4>
+              <ul>
+                <% @testimonial.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </section>
+          <% end %>
+          <section class="row">
+            <dl class="col-sm-7">
+              <dt><%= f.label :full_name, 'Full Name:' %></dt>
+              <dd><%= f.text_field :creator, class: 'form-control' %></dd>
+            </dl>
+            <dl class="col-sm-7">
+              <dt><%= f.label :email, 'Email Address:' %></dt>
+              <dd><%= f.text_field :creator_email, :value => 'testimonial@frankenkopter.com', class: 'form-control' %></dd>
+            </dl>
+            <dl class="col-sm-12">
+              <dt>
+                <%= f.label 'testimonial[published]', 'Publish?' %>
+              </dt>
+              <dd>
+                <%= f.select :published, options_for_select([['Yes', true], ['No', false]], true) %>
+              </dd>
+            </dl>
+          </section>
+          <hr class="my-2">
+          <section class="row">
+            <dl class="col-sm">
+              <dt>
+                <%= f.label 'testimonial_message', 'Testimonial:' %>
+              </dt>
+              <dd>
+                <%= f.rich_text_area :message, class: ('field_with_errors' if @testimonial.errors.keys.include?(:message)) %>
+              </dd>
+            </dl>
+          </section>
+          <section class="row">
+            <dl class="col-sm">
+              <dt>
+                <%= f.label 'testimonial_highlight', 'Highlight:' %>
+              </dt>
+              <dd>
+                <%= f.rich_text_area :highlight, id: 'testimonial_highlight' %>
+              </dd>
+            </dl>
+            <p id="characters_remaining" class="text-success col-sm-12"></p>
+          </section>
+          <hr class="pb-2">
+          <section class="form-actions">
+            <%= f.submit 'Submit', class: 'btn btn-outline-primary col-lg-2 mb-2' %>
+            <%= link_to 'Cancel', :back, class: 'btn btn-outline-secondary col-lg-2 mb-2' %>
+          </section>
+        <% end %>
+      </section>
+    </main>
+  </div>
+</div>
+<%= javascript_pack_tag 'text_counter' %>

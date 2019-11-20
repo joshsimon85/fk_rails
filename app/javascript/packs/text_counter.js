@@ -1,6 +1,7 @@
 const $REMAINING = $('#characters_remaining');
 const TOTAL = 150;
-const EDITOR = $('trix-editor').get(0);
+const EDITOR = $('#testimonial_highlight').get(0);
+const $SUBMITBTN = $('input[type=submit]');
 const trixCounter = {
   init: function() {
     this.bindEvents();
@@ -31,9 +32,11 @@ const trixCounter = {
     if (charsRemaining >= 0) {
       $REMAINING.toggleClass('text-success', true);
       $REMAINING.toggleClass('text-danger', false);
+      $SUBMITBTN.attr('disabled', false);
     } else {
       $REMAINING.toggleClass('text-success', false);
       $REMAINING.toggleClass('text-danger', true);
+      $SUBMITBTN.attr('disabled', true);
     }
   }
 };

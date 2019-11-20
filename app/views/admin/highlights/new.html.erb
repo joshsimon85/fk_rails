@@ -35,11 +35,11 @@
           <section class="row">
             <dl class="col-sm">
               <dt>Full Name:</dt>
-              <dd><%= @testimonial.creator.full_name.titleize %></dd>
+              <dd><%= @testimonial.creator.titleize %></dd>
             </dl>
             <dl class="col-sm">
               <dt>Email Address:</dt>
-              <dd><%= @testimonial.creator.email %></dd>
+              <dd><%= @testimonial.creator_email %></dd>
             </dl>
             <dl class="col-sm">
               <dt>Submitted:</dt>
@@ -65,20 +65,21 @@
           <section class="row">
             <dl class="col-sm-12">
               <dt class="mb-2">
-                <%= label_tag 'testimonial[testimonial_highlight]' do %>
+                <%= label_tag 'testimonial_highlight' do %>
                   Highlight:
                   <span>(Truncated Version)</span>
                 <% end %>
               </dt>
               <dd>
-                <%= f.rich_text_area :highlight, class: ('field_with_errors' if @highlight.errors.keys.include?(:highlight)) %>
+                <%= f.rich_text_area :highlight, id: 'testimonial_highlight', class: ('field_with_errors' if @highlight.errors.keys.include?(:highlight)) %>
               </dd>
             </dl>
             <p id="characters_remaining" class="text-success"></p>
           </section>
           <hr class="pb-2">
-          <section class="row container">
-            <%= f.submit 'Create', class: 'btn btn-outline-secondary col-lg-2' %>
+          <section class="form-actions">
+            <%= f.submit 'Create', class: 'btn btn-outline-primary col-lg-2 mb-2' %>
+            <%= link_to 'Cancel', :back, class: 'btn btn-outline-secondary col-lg-2 mb-2' %>
           </section>
         <% end %>
       </section>
