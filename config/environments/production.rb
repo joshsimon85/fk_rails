@@ -96,7 +96,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  Raven.configure do |config|
-    config.dsn = ENV['SENTRY_DSN']
+  Raven.configure do |c|
+    c.dsn = ENV['SENTRY_DSN']
+    c.async = lambda { |event| SentryJob.perform_later(event) }
   end
 end
