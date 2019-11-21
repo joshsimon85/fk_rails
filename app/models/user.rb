@@ -3,7 +3,8 @@ require 'digest/md5'
 class User < ApplicationRecord
   include Tokenable
   include Paginationable
-
+  include Searchable
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :trackable, :timeoutable, :omniauthable, :confirmable

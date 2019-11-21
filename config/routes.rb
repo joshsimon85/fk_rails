@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     post '/send_testimonial_link/:id', to: 'users#send_testimonial_link'
     get '/password/edit', to: 'passwords#edit'
     patch '/password/edit', to: 'passwords#update'
+    get '/search', to: 'searches#index'
   end
 
   root to: 'pages#index'
