@@ -15,7 +15,7 @@ end
 10.times do |n|
   user = User.find(n + 1)
   message = Faker::Lorem.paragraphs(number: 20).join(',')
-  testimonial = Testimonial.create(user_id: n + 1, message: message, published: Faker::Boolean.boolean, creator: user.full_name,  creator_email: user.email, creator_avatar_url: user.avatar_url)
+  testimonial = Testimonial.create(message: message, published: Faker::Boolean.boolean, creator: user.full_name,  creator_email: user.email, creator_avatar_url: user.avatar_url)
   highlight = message.slice(0, 150)
   if (n + 1) < 12
      Highlight.create(testimonial_id: testimonial.id, highlight: highlight)
@@ -25,7 +25,7 @@ end
 11.times do |n|
   user = User.find(n + 11)
   message = Faker::Lorem.paragraphs(number: 10).join(',')
-  testimonial = Testimonial.create(user_id: user.id, message: message, published: Faker::Boolean.boolean, creator: user.full_name, creator_email: user.email, creator_avatar_url: user.avatar_url)
+  testimonial = Testimonial.create(message: message, published: Faker::Boolean.boolean, creator: user.full_name, creator_email: user.email, creator_avatar_url: user.avatar_url)
 end
 
 21.times do

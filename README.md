@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby Version 2.5.7
 
-Things you may want to cover:
+* Run bundle install
 
-* Ruby version
+* Run rake db:migrate
 
-* System dependencies
+* Local dependencies
+This app requires the use of sidekiq and redis, make sure they are set up locally
 
-* Configuration
+Foreman is also used to start the app locally
 
-* Database creation
+* Run test suite
+bundle exec rspec
 
-* Database initialization
+* Seeding the database
+If you want to seed the database start up redis then sidekiq locally then seed the database
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Local development
+To run the app locally user foreman start -f Procfile-dev

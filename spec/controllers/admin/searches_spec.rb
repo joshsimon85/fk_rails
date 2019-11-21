@@ -126,7 +126,7 @@ RSpec.describe Admin::SearchesController do
         end
 
         it 'assigns testimonials with the testimonial from jon@doe.com' do
-          expect(assigns(:testimonials)).to match([testimonial, testimonial2])
+          expect(assigns(:testimonials)).to match_array([testimonial, testimonial2])
         end
       end
     end
@@ -181,7 +181,7 @@ RSpec.describe Admin::SearchesController do
       end
 
       it 'assigns customers with user' do
-        expect(assigns(:customers)).to match([user, user2])
+        expect(assigns(:customers)).to match_array([user, user2])
       end
     end
 
@@ -216,7 +216,7 @@ RSpec.describe Admin::SearchesController do
       end
 
       it 'assigns customers with user' do
-        expect(assigns(:customers)).to match([user])
+        expect(assigns(:customers)).to match_array([user])
       end
     end
 
@@ -282,7 +282,7 @@ RSpec.describe Admin::SearchesController do
         end
 
         it 'assigns emails to a list including the emails' do
-          expect(assigns(:emails)).to match([email, email2])
+          expect(assigns(:emails)).to match_array([email, email2])
         end
       end
     end

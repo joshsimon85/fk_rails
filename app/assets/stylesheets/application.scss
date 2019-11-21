@@ -43,7 +43,7 @@ h1 {
   margin-top: 5px;
   width: 15%;
 }
-// font weights
+// font
 .bold {
   font-weight: bold;
 }
@@ -53,6 +53,9 @@ h1 {
   text-decoration: underline;
 }
 
+.underline {
+  text-decoration: underline;
+}
 // flash error global styling
 .alert-error {
   background-color: #f2dede;

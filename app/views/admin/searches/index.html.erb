@@ -11,9 +11,150 @@
           <span class="lead">/ Search</span>
         </h1>
       </header>
-      <section class="bg-light p-3">
-        <h2 class="h4">Your search rendered <%= pluralize(@record_count, 'result' %>!</h2>
-      </section>
+
+      <h2 class="h4">Your search returned <%= pluralize(@record_count, 'result') %>!</h2>
+      <% if @record_count > 0 %>
+        <section class="bg-light p-3 mt-3">
+          <% if @testimonials.size > 0 %>
+            <h3 class="h5 mb-3 underline">Testimonials</h3>
+            <% @testimonials.each do |testimonial| %>
+              <dl class="row">
+                <dt class="col-lg-auto">Email:</dt>
+                <dd class="col-lg-auto"><%= testimonial.creator_email %></dd>
+                <dt class="col-lg-auto">Name:</dt>
+                <dd class="col-lg-auto"><%= testimonial.creator %></dd>
+                <dt class="col-lg-auto">Sent:</dt>
+                <dd class="col-lg-auto"><%= format_datetime(testimonial.created_at) %></dd>
+              </dl>
+              <dl class="row">
+                <dt class="col-lg-auto">Published:</dt>
+                <% if testimonial.published == true %>
+                  <dd class="col-lg-auto text-success">True</dd>
+                <% else %>
+                  <dd class="col-lg-auto text-danger">False</dd>
+                <% end %>
+              </dl>
+              <dl class="row">
+                <dt class="col-lg-auto">Highlight:</dt>
+                <dd class="col-lg-auto">
+                  <% if testimonial.highlight %>
+                    <%= link_to 'Edit', edit_admin_testimonial_highlight_path(testimonial) %>
+                  <% else %>
+                    <%= link_to 'Create', new_admin_testimonial_highlight_path(testimonial) %>
+                  <% end %>
+                </dd>
+              </dl>
+              <div class="row">
+                <div class="col-sm-12">
+                  <%= check_box_tag "testimonials[#{testimonial.id}]", true %>
+                  <%= link_to 'Edit', edit_admin_testimonial_path(testimonial), class: "btn btn-sm btn-outline-secondary ml-2" %>
+                  <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#testimonial-<%= testimonial.id %>">
+                    Delete
+                  </button>
+                  <div class="modal fade" id="testimonial-<%= testimonial.id %>" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="modal-title-<%= testimonial.id %>">Are you sure you want to delete this testimonial?</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          This action can't be undone
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                          <%= link_to 'Delete', admin_testimonial_path(testimonial, :page => @current_page, :order => @order), method: :delete, class: 'btn btn-outline-danger' %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4">
+            <% end %>
+          <% end %>
+
+          <% if @customers.size > 0 %>
+            <h3 class="h5 mb-3 underline">Customers</h3>
+            <% @customers.each do |customer| %>
+              <% testimonial = Testimonial.find_by(:creator_email => customer.email) %>
+              <section class="row">
+                <dl class="col-sm-12 col-md">
+                  <dt>Full Name</dt>
+                  <dd class="emphasize"><%= customer.full_name%></dd>
+                </dl>
+                <dl class="col-sm-12 col-md">
+                  <dt>Email</dt>
+                  <dd><%= customer.email %></dd>
+                </dl>
+                <% if customer.phone_number %>
+                  <dl class="col-sm-12 col-md">
+                    <dt>Phone Number</dt>
+                    <dd><%= customer.phone_number %></dd>
+                  </dl>
+                <% end %>
+                <dl class="col-sm-12">
+                  <dt>Testimonial Completed</dt>
+                  <% if testimonial %>
+                    <dd>True</dd>
+                  <% else %>
+                    <dd>False</dd>
+                  <% end %>
+                </dl>
+                <% unless testimonial %>
+                  <%= link_to 'Send testimonial link', admin_path(customer.id), method: :post, class: "col-sm-12" %>
+                <% end %>
+              </section>
+              <hr class="my-4">
+            <% end %>
+          <% end %>
+
+          <% if @emails.size > 0 %>
+            <h3 class="h5 mb-3 underline">Emails</h3>
+            <% @emails.each do |email| %>
+              <dl class="row container">
+                <dt class="col-lg-auto">Email:</dt>
+                <dd class="col-lg-auto"><%= email.email %></dd>
+                <dt class="col-lg-auto">Name:</dt>
+                <dd class="col-lg-auto"><%= email.full_name %></dd>
+                <dt class="col-lg-auto">Sent:</dt>
+                <dd class="col-lg-auto"><%= format_datetime(email.created_at) %></dd>
+              </dl>
+              <div class="row">
+                <div class="col-sm-12">
+                  <%= check_box_tag "emails[#{email.id}]", true %>
+                  <%= link_to 'View', admin_email_path(email), class: "btn btn-sm btn-outline-secondary ml-2" %>
+                  <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#email-<%= email.id %>">
+                    Delete
+                  </button>
+                  <div class="modal fade" id="email-<%= email.id %>" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="modal-title-<%= email.id %>">Are you sure you want to delete this email?</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          This action can't be undone
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                          <%= link_to 'Delete', admin_email_path(email, :page => @current_page, :order => @order), method: :delete, class: 'btn btn-outline-danger' %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4">
+            <% end %>
+          <% end %>
+        </section>
+      <% end %>
     </main>
   </div>
 </div>
