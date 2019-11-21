@@ -4,8 +4,8 @@ class Users::EmailsController < ApplicationController
   end
 
   def create
-    @email = Email.create(email_params)
-    if @email.valid?
+    @email = Email.new(email_params)
+    if verify_recaptcha && @email.save
       SendContactEmailJob.perform_later('user', @email.id)
       SendContactEmailJob.perform_later('admin', @email.id)
       flash[:success] = 'Your email has been sent'

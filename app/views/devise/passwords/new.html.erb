@@ -1,7 +1,7 @@
 <% content_for :title, 'Forgotten Password' %>
 <%= render partial: 'shared/nav', locals: { active: 'accounts' } %>
-<main class="partial-60 my-5">
-  <section class="border border-top-0 rounded-bottom shadow p-4 my-3">
+<main class="partial-38">
+  <section class="border border-top-0 rounded-bottom shadow px-2 py-3 mb-3">
     <h1 class="mb-4 text-primary">Forgot your password?</h1>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
@@ -11,13 +11,13 @@
         <dt class="col-sm-12">
           <%= f.label :email %>
         </dt>
-        <dd class="col-sm-12 col-lg-7">
+        <dd class="col-sm-12">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
         </dd>
       </dl>
 
       <div class="form-actions mb-3">
-        <%= f.submit "Send reset password instructions", class: "btn btn-outline-secondary", id: "password-reset" %>
+        <%= invisible_recaptcha_tags text: 'Send reset password instructions', class: 'btn btn-primary w-100', id: "password-reset" %>
       </div>
     <% end %>
     <hr>

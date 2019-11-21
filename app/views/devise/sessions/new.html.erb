@@ -23,7 +23,7 @@
       <% end %>
 
       <div class="actions mb-3">
-        <%= f.submit "Log in", class: 'btn btn-primary w-100' %>
+        <%= invisible_recaptcha_tags ul: :input, text: 'Log in', class: 'btn btn-primary w-100' %>
       </div>
     <% end %>
     <div class="mb-3">
@@ -31,4 +31,3 @@
     </div>
   </section>
 </main>
-<%= render partial: 'shared/footer' %>

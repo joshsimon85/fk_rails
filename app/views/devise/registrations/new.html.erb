@@ -37,7 +37,7 @@
       </div>
 
       <div class="actions mb-3">
-        <%= f.submit "Sign up", class: 'btn btn-primary w-100' %>
+        <%= invisible_recaptcha_tags ui: :input, text: 'Sign up', class: 'btn btn-primary w-100' %>
       </div>
     <% end %>
 

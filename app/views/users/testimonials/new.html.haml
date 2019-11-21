@@ -1,4 +1,4 @@
-= content_for :title, 'New Testimonial' 
+= content_for :title, 'New Testimonial'
 = javascript_pack_tag 'application'
 = render partial: 'shared/nav', locals: { active: '' }
 %main
@@ -31,5 +31,5 @@
             = f.rich_text_area :message, placeholder: 'Message and Images', id: 'testimonial_message', class: ('field_with_errors' if @testimonial.errors[:message].present?)
         %hr
         %div.form-row.mt-3.mb-5
-          = f.submit 'Submit', class: 'col-sm-2 btn btn-primary'
+          = invisible_recaptcha_tags ui: :input, text: 'Submit', class: 'col-sm-2 btn btn-primary'
 = render partial: 'shared/footer'

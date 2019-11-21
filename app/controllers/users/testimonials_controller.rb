@@ -20,7 +20,7 @@ class Users::TestimonialsController < ApplicationController
   def create
     @user = User.find_by(testimonial_token: params[:token])
     if @user
-      @testimonial = Testimonial.create(testimonial_params.merge(
+      @testimonial = Testimonial.new(testimonial_params.merge(
         {
           creator: params[:creator],
           creator_email: params[:creator_email],
@@ -28,7 +28,7 @@ class Users::TestimonialsController < ApplicationController
         }
       ))
 
-      if @testimonial.valid? && @user
+      if verify_recaptcha && @user && @testimonial.save
         @user.update(:testimonial_token => User.generate_token)
         SendThankYouEmailJob.perform_later('user', @user.id)
         SendThankYouEmailJob.perform_later('admin', @user.id)
