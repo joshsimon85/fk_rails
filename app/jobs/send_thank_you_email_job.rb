@@ -1,5 +1,5 @@
 class SendThankYouEmailJob < ApplicationJob
-  queue_as :default
+  queue_as :mailers
 
   rescue_from(ActiveRecord::RecordNotFound) do |exception|
      Report.create(

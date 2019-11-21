@@ -1,5 +1,5 @@
 class SendContactEmailJob < ApplicationJob
-  queue_as :default
+  queue_as :mailers
 
   def perform(type, email_id)
     if type == 'admin'
