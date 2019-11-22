@@ -5,7 +5,7 @@ ruby '2.5.5'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'mailgun-ruby', '~> 1.1.6'
+gem 'mailgun-ruby', '~> 1.2.0'
 gem 'rails', '~> 6.0.0'
 gem 'recaptcha', '~> 5.2', '>= 5.2.1'
 # Use sqlite3 as the database for Active Record
