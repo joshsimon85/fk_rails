@@ -38,5 +38,38 @@ $(function() {
     }
   };
 
+  const $CHEVRON = $('#callout i');
+
+  const animations = {
+    animateChevron: function() {
+      let self = this;
+      $CHEVRON.delay(600).animate({
+        'padding-bottom': '+=50px'
+      }, 500, function() {
+        $CHEVRON.delay(1).animate({
+          'padding-bottom': '-=50px'
+        }, 500, function() {
+          $CHEVRON.delay(1).animate({
+            'padding-bottom': '+=25px'
+          }, 500, function() {
+            $CHEVRON.delay(1).animate({
+              'padding-bottom': '-=25px'
+            }, 500, function() {
+              self.animateChevron();
+            });
+          });
+        });
+      });
+    },
+    bindEvents: function() {
+      this.animateChevron();
+    },
+    init: function() {
+      this.bindEvents();
+    }
+
+  };
+
+  animations.init();
   navbar.init();
 });
