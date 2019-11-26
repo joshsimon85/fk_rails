@@ -1,5 +1,5 @@
 $(function() {
-  const $NAVBAR = $('#landing_nav');
+  const $NAVBAR = $('#landing-nav');
   const $NAVBARALT = $('#navbarNavAltMarkup');
   const $SIGNOUTBTN = $('#sign-out-button');
   const $TOGGLER = $('.navbar-toggler');
@@ -22,7 +22,7 @@ $(function() {
       }
     },
     changeNavBarState: function() {
-      if ($(window).scrollTop() > 55) {
+      if ($(window).scrollTop() > 500) {
         $NAVBAR.addClass('sticky-top');
       } else {
         $NAVBAR.removeClass('sticky-top');
@@ -39,21 +39,25 @@ $(function() {
   };
 
   const $CHEVRON = $('#callout i');
+  const $CTAP = $('.cta > p');
 
   const animations = {
+    attachFade: function() {
+      $CTAP.delay(300).fadeIn(1200);
+    },
     animateChevron: function() {
       let self = this;
       $CHEVRON.delay(600).animate({
-        'padding-bottom': '+=50px'
+        'padding-top': '-=45px'
       }, 500, function() {
         $CHEVRON.delay(1).animate({
-          'padding-bottom': '-=50px'
+          'padding-top': '+=45px'
         }, 500, function() {
           $CHEVRON.delay(1).animate({
-            'padding-bottom': '+=25px'
+            'padding-top': '-=20px'
           }, 500, function() {
             $CHEVRON.delay(1).animate({
-              'padding-bottom': '-=25px'
+              'padding-top': '+=20px'
             }, 500, function() {
               self.animateChevron();
             });
@@ -63,6 +67,7 @@ $(function() {
     },
     bindEvents: function() {
       this.animateChevron();
+      this.attachFade();
     },
     init: function() {
       this.bindEvents();

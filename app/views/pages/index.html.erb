@@ -1,4 +1,4 @@
-<nav id="landing_nav" class="navbar navbar-expand-lg navbar-dark">
+<nav id="landing-nav" class="navbar navbar-expand-lg navbar-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -52,20 +52,90 @@
 <main>
   <section id="callout" class="jumbotron">
     <div class="cta">
-      <h1 class="display-5 text-center">
-        FRANKENKOPTER<br>
-        <span>PERFORMACE</span><br>
-        <span>ENGINEERING</span>
-      </h1>
-      <p class="mt-5 mb-0 lead text-center">
+      <%= link_to '#services', class: 'text-center d-inline-block' do %>
+        <h1 class="display-5 text-center">
+          FRANKENKOPTER<br>
+          <span>PERFORMACE</span><br>
+          <span>ENGINEERING</span>
+        </h1>
+      <% end %>
+      <p class="mt-5 mb-0 lead text-center bold">
         Integrated Performance Solutions
       </p>
-      <p class="lead text-center">
-        releasing the real potential of your aircraft
+      <p class="lead text-center bold">
+        release the real potential of your aircraft
       </p>
     </div>
-    <%= link_to nil do %>
+    <%= link_to '#services' do %>
       <%= fa_icon 'angle-double-down' %>
+    <% end %>
+  </section>
+
+  <section id="services">
+    <h2 class="text-center ally-lines my-4">Services</h2>
+    <ul class="mx-auto">
+      <li class="services-card text-center shadow">
+        <span>
+          <%= fa_icon 'times' %>
+        </span>
+        <h3>Rotorway</h3>
+        <p>
+          We offer a variety of custimizations for rotorway helicopters. Our
+          offerings include: full engine overhauls, hydraulic lifters, forged
+          internals, turbo systems, upgraded stand alone ECUs with custom tuning
+          and upgraded ignition systems
+        </p>
+      </li>
+
+      <li class="services-card text-center shadow">
+        <span>
+          <%= fa_icon 'paper-plane' %>
+        </span>
+        <h3>Fixed Wing</h3>
+        <p>
+          Currently we offer new ignition upgrades for Kitfox with future turbo
+          packages in the works. We are willing to preform other custimizations
+          of any experimental aircraft, just contact us with what you have and
+          what you would like done!
+        </p>
+      </li>
+
+      <li class="services-card text-center shadow">
+        <span>
+          <%= fa_icon 'truck' %>
+        </span>
+        <h3>Shipping</h3>
+        <p>
+          We offer fleet quality transport to ship your aircraft in a completely
+          encolsed trailer by means of a semi truck and a qualified and
+          experienced CDL rated driver.
+        </p>
+      </li>
+
+      <li class="services-card text-center shadow">
+        <span>
+          <%= fa_icon 'laptop' %>
+        </span>
+        <h3 class="h4">Dyno Tuning</h3>
+        <p>
+          We provide custom ecu tuning on our in-house dyno. This allows for
+          greater power gains over factory settings all while providing a safe
+          and conservative tune for your airfract engine.
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="contact" class="text-center">
+    <h2 class="text-white">Density Altitude and Lack of POWER Got you DOWN?</h2>
+    <h3 class="h4 text-white ally-lines-white">Shoot us a line and we will get you up and flying in no time</h3>
+    <%= link_to 'Connect With Us', contact_path, class: "btn btn-outline-primary" %>
+  </section>
+
+  <section id="partners" class="text-center mb-4">
+    <h2 class="my-4 text-center ally-lines">Partners</h2>
+    <%= link_to 'http://www.sdsefi.com/', target: "_blank" do %>
+      <%= image_tag('sdslogo.jpg') %>
     <% end %>
   </section>
 </main>

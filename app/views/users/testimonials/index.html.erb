@@ -6,7 +6,7 @@
     <hr class="break">
     <p class="lead">See what people are saying about us!</p>
   </header>
-  <section class="card-columns mt-5">
+  <section id="testimonials" class="card-columns mt-5">
     <% @testimonials.each do |testimonial| %>
       <section class="card shadow border rounded p-4 my-3 text-center">
         <%= image_tag("https://www.gravatar.com/avatar/#{testimonial.creator_avatar_url}&s=60", class: 'mb-3') %>
