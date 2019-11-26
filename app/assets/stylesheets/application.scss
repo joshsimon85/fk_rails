@@ -18,11 +18,52 @@
 @import 'font-awesome';
 @import 'bootstrap';
 
-// Main For Footer
-main {
-  min-height: 63vh;
+// Landing Page
+#callout {
+  background: no-repeat url('helicopter.jpg') center center fixed;
+  background-size: cover;
+  border-radius: 0;
+  margin-bottom: 0;
+  min-height: 100vh;
 }
 
+.cta {
+  color: #82DE3C;
+  display: inline-block;
+  text-shadow: -2px 0 black, 0 2px black, 1px 0 black, 0 -1px black;
+  top: 50%;
+  margin-top: -125px;
+  left: 25%;
+  width: 50%;
+  position: absolute;
+}
+
+.cta > h1 {
+  color: #82DE3C;
+  font-family: 'Nosifer', Helvetica, Arial, sans-serif;
+}
+
+.cta > h1 > span {
+  font-size: 28px;
+}
+
+.cta p {
+  font-size: 24px;
+}
+
+#callout a {
+  color: #82DE3C;
+  bottom: 30px;
+  width: 56px;
+  left: 50%;
+  margin-left: -28px;
+  position: absolute;
+  text-shadow: -2px 0 black, 0 2px black, 1px 0 black, 0 -1px black;
+}
+
+#callout i {
+  font-size: 55px;
+}
 // links
 a:hover {
   text-decoration: none;
@@ -98,15 +139,19 @@ h1 {
 
 // Navbar global styling
 .navbar-brand {
-  font-family: 'Nosifer', cursive;
+  font-family: 'Nosifer', Helvetica, Arial, sans-serif;
 }
 
 .navbar-brand span {
   color: #84DF08;
 }
 
-#nav {
+#nav, #landing_nav {
   background: #0c0c0c;
+}
+
+#landing_nav {
+  display: none;
 }
 
 ul.navbar-nav {

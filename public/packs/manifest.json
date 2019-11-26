@@ -10,6 +10,14 @@
         "/packs/js/application-28436a7412efa4c8158a.js.map"
       ]
     },
+    "landing_page_nav": {
+      "js": [
+        "/packs/js/landing_page_nav-df42dcb620773670a0b5.js"
+      ],
+      "js.map": [
+        "/packs/js/landing_page_nav-df42dcb620773670a0b5.js.map"
+      ]
+    },
     "navbar": {
       "js": [
         "/packs/js/navbar-5f55fd980bea7a27db36.js"
@@ -27,6 +35,8 @@
       ]
     }
   },
+  "landing_page_nav.js": "/packs/js/landing_page_nav-df42dcb620773670a0b5.js",
+  "landing_page_nav.js.map": "/packs/js/landing_page_nav-df42dcb620773670a0b5.js.map",
   "navbar.js": "/packs/js/navbar-5f55fd980bea7a27db36.js",
   "navbar.js.map": "/packs/js/navbar-5f55fd980bea7a27db36.js.map",
   "text_counter.js": "/packs/js/text_counter-d297ef483cdea0edf3ba.js",

@@ -1,0 +1,73 @@
+<nav id="landing_nav" class="navbar navbar-expand-lg navbar-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <%= link_to root_path, class: 'nav-link' do %>
+          Home
+          <span class="sr-only">(current)</span>
+        <% end %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to 'About', about_path, class: 'nav-link' %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to 'Contact', contact_path, class: 'nav-link' %>
+      </li>
+
+      <% unless user_signed_in? && current_user.admin? %>
+        <li class="nav-item">
+          <%= link_to 'Testimonials', testimonials_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+
+      <% if user_signed_in? && current_user.admin? %>
+        <li class="nav-item">
+          <%= link_to 'Dashboard', admin_root_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+
+      <% if user_signed_in? && current_user.admin? %>
+        <%= render partial: 'shared/search_dropdown', locals: { active: 'active' } %>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <%= render partial: 'shared/signed_in_dropdown', locals: { active: 'home' } %>
+      <% else %>
+        <%= render partial: 'shared/signed_out_dropdown', locals: { active: 'home' } %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="navbar-nav">
+    <% if user_signed_in? %>
+      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, id: "sign-out-button", class: 'btn btn-outline-primary' %>
+    <% end %>
+  </div>
+</nav>
+
+<main>
+  <section id="callout" class="jumbotron">
+    <div class="cta">
+      <h1 class="display-5 text-center">
+        FRANKENKOPTER<br>
+        <span>PERFROMACE</span><br>
+        <span>ENGINEERING</span>
+      </h1>
+      <p class="mt-5 mb-0 lead text-center">
+        Integrated Performance Solutions
+      </p>
+      <p class="lead text-center">
+        releasing the real potential of your aircraft
+      </p>
+    </div>
+    <%= link_to nil do %>
+      <%= fa_icon 'chevron-down' %>
+    <% end %>
+  </section>
+</main>
+
+<%= render partial: 'shared/footer' %>
