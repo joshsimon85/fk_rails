@@ -45,14 +45,11 @@ $info: #880A91;
 }
 
 #callout {
-  background: no-repeat image-url('helicopter_small.jpg') left center;
+  background: no-repeat image-url('helicopter_small.jpg') left center fixed;
   background-size: cover;
   border-radius: 0;
   margin-bottom: 0;
   min-height: 100vh;
-  min-width: 100vw;
-  margin-left: 0;
-  margin-right: 0;
 }
 
 .cta {
@@ -67,6 +64,7 @@ $info: #880A91;
 .cta a > h1 {
   color: #82DE3C;
   font-family: 'Nosifer', Helvetica, Arial, sans-serif;
+  font-size: 30px;
   transition-property: transform;
   transition-duration: 1s;
 }
@@ -76,12 +74,12 @@ $info: #880A91;
 }
 
 .cta > a > h1 > span {
-  font-size: 28px;
+  font-size: 24px;
 }
 
 .cta p {
   display: none;
-  font-size: 24px;
+  font-size: 16px;
 }
 
 #callout .cta + a {
@@ -98,7 +96,7 @@ $info: #880A91;
 }
 
 #callout i {
-  font-size: 55px;
+  font-size: 40px;
   padding-top: 45px;
 }
 
@@ -550,7 +548,11 @@ dt > label > span {
   }
 }
 
-@media (min-width: 576px) and (orientation: portrait) {
+@media (min-width: 576px) {
+
+}
+
+@media (min-width: 768px) {
   #callout {
     background: no-repeat image-url('helicopter.jpg') center center fixed;
     background-size: cover;
@@ -558,10 +560,32 @@ dt > label > span {
     margin-bottom: 0;
     min-height: 100vh;
   }
-}
 
-@media (min-width: 768px) and (orientation: portrait) {
+  .cta a > h1 {
+    color: #82DE3C;
+    font-family: 'Nosifer', Helvetica, Arial, sans-serif;
+    font-size: 36px;
+    transition-property: transform;
+    transition-duration: 1s;
+  }
 
+  .cta a > h1:hover {
+    transform: scale(1.1);
+  }
+
+  .cta > a > h1 > span {
+    font-size: 28px;
+  }
+
+  .cta p {
+    display: none;
+    font-size: 20px;
+  }
+
+  #callout i {
+    font-size: 55px;
+    padding-top: 45px;
+  }
 }
 
 @media (min-width: 992px) {
