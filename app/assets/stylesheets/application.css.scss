@@ -556,6 +556,14 @@ dt > label > span {
 }
 
 @media (min-width: 992px) {
+  #landing-page section:nth-of-type(1n+3) {
+    margin-top: 5em;
+  }
+
+  #landing-page section:last-of-type {
+    margin-bottom: 3em;
+  }
+
   #callout {
     background: no-repeat image-url('helicopter.jpg') center center fixed;
     background-size: cover;

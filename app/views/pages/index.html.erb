@@ -47,7 +47,7 @@
   </div>
 </nav>
 
-<main>
+<main id="landing-page">
   <section id="callout" class="jumbotron">
     <% if current_user %>
       <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'pull-right btn btn-outline-primary'  %>
@@ -133,7 +133,7 @@
   <section id="contact" class="text-center">
     <h2 class="text-white">Density Altitude and Lack of POWER Got you DOWN?</h2>
     <h3 class="h4 text-white ally-lines-white">Shoot us a line and we will get you up and flying in no time</h3>
-    <%= link_to 'Connect With Us', contact_path, class: "btn btn-outline-primary" %>
+    <%= link_to 'Connect With Us', contact_path, class: "btn btn-primary" %>
   </section>
 
   <% unless @highlights.empty? %>
