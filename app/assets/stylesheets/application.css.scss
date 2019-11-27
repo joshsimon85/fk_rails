@@ -178,7 +178,7 @@ $primary: #880A91;
 }
 
 #partners {
-  border-top: 1px solid #cecece;
+  background: #cecece;
 }
 
 #partners a img {
@@ -558,10 +558,6 @@ dt > label > span {
 @media (min-width: 992px) {
   #landing-page section:nth-of-type(1n+3) {
     margin-top: 5em;
-  }
-
-  #landing-page section:last-of-type {
-    margin-bottom: 3em;
   }
 
   #callout {
