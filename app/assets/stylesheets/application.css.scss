@@ -553,6 +553,10 @@ dt > label > span {
 }
 
 @media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
   #callout {
     background: no-repeat image-url('helicopter.jpg') center center fixed;
     background-size: cover;
@@ -586,9 +590,7 @@ dt > label > span {
     font-size: 55px;
     padding-top: 45px;
   }
-}
-
-@media (min-width: 992px) {
+  
   #sign-out-btn {
     position: relative;
     bottom: 40px;
