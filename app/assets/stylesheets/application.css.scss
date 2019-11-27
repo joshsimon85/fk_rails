@@ -49,19 +49,15 @@ $info: #880A91;
   background-size: cover;
   border-radius: 0;
   margin-bottom: 0;
-  min-width: 100%;
   min-height: 100vh;
 }
 
 .cta {
   color: #82DE3C;
-  display: inline-block;
-  text-align: center;
   text-shadow: -2px 0 black, 0 2px black, 1px 0 black, 0 -1px black;
   top: 50%;
-  margin-top: -125px;
-  left: 25%;
-  width: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   position: absolute;
 }
 
@@ -495,7 +491,7 @@ dt > label > span {
   width: 65px;
 }
 
-// Froms
+// Forms
 .form-actions > input[type="submit"] {
   margin-right: 10px;
 }
