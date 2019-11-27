@@ -50,9 +50,9 @@
 <main>
   <section id="callout" class="jumbotron">
     <% if current_user %>
-      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'pull-right btn btn-outline-info'  %>
+      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'pull-right btn btn-outline-primary'  %>
     <% else %>
-      <%= link_to 'Sign In', new_user_session_path, class: 'pull-right btn btn-outline-info' %>
+      <%= link_to 'Sign In', new_user_session_path, class: 'pull-right btn btn-outline-primary' %>
     <% end %>
 
     <div class="cta">
@@ -133,7 +133,7 @@
   <section id="contact" class="text-center">
     <h2 class="text-white">Density Altitude and Lack of POWER Got you DOWN?</h2>
     <h3 class="h4 text-white ally-lines-white">Shoot us a line and we will get you up and flying in no time</h3>
-    <%= link_to 'Connect With Us', contact_path, class: "btn btn-primary" %>
+    <%= link_to 'Connect With Us', contact_path, class: "btn btn-outline-primary" %>
   </section>
 
   <% unless @highlights.empty? %>

@@ -14,8 +14,7 @@
  * require_tree .
  * require_self
  */
-$primary: #546AE3;
-$info: #880A91;
+$primary: #880A91;
 
 @import url('https://fonts.googleapis.com/css?family=Nosifer&display=swap');
 @import 'font-awesome';
@@ -590,7 +589,7 @@ dt > label > span {
     font-size: 55px;
     padding-top: 45px;
   }
-  
+
   #sign-out-btn {
     position: relative;
     bottom: 40px;
