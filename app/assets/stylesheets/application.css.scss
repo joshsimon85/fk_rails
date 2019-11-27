@@ -15,6 +15,8 @@
  * require_self
  */
 $primary: #546AE3;
+$info: #880A91;
+
 @import url('https://fonts.googleapis.com/css?family=Nosifer&display=swap');
 @import 'font-awesome';
 @import 'bootstrap';
@@ -25,10 +27,6 @@ $primary: #546AE3;
 }
 
 // Landing Page
-#callout > a:first-of-type {
-  color: #880A91;
-}
-
 #highlights h2 a {
   color: #202529;
 }
@@ -249,20 +247,8 @@ h1 {
   text-decoration: underline;
 }
 // flash error global styling
-.alert-error {
-  background-color: #f2dede;
-  border-color: #eed3d7;
-  color: #b94a48;
-  text-align: left;
-}
-
-.alert-recaptcha_error {
-  background-color: #f2dede;
-  border-color: #eed3d7;
-  color: #b94a48;
-  text-align: left;
-}
-
+.alert-error,
+.alert-recaptcha_error,
 .alert-alert {
   background-color: #f2dede;
   border-color: #eed3d7;
@@ -270,14 +256,7 @@ h1 {
   text-align: left;
 }
 
-.alert-success {
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-  color: #468847;
-  text-align: left;
-}
-
-.alert-notice {
+.alert-success, .alert-notice {
   background-color: #dff0d8;
   border-color: #d6e9c6;
   color: #468847;

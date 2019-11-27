@@ -50,9 +50,9 @@
 <main>
   <section id="callout" class="jumbotron">
     <% if current_user %>
-      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'pull-right'  %>
+      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'pull-right btn btn-outline-info'  %>
     <% else %>
-      <%= link_to 'Sign In', new_user_session_path, class: 'pull-right' %>
+      <%= link_to 'Sign In', new_user_session_path, class: 'pull-right btn btn-outline-info' %>
     <% end %>
 
     <div class="cta">
