@@ -40,19 +40,17 @@
           <%= link_to 'Contact', contact_path, class: 'nav-link' %>
         </li>
       <% end %>
-      <% unless user_signed_in? && current_user.admin? %>
-        <% if active['testimonials'] %>
-          <li class="nav-item active">
-            <%= link_to testimonials_path, class: 'nav-link' do %>
-              Testimonials
-              <span class="sr-only">(current)</span>
-              <% end %>
-            </li>
-          <% else %>
-          <li class="nav-item">
-            <%= link_to 'Testimonials', testimonials_path, class: 'nav-link' %>
+      <% if active['testimonials'] %>
+        <li class="nav-item active">
+          <%= link_to testimonials_path, class: 'nav-link' do %>
+            Testimonials
+            <span class="sr-only">(current)</span>
+            <% end %>
           </li>
-        <% end %>
+        <% else %>
+        <li class="nav-item">
+          <%= link_to 'Testimonials', testimonials_path, class: 'nav-link' %>
+        </li>
       <% end %>
       <% if user_signed_in? && current_user.admin? %>
         <% if active['dashboard'] %>

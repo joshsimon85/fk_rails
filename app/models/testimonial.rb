@@ -19,6 +19,6 @@ class Testimonial < ApplicationRecord
                  .to_a
     else
       []
-    end 
+    end
   end
 end

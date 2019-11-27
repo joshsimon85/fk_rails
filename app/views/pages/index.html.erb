@@ -1,4 +1,4 @@
-<nav id="landing-nav" class="navbar navbar-expand-lg navbar-dark">
+<nav id="landing-nav" class="navbar navbar-expand-lg navbar-dark sticky-top">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -19,11 +19,9 @@
         <%= link_to 'Contact', contact_path, class: 'nav-link' %>
       </li>
 
-      <% unless user_signed_in? && current_user.admin? %>
-        <li class="nav-item">
-          <%= link_to 'Testimonials', testimonials_path, class: 'nav-link' %>
-        </li>
-      <% end %>
+      <li class="nav-item">
+        <%= link_to 'Testimonials', testimonials_path, class: 'nav-link' %>
+      </li>
 
       <% if user_signed_in? && current_user.admin? %>
         <li class="nav-item">
@@ -42,25 +40,31 @@
       <% end %>
     </ul>
   </div>
-  <div class="navbar-nav">
+  <div class="navbar-nav pull-right">
     <% if user_signed_in? %>
-      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, id: "sign-out-button", class: 'btn btn-outline-primary' %>
+      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, id: "sign-out-btn", class: 'btn btn-outline-primary' %>
     <% end %>
   </div>
 </nav>
 
 <main>
   <section id="callout" class="jumbotron">
+    <% if current_user %>
+      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'pull-right'  %>
+    <% else %>
+      <%= link_to 'Sign In', new_user_session_path, class: 'pull-right' %>
+    <% end %>
+
     <div class="cta">
       <%= link_to '#services', class: 'text-center d-inline-block' do %>
         <h1 class="display-5 text-center">
           FRANKENKOPTER<br>
-          <span>PERFORMACE</span><br>
+          <span>PERFORMANCE</span><br>
           <span>ENGINEERING</span>
         </h1>
       <% end %>
       <p class="mt-5 mb-0 lead text-center bold">
-        Integrated Performance Solutions
+        Integrated Aircraft Performance Solutions
       </p>
       <p class="lead text-center bold">
         release the real potential of your aircraft
@@ -129,11 +133,60 @@
   <section id="contact" class="text-center">
     <h2 class="text-white">Density Altitude and Lack of POWER Got you DOWN?</h2>
     <h3 class="h4 text-white ally-lines-white">Shoot us a line and we will get you up and flying in no time</h3>
-    <%= link_to 'Connect With Us', contact_path, class: "btn btn-outline-primary" %>
+    <%= link_to 'Connect With Us', contact_path, class: "btn btn-primary" %>
   </section>
 
-  <section id="partners" class="text-center mb-4">
-    <h2 class="my-4 text-center ally-lines">Partners</h2>
+  <% unless @highlights.empty? %>
+    <section id="highlights" class="text-center py-4">
+      <h2 class="ally-lines mb-4">
+        <%=link_to 'What Our Customers Are Saying', testimonials_path %>
+      </h2>
+      <div id="highlights-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <% @highlights.each_with_index do |h, idx| %>
+            <% t = h.testimonial %>
+
+            <% if idx == 0 %>
+              <div class="carousel-item active">
+                <dl>
+                  <dt></dt>
+                  <dd><%= image_tag("https://www.gravatar.com/avatar/#{t.creator_avatar_url}&s=100", class: 'mb-3 avatar') %></dd>
+                </dl>
+                <dl>
+                  <dt></dt>
+                  <dd><%= h.highlight %></dd>
+                  <dd>- <em><%= t.creator %></em> -</dd>
+                </dl>
+              </div>
+            <% else %>
+              <div class="carousel-item">
+                <dl>
+                  <dt></dt>
+                  <dd><%= image_tag("https://www.gravatar.com/avatar/#{t.creator_avatar_url}&s=100", class: 'mb-3 avatar') %></dd>
+                </dl>
+                <dl>
+                  <dt></dt>
+                  <dd><%= h.highlight %></dd>
+                  <dd><em>- <%= t.creator %></em> -</dd>
+                </dl>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <a class="carousel-control-prev" href="#highlights-carousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#highlights-carousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </section>
+  <% end %>
+
+  <section id="partners" class="text-center py-4">
+    <h2 class="mb-4 text-center ally-lines">Partners</h2>
     <%= link_to 'http://www.sdsefi.com/', target: "_blank" do %>
       <%= image_tag('sdslogo.jpg') %>
     <% end %>

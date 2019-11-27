@@ -1,7 +1,7 @@
 $(function() {
   const $NAVBAR = $('#landing-nav');
   const $NAVBARALT = $('#navbarNavAltMarkup');
-  const $SIGNOUTBTN = $('#sign-out-button');
+  const $SIGNOUTBTN = $('#sign-out-btn');
   const $TOGGLER = $('.navbar-toggler');
 
   const navbar = {
@@ -22,10 +22,12 @@ $(function() {
       }
     },
     changeNavBarState: function() {
-      if ($(window).scrollTop() > 500) {
-        $NAVBAR.addClass('sticky-top');
+      let windowHeight = $(window).height();
+
+      if ($(window).scrollTop() > windowHeight) {
+        $NAVBAR.show();
       } else {
-        $NAVBAR.removeClass('sticky-top');
+        $NAVBAR.hide();
       }
     },
     bindEvents: function() {
@@ -75,6 +77,25 @@ $(function() {
 
   };
 
+  const $LINKS = $('a[href="#services"]');
+
+  const scroll = {
+    smoothScroll: function(e) {
+      e.preventDefault();
+
+      $([document.documentElement, document.body]).animate({
+        scrollTop: $('#services').offset().top
+      });
+    },
+    bindEvents: function() {
+      $LINKS.on('click', this.smoothScroll.bind(this));
+    },
+    init: function() {
+      this.bindEvents();
+    }
+  };
+
   animations.init();
   navbar.init();
+  scroll.init();
 });
