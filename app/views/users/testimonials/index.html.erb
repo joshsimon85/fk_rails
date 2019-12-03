@@ -60,5 +60,17 @@
       <% end %>
     </ul>
   </nav>
+  <div class="backdrop">
+    <%= link_to nil, id: "modal-close"  do %>
+      <%= fa_icon 'times'%>
+    <% end %>
+  </div>
+  <figure id="lightbox-image" class="full-size-image">
+    <img src="" alt="">
+    <figcaption class="attachment__caption">
+
+    </figcaption>
+  </figure>
 </main>
 <%= render partial: 'shared/footer' %>
+<%= javascript_pack_tag 'lightbox' %>

@@ -25,6 +25,42 @@ $primary: #880A91;
   border-radius: 100px;
 }
 
+
+// Testimonial Modal
+#modal-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+#modal-close i {
+  color: #fff;
+  font-size: 2rem;
+}
+
+#testimonials .full-size-image {
+  display: none;
+}
+
+#lightbox-image {
+  position: fixed;
+  z-index: 10001;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.backdrop {
+  background: rgba(0,0,0,0.7);
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+}
+
 // Landing Page
 #highlights h2 a {
   color: #202529;
