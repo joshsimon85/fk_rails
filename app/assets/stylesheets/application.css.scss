@@ -29,8 +29,8 @@ $primary: #880A91;
 // Testimonial Modal
 #modal-close {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 1rem;
+  right: 1rem;
 }
 
 #modal-close i {
@@ -48,6 +48,11 @@ $primary: #880A91;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#lightbox-image img {
+  max-height: 80vh;
+  max-width: 100vw;
 }
 
 #lightbox-image figcaption{
@@ -541,8 +546,8 @@ dt > label > span {
 
 // Break points
 @media (min-width: 0px) {
-  .avatar {
-    max-width: 80px;
+  #testimonials .avatar {
+    width: 80px;
   }
 
   #admin-side-nav {
