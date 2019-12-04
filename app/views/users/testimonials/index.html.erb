@@ -9,10 +9,10 @@
   <section id="testimonials" class="card-columns mt-5">
     <% @testimonials.each do |testimonial| %>
       <section class="card shadow border rounded p-4 my-3 text-center">
-        <%= image_tag("https://www.gravatar.com/avatar/#{testimonial.creator_avatar_url}&s=80", class: 'mb-3 avatar') %>
+        <%= image_tag("https://www.gravatar.com/avatar/#{testimonial.creator_avatar_url}&s=80", class: 'avatar') %>
+        <p class="text-center mt-1 mb-3"><strong><em><%= testimonial.creator.titleize %></em></strong></p>
         <%= fa_icon 'quote-right', class: 'testimonial-quote'%>
         <%= testimonial.message %>
-        <p class="text-center mt-3 mb-0"><strong><em><%= testimonial.creator.titleize %></em></strong></p>
       </section>
     <% end %>
   </section>
@@ -66,9 +66,8 @@
     <% end %>
   </div>
   <figure id="lightbox-image" class="full-size-image">
-    <img src="" alt="">
+    <img class="img-fluid" src="">
     <figcaption class="attachment__caption">
-
     </figcaption>
   </figure>
 </main>

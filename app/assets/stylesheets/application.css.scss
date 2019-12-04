@@ -35,7 +35,7 @@ $primary: #880A91;
 
 #modal-close i {
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.75rem;
 }
 
 #testimonials .full-size-image {
@@ -48,6 +48,13 @@ $primary: #880A91;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#lightbox-image figcaption{
+  color: #fff;
+  font-size: 1.5em;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .backdrop {
@@ -534,6 +541,10 @@ dt > label > span {
 
 // Break points
 @media (min-width: 0px) {
+  .avatar {
+    max-width: 80px;
+  }
+
   #admin-side-nav {
     display: none;
   }
@@ -584,7 +595,9 @@ dt > label > span {
 }
 
 @media (min-width: 576px) {
-
+  .avatar {
+    max-width: auto;
+  }
 }
 
 @media (min-width: 768px) {

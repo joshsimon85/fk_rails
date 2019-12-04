@@ -6,7 +6,7 @@
   </figure>
 
   <figure class="full-size-image attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
-    <%= image_tag blob.representation(resize_to_limit: [ 1024, 768 ]) %>
+    <%= image_tag blob.representation(resize_to_limit: [ 900 , 768 ]) %>
 
     <% if caption = blob.try(:caption) %>
       <figcaption class="attachment__caption">

@@ -4,10 +4,13 @@ const $lightBoxContainer = $('#lightbox-image')
 const lightbox = {
   showModal:function(e) {
     let $thumbnail = $(e.currentTarget);
-    let $fullSizeImage = $thumbnail.next('.full-size-image').find('img');
+    let $fullSizeFigure = $thumbnail.next('.full-size-image');
+    let caption = $fullSizeFigure.find('figcaption').text();
+    let $fullSizeImage = $fullSizeFigure.find('img');
     let source = $fullSizeImage.attr('src');
-    // deal with caption
+
     $lightBoxContainer.find('img').prop('src', source);
+    $lightBoxContainer.find('figcaption').text(caption);
     $backdrop.show();
     $lightBoxContainer.show();
   },
