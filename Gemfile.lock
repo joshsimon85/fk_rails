@@ -189,7 +189,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     public_suffix (4.0.1)
-    puma (3.12.1)
+    puma (3.12.2)
     rack (2.0.7)
     rack-protection (2.0.7)
       rack
@@ -357,7 +357,7 @@ DEPENDENCIES
   omniauth (~> 1.9)
   pg (~> 1.1, >= 1.1.4)
   pry
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 6.0.0)
   rails-controller-testing (~> 1.0, >= 1.0.4)
   recaptcha (~> 5.2, >= 5.2.1)
