@@ -4,8 +4,14 @@
       CONNECT <span class="footer-social-small">with</span> US
       </span>
       <span class="footer-social-overlap footer-social-icons-wrapper">
+        <%= link_to 'https://www.facebook.com', class: "generic-anchor", target: "_blank" do %>
+          <%= fa_icon 'facebook-square' %>
+        <% end %>
         <%= link_to contact_path, class: "generic-anchor" do %>
           <%= fa_icon 'envelope' %>
+        <% end %>
+        <%= link_to 'https://www.instagram.com/kaseykoch55/', class: "generic-anchor", target: "_blank" do %>
+          <%= fa_icon 'instagram' %>
         <% end %>
       </span>
   </section>

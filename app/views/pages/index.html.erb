@@ -133,7 +133,22 @@
   <section id="contact" class="text-center">
     <h2 class="text-white">Density Altitude and Lack of POWER Got you DOWN?</h2>
     <h3 class="h4 text-white ally-lines-white">Shoot us a line and we will get you up and flying in no time</h3>
-    <%= link_to 'Connect With Us', contact_path, class: "btn btn-primary" %>
+    <div class="row justify-content-center">
+      <%= link_to 'https://www.facebook.com', class: "col-sm-12 col-md-2 btn btn-primary mb-1", target: "_blank" do %>
+        <%= fa_icon 'facebook-square' %>
+        Facebook
+      <% end %>
+
+      <%= link_to contact_path, class: "col-sm-12 col-md-2 btn btn-primary mb-1" do %>
+        <%= fa_icon 'envelope' %>
+        Email
+      <% end %>
+
+      <%= link_to 'https://www.instagram.com/kaseykoch55/', class: "col-sm-12 col-md-2 btn btn-primary mb-1", target: "_blank" do %>
+        <%= fa_icon 'instagram' %>
+
+      <% end %>
+    </div>
   </section>
 
   <% unless @highlights.empty? %>

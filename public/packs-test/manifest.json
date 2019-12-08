@@ -20,10 +20,10 @@
     },
     "lightbox": {
       "js": [
-        "/packs-test/js/lightbox-771478a9dced9753f69f.js"
+        "/packs-test/js/lightbox-c42100195457b246878b.js"
       ],
       "js.map": [
-        "/packs-test/js/lightbox-771478a9dced9753f69f.js.map"
+        "/packs-test/js/lightbox-c42100195457b246878b.js.map"
       ]
     },
     "navbar": {
@@ -45,8 +45,8 @@
   },
   "landing_page.js": "/packs-test/js/landing_page-da400c0e033a173627f1.js",
   "landing_page.js.map": "/packs-test/js/landing_page-da400c0e033a173627f1.js.map",
-  "lightbox.js": "/packs-test/js/lightbox-771478a9dced9753f69f.js",
-  "lightbox.js.map": "/packs-test/js/lightbox-771478a9dced9753f69f.js.map",
+  "lightbox.js": "/packs-test/js/lightbox-c42100195457b246878b.js",
+  "lightbox.js.map": "/packs-test/js/lightbox-c42100195457b246878b.js.map",
   "navbar.js": "/packs-test/js/navbar-7934e03ec5612e3f3854.js",
   "navbar.js.map": "/packs-test/js/navbar-7934e03ec5612e3f3854.js.map",
   "text_counter.js": "/packs-test/js/text_counter-3296c7723fe0f87d4fe6.js",

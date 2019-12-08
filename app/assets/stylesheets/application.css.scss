@@ -25,7 +25,13 @@ $primary: #880A91;
   border-radius: 100px;
 }
 
-
+// Testimonials Images
+.thumbnail > img {
+  box-shadow: 3px 3px 1px 0px rgba(0, 0, 0, .4);
+}
+.thumbnail > img:hover {
+  cursor: pointer;
+}
 // Testimonial Modal
 #modal-close {
   position: absolute;
@@ -419,6 +425,10 @@ footer .flex-rw {
   margin-left: 0.38em
 }
 
+.footer-social-overlap > a:last-of-type {
+  margin-right: 0;
+}
+
 .footer-bottom-section {
   width: 100%;
   padding: 10px;
@@ -606,7 +616,10 @@ dt > label > span {
 }
 
 @media (min-width: 768px) {
-
+  #contact a {
+    margin-right: 1em;
+    margin-left: 1em;
+  }
 }
 
 @media (min-width: 992px) {
