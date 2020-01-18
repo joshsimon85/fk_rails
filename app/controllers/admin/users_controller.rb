@@ -6,6 +6,12 @@ class Admin::UsersController < Admin::BaseController
     @customers = User.limit_and_sort(10 * (@current_page - 1), { :full_name => @order }, { :admin => false })
   end
 
+  def destroy
+    User.destroy(params[:id])
+    flash[:success] = 'The account has been successfully removed'
+    redirect_to admin_customers_path
+  end
+
   def send_testimonial_link
     SendTestimonialLinkEmailJob.perform_later(params[:id])
     flash[:success] = 'A link for the testimonial has been sent'

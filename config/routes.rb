@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
 
     get '/customers', to: 'users#index'
+    delete '/customers/delete/:id', to: 'users#destroy', as: 'delete_customer'
     get '/profile/edit', to: 'admins#edit'
     patch '/profile/edit', to: 'admins#update'
     post '/send_testimonial_link/:id', to: 'users#send_testimonial_link'

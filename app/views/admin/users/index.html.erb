@@ -37,12 +37,14 @@
                 <dt>Email</dt>
                 <dd><%= customer.email %></dd>
               </dl>
-              <% if customer.phone_number %>
-                <dl class="col-sm-12 col-md">
-                  <dt>Phone Number</dt>
+              <dl class="col-sm-12 col-md">
+                <dt>Phone Number</dt>
+                <% if customer.phone_number && !customer.phone_number.empty?%>
                   <dd><%= customer.phone_number %></dd>
-                </dl>
-              <% end %>
+                <% else %>
+                  <dd>Non Given</dd>
+                <% end %>
+              </dl>
               <dl class="col-sm-12">
                 <dt>Testimonial Completed</dt>
                 <% if testimonial %>
@@ -51,9 +53,44 @@
                   <dd>False</dd>
                 <% end %>
               </dl>
+              <dl class="col-sm-12">
+                <dt>Verified Account?</dt>
+                <% if customer.confirmed_at %>
+                  <dd>True</dd>
+                <% else %>
+                  <dd>False</dd>
+                <% end %>
+              </dl>
+
+              <button type="button" class="ml-3 btn btn-sm btn-outline-danger mb-3" data-toggle="modal" data-target="#deleteCustomer">
+                Delete this Account?
+              </button>
+
+              <div class="modal fade" id="deleteCustomer" tabindex="-1" role="dialog" aria-labelledby="deleteCustomer" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Delete Customer?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure you want to delete
+                      <%= customer.full_name %>'s account?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <%= button_to "Delete", admin_delete_customer_path(customer.id), class: "btn btn-danger", method: :delete %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <% unless testimonial %>
                 <%= link_to 'Send testimonial link', admin_path(customer.id), method: :post, class: "col-sm-12" %>
               <% end %>
+
             </section>
             <hr class="mb-4">
           <% end %>
