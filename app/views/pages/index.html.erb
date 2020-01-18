@@ -133,19 +133,24 @@
   <section id="contact" class="text-center">
     <h2 class="text-white">Density Altitude and Lack of POWER Got you DOWN?</h2>
     <h3 class="h4 text-white ally-lines-white">Shoot us a line and we will get you up and flying in no time</h3>
-    <div class="row justify-content-center">
-      <%= link_to 'https://www.facebook.com', class: "col-sm-12 col-md-2 btn btn-primary mb-1", target: "_blank" do %>
-        <%= fa_icon 'facebook-square' %>
-        Facebook
+    <div class="row w-75 mx-auto my-5 justify-content-center">
+      <%= link_to "tel:7192513973", class: "col-sm-12 col-md-2 text-primary mx-0 my-2" do %>
+        <%= fa_icon 'phone', class: 'd-block h2 mb-0' %>
+        719-251-3973
       <% end %>
 
-      <%= link_to contact_path, class: "col-sm-12 col-md-2 btn btn-primary mb-1" do %>
-        <%= fa_icon 'envelope' %>
+      <%= link_to contact_path, class: "col-sm-12 col-md-2 text-primary my-2 mx-0" do %>
+        <%= fa_icon 'envelope', class: 'd-block h2 mb-0' %>
         Email
       <% end %>
 
-      <%= link_to 'https://www.instagram.com/kaseykoch55/', class: "col-sm-12 col-md-2 btn btn-primary mb-1", target: "_blank" do %>
-        <%= fa_icon 'instagram' %>
+      <%= link_to 'https://www.facebook.com', class: "col-sm-12 col-md-2 text-primary my-2 mx-0", target: "_blank" do %>
+        <%= fa_icon 'facebook-square', class: 'd-block h2 mb-0' %>
+        Facebook
+      <% end %>
+
+      <%= link_to 'https://www.instagram.com/kaseykoch55/', class: "col-sm-12 col-md-2 text-primary my-2 mx-0", target: "_blank" do %>
+        <%= fa_icon 'instagram', class: 'd-block h2 mb-0' %>
         Instagram
       <% end %>
     </div>
