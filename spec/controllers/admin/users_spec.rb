@@ -54,4 +54,36 @@ RSpec.describe Admin::UsersController do
       end
     end
   end
+
+  describe 'DELETE destroy' do
+    it_behaves_like 'requires admin' do
+      let(:action) { delete :destroy, params: { id: 1 } }
+    end
+
+    it_behaves_like 'requires sign in' do
+      let(:action) { delete :destroy, params: { id: 1 } }
+    end
+
+    context 'with valid admin credentials' do
+      let(:admin) { Fabricate(:user, admin: true) }
+      let(:user) { Fabricate(:user) }
+
+      before(:each) do
+        sign_in(admin)
+        delete :destroy, params: { id: user.id }
+      end
+
+      it 'sets the flash success message' do
+        expect(flash[:success]).to be_present
+      end
+
+      it 'redirects to the customers path' do
+        expect(response).to redirect_to admin_customers_path
+      end
+
+      it 'deletes the user account' do
+        expect { User.find(1) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 end
