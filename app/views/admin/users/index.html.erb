@@ -26,7 +26,7 @@
         <% if @records_count == 0 %>
           <h2 class="h4">You don't have any customers!</h2>
         <% else %>
-          <% @customers.each do |customer| %>
+          <% @customers.each_with_index do |customer, index| %>
             <% testimonial = Testimonial.find_by(:creator_email => customer.email) %>
             <section class="row">
               <dl class="col-sm-12 col-md">
@@ -62,11 +62,11 @@
                 <% end %>
               </dl>
 
-              <button type="button" class="ml-3 btn btn-sm btn-outline-danger mb-3" data-toggle="modal" data-target="#deleteCustomer">
+              <button type="button" class="ml-3 btn btn-sm btn-outline-danger mb-3" data-toggle="modal" data-target="#deleteCustomer<%= index %>">
                 Delete this Account?
               </button>
 
-              <div class="modal fade" id="deleteCustomer" tabindex="-1" role="dialog" aria-labelledby="deleteCustomer" aria-hidden="true">
+              <div class="modal fade" id="deleteCustomer<%= index %>" tabindex="-1" role="dialog" aria-labelledby="deleteCustomer<%= index %>" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
