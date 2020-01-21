@@ -1,4 +1,3 @@
-// deal with quata exception error if local storage is full
 $(function() {
 
   function Location(resp) {
