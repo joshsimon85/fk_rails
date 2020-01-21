@@ -36,7 +36,6 @@ $(function() {
       window.localStorage.setItem(ip, JSON.stringify(locationData));
     },
     addDensityAltToView: function(weather) {
-      // check weather.elevation for the point elevation
       this.$el.find('h3 span').text(this.physicalLocation);
       this.$el.find('p:first-of-type').text(weather.density_altitude + "'");
       this.$el.find('p:nth-of-type(2) span').text(weather.time);
@@ -90,12 +89,11 @@ $(function() {
 
       if (storedData) {
         let weather = null;
-console.log('api hit');
+
         storedData = JSON.parse(storedData);
         this.addPhysicalLocation(storedData);
         this.fetchWeatherFromStoredLocation(storedData.latitude, storedData.longitude);
       } else {
-console.log('api not hit');
         this.fetchWeatherFromNewLocation();
       }
     },

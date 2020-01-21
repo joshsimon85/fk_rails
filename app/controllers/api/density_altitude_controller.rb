@@ -5,12 +5,12 @@ class Api::DensityAltitudeController < ApplicationController
   def create
     da_args = get_density_alt_params(params[:lat], params[:long])
     da = calculate_density_alt(da_args)
-    corrected_da =  da < da_args[:elevation] ? da_args[:elevation] : da
+    corrected_da =  da < da_args[:elevation] ? da_args[:elevation].round : da
 
     respond_to do |format|
       format.json { render :json =>
         {
-          density_altitude: da,
+          density_altitude: corrected_da,
           elevation: da_args[:elevation].round,
           time: format_time(da_args[:time])
         }
