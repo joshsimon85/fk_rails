@@ -131,9 +131,18 @@
   </section>
 
   <section id="contact" class="text-center">
-    <h2 class="text-white">Density Altitude and Lack of POWER Got you DOWN?</h2>
-    <h3 class="h4 text-white ally-lines-white">Shoot us a line and we will get you up and flying in no time</h3>
-    <div class="row w-75 mx-auto my-5 justify-content-center">
+    <h2 class="text-white mb-5">Density Altitude or Lack of POWER Got you DOWN?</h2>
+    <section class="density-altitude">
+      <h3 class="mb-0">Current Density Altitude for <span class="location"></span></h3>
+      <p class="mt-1 h1 bold"></p>
+      <p class="mb-0 small">Last Updated <span><span></p>
+      <p class="small mb-0">Density Altitude is an approximation</p>
+      <%= link_to 'https://darksky.net/poweredby/', class: 'small d-block mt-2', target: '_blank' do %>
+        Powered By Dark Sky
+      <% end %>
+    </section>
+    <h3 class="h4 mt-5 text-white ally-lines-white">Shoot us a line and we will get you up and flying in no time</h3>
+    <div class="row w-75 mx-auto my-2 justify-content-center">
       <%= link_to "tel:7192513973", class: "col-sm-12 col-md-2 text-primary mx-0 my-2" do %>
         <%= fa_icon 'phone', class: 'd-block h2 mb-0' %>
         719-251-3973
@@ -212,5 +221,7 @@
     <% end %>
   </section>
 </main>
+
+<input type="hidden" name="ip" value="<%= @ip %>">
 
 <%= render partial: 'shared/footer' %>

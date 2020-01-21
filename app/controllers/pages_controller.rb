@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def index
+    @ip = request.remote_ip
     @highlights = Highlight.joins(:testimonial)
                            .where(testimonials: { published: true })
                            .limit(10)

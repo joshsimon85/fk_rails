@@ -121,7 +121,7 @@ GEM
     fabrication (2.21.0)
     faker (2.8.1)
       i18n (>= 1.6, < 1.8)
-    faraday (0.17.1)
+    faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.3)
     font-awesome-rails (4.7.0.5)
@@ -346,6 +346,7 @@ DEPENDENCIES
   dotenv-rails (~> 2.7, >= 2.7.5)
   fabrication (~> 2.20, >= 2.20.2)
   faker (~> 2.4)
+  faraday (~> 0.17.3)
   font-awesome-rails
   haml (~> 5.1, >= 5.1.2)
   image_processing (~> 1.9, >= 1.9.3)
