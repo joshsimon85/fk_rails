@@ -2,9 +2,10 @@ require 'dark_skies_api/client.rb'
 require 'elevation_api/client.rb'
 
 class Api::DensityAltitudeController < ApplicationController
-  def new
+  def create
     da_args = get_density_alt_params(params[:lat], params[:long])
     da = calculate_density_alt(da_args)
+    corrected_da =  da < da_args[:elevation] ? da_args[:elevation] : da
 
     respond_to do |format|
       format.json { render :json =>

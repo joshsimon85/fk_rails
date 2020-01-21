@@ -10,7 +10,7 @@ $(function() {
 
   const DensityAltitude = {
     $el: $('.density-altitude'),
-    getWeather: function(lat, long) {
+    fetchWeather: function(lat, long) {
       return new Promise((resolve, reject) => {
         $.ajax({
           url: window.location.href + 'api/density_altitude',
@@ -42,68 +42,65 @@ $(function() {
       this.$el.find('p:nth-of-type(2) span').text(weather.time);
       this.$el.show();
     },
-    getLocation: function() {
-      let ip = $('[name="ip"]').val();
+    fetchLatLong: function() {
+      return new Promise((resolve, reject) => {
+        $.ajax({
+          url: 'https://ipapi.co/json/',
+          type: 'get',
+          contentType: 'application/json',
+          success: function(response) {
+            resolve(response);
+          },
+          error: function(error) {
+            reject(error);
+          }
+        });
+      });
+    },
+    fetchWeatherFromNewLocation: function() {
       let self = this;
-      //let storedData = this.checkStore(ip);
 
-      // if (storedData) {
-      //   let weather = null;
-      //
-      //   storedData = JSON.parse(storedData);
-      //   this.getWeather(storedData.latitude, storedData.longitude).then(function(data) {
-      //
-      //   });
-      // } else {
-        const locationPromise = new Promise((resolve, reject) => {
-          $.ajax({
-            url: 'https://ipapi.co/json/',
-            type: 'get',
-            contentType: 'application/json',
-            success: function(response) {
-              resolve(response);
-            },
-            error: function(error) {
-              reject(error);
-            }
-          });
-        });
+      this.fetchLatLong().then(function(response) {
+        let locationData = new Location(response);
 
-        locationPromise.then(function(response) {
-          let locationData = new Location(response);
-          self.physicalLocation = locationData.city + ', ' + locationData.regionCode;
-          self.storeData(response.ip, locationData);
+        self.addPhysicalLocation(locationData);
+        self.storeData(response.ip, locationData);
+        return self.fetchWeather(locationData.latitude, locationData.longitude)
+      }).then(function(weather) {
+        self.addDensityAltToView(weather);
+      }).catch(function(error) {
+        console.log(error);
+      });
+    },
+    fetchWeatherFromStoredLocation: function(lat, long) {
+      let self = this;
 
-          return self.getWeather(locationData.latitude, locationData.longitude)
-        }).then(function(weather) {
-          self.addDensityAltToView(weather);
-        }).catch(function(error) {
-          console.log(error);
-        });
-        // locationPromise = new Promise((resolve, reject) => {
-        //   $.getJSON('https://ipapi.co/json/', function(data) {
-        //     resolve(data)
-        //
-        //   });
-        // });
-      //}
-        // $.getJSON('https://ipapi.co/json/', function(data) {
-        //   let locationData = new Location(data);
-        //
-        //   window.localStorage.setItem(data.ip, JSON.stringify(locationData));
-        //
-        //   self.getWeather(locationData.latitude, locationData.longitude)
-        //       .then(function(weather) {
-        //         debugger;
-        //         self.$el.find('span.location').text('')
-        //       }).catch(function(error) {
-        //         console.log(error)
-        //       });
-        // });
-      //}
+      this.fetchWeather(lat, long).then(function(weather) {
+        self.addDensityAltToView(weather);
+      }).catch(function(error) {
+        console.log(error);
+      });
+    },
+    addPhysicalLocation: function(locationObj) {
+      this.physicalLocation = locationObj.city + ', ' + locationObj.regionCode;
+    },
+    fetchDensityAltitude: function() {
+      let ip = $('[name="ip"]').val();
+      let storedData = this.checkStore(ip);
+
+      if (storedData) {
+        let weather = null;
+console.log('api hit');
+        storedData = JSON.parse(storedData);
+        this.addPhysicalLocation(storedData);
+        this.fetchWeatherFromStoredLocation(storedData.latitude, storedData.longitude);
+      } else {
+console.log('api not hit');
+        this.fetchWeatherFromNewLocation();
+      }
     },
     init: function() {
-      this.getLocation();
+      this.fetchDensityAltitude();
     }
   };
 
