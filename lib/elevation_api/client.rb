@@ -44,7 +44,7 @@ module ElevationApi
         conn.use Middleware::StatusCheck
         conn.use Middleware::JSONParsing
         conn.use Middleware::Logging, Rails.logger
-        conn.use Middleware::Cache, Storage::Redis.new
+        conn.use Middleware::Cache, Storage::Redis.new(REDIS)
         conn.adapter Faraday.default_adapter
       end
     end
