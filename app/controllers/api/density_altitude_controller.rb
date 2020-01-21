@@ -32,6 +32,7 @@ class Api::DensityAltitudeController < ApplicationController
 
   def get_density_alt_params(lat, long)
     result = {}
+    
     result[:elevation] = fetch_elevation(lat, long) * 3.281
     weather = fetch_weather(lat, long)
     result[:pressure] = weather['currently']['pressure']
