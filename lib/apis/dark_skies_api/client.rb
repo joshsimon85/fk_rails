@@ -2,39 +2,37 @@ require_relative 'middleware/logging'
 require_relative 'middleware/status_check'
 require_relative 'middleware/json_parsing'
 require_relative 'middleware/cache'
-#require_relative 'storage/memcached'
 require_relative 'storage/redis'
 
-module ElevationApi
+module DarkSkiesApi
 
   class Error < StandardError; end
   class RequestFailure < Error; end
   class ConfiguartionError < Error; end
 
   class Client
-    attr_reader :url, :lat, :long
+    attr_reader :url
 
-    BASE_URL = "https://elevation-api.io/api/elevation"
+    BASE_URL = "https://api.darksky.net/forecast/#{ENV['DARK_SKIES_SECRET_KEY']}/"
 
     def initialize(lat, long)
-      @lat = lat
-      @long = long
-      set_url
+      set_url(lat, long)
     end
 
-    def set_url
-      @url = "#{BASE_URL}"
+    def set_url(lat, long)
+      @url = "#{BASE_URL}#{lat},#{long}"
     end
 
-    def fetch_elevation
+    def fetch_weather
       resp = connection.get url do |req|
         req.params = {
-          points: "(#{lat},#{long})",
-          key: ENV['ELEVATION_SECRET_KEY']
+          exclude: 'minutely,hourly,daily,alerts,flags',
+          lan: 'en',
+          units: 'us'
         }
       end
 
-      resp.body['elevations'][0]['elevation']
+      resp.body
     end
 
     def connection
