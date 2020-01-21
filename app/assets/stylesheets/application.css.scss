@@ -37,8 +37,13 @@ button:focus {
   font-weight: 100;
 }
 
+.density-altitude > p:nth-of-type(2), .density-altitude > p:nth-of-type(3)  {
+  font-weight: normal;
+}
+
 .density-altitude > a {
   color: #82DE3C;
+  font-weight: normal;
   text-transform: uppercase;
 }
 // Avatars
