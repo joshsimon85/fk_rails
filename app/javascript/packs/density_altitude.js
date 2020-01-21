@@ -30,7 +30,7 @@ $(function() {
       });
     },
     checkStore: function(ip) {
-      return window.localStorage.getItem(ip);
+      return window.localStorage.getItem(+ip);
     },
     storeData: function(ip, locationData) {
       window.localStorage.setItem(ip, JSON.stringify(locationData));
