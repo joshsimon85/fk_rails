@@ -4,6 +4,9 @@
       CONNECT <span class="footer-social-small">with</span> US
       </span>
       <span class="footer-social-overlap footer-social-icons-wrapper">
+        <%= link_to "tel:7192513973", class: "generic-anchor", :title => '719-251-3973', :data => { :toggle => 'tooltip', :placement => 'top' } do %>
+          <%= fa_icon 'phone' %>
+        <% end %>
         <%= link_to 'https://www.facebook.com', class: "generic-anchor", target: "_blank" do %>
           <%= fa_icon 'facebook-square' %>
         <% end %>

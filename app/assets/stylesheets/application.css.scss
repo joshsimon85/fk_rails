@@ -269,7 +269,6 @@ button:focus {
 // Heading ally-line
 .ally-lines:before, .ally-lines:after {
   content: '';
-  display: inline-block;
   width: 100px;
   height: 1px;
   background: #000;
@@ -278,7 +277,6 @@ button:focus {
 
 .ally-lines-white:before, .ally-lines-white:after {
   content: '';
-  display: inline-block;
   width: 100px;
   height: 1px;
   background: #fff;
@@ -633,6 +631,18 @@ dt > label > span {
   .dropdown-menu .dropdown-divider {
     display: none;
   }
+
+  .ally-lines:before, .ally-lines:after {
+    display: none;
+  }
+
+  .ally-lines-white:before, .ally-lines-white:after {
+    display: none;
+  }
+
+  .ally-lines-white, .ally-lines {
+    text-decoration: underline;
+  }
 }
 
 @media (min-width: 576px) {
@@ -649,6 +659,18 @@ dt > label > span {
 }
 
 @media (min-width: 992px) {
+  .ally-lines, .ally-lines-white {
+    text-decoration: none;
+  }
+  
+  .ally-lines:before, .ally-lines:after {
+    display: inline-block;
+  }
+
+  .ally-lines-white:before, .ally-lines-white:after {
+    display: inline-block;
+  }
+
   #landing-page section:nth-of-type(1n+3) {
     margin-top: 5em;
   }

@@ -30,6 +30,9 @@ $(function() {
         $NAVBAR.hide();
       }
     },
+    enableToolTips: function() {
+      $('[data-toggle="tooltip"]').tooltip();
+    },
     bindEvents: function() {
       $TOGGLER.on('click', this.changeSignOutState.bind(this));
       $(window).on('resize', this.changeBtnState.bind(this));
@@ -37,6 +40,7 @@ $(function() {
     },
     init: function() {
       this.bindEvents();
+      this.enableToolTips();
     }
   };
 
