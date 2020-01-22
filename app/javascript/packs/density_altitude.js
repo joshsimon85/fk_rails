@@ -38,7 +38,7 @@ $(function() {
     addDensityAltToView: function(weather) {
       this.$el.find('h3 span').text(this.physicalLocation);
       this.$el.find('p:first-of-type').text(weather.density_altitude + "'");
-      this.$el.find('p:nth-of-type(2) span').text(weather.time);
+      this.$el.find('p:nth-of-type(2) span').text(this.toLocalTimeDate(weather.time));
       this.$el.show();
     },
     fetchLatLong: function() {
@@ -96,6 +96,34 @@ $(function() {
       } else {
         this.fetchWeatherFromNewLocation();
       }
+    },
+    formatTimeZone: function(date) {
+      const regex = /\(.+\)/g;
+      let match = date.toString().match(regex)[0];
+      var timeZonePars;
+
+      if (match) {
+        timeZoneParts = match.replace(/[\(\)]/g, '').split(' ');
+        return timeZoneParts.map(function(part) {
+          return part[0].toUpperCase();
+        }).join('');
+      }
+    },
+    formatTimeString: function(date) {
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let ampm = hours >= 12 ? 'pm' : 'am';
+
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      minutes = minutes < 10 ? '0'+ minutes : minutes;
+      return hours + ':' + minutes + ampm;
+    },
+    toLocalTimeDate: function(dateTime) {
+      const DAYS = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
+      const NEWDATE = new Date(dateTime);
+  
+      return DAYS[NEWDATE.getDay()] + ' ' + NEWDATE.toLocaleDateString() + ' ' + this.formatTimeString(NEWDATE) + ' ' + this.formatTimeZone(NEWDATE);
     },
     init: function() {
       this.fetchDensityAltitude();
