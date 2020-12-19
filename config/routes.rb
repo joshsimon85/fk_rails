@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   get '/testimonials', to: 'users/testimonials#index'
   get '/testimonial/:token', to: 'users/testimonials#new', as: 'new_user_testimonial'
   post '/testimonial/:token', to: 'users/testimonials#create'
+  get '/photos', to: 'users/photos#index'
   get 'expired_token', to: 'users/testimonials#expired_token', as: 'expired_token'
   get 'api/density_altitude', to: 'api/density_altitude#create'
 end

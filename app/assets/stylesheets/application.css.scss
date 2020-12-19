@@ -124,7 +124,7 @@ button:focus {
 }
 
 #callout {
-  background: no-repeat image-url('helicopter_small.jpg') left center;
+  background: no-repeat image-url('rotorway.jpg') left center;
   background-size: cover;
   border-radius: 0;
   margin-bottom: 0;
@@ -662,7 +662,7 @@ dt > label > span {
   .ally-lines, .ally-lines-white {
     text-decoration: none;
   }
-  
+
   .ally-lines:before, .ally-lines:after {
     display: inline-block;
   }
@@ -676,7 +676,7 @@ dt > label > span {
   }
 
   #callout {
-    background: no-repeat image-url('helicopter.jpg') center center fixed;
+    background: no-repeat image-url('rotorway.jpg') center center fixed;
     background-size: cover;
     border-radius: 0;
     margin-bottom: 0;

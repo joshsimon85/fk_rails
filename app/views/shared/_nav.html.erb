@@ -40,6 +40,18 @@
           <%= link_to 'Contact', contact_path, class: 'nav-link' %>
         </li>
       <% end %>
+      <% if active['photos'] %>
+        <li class="nav-item active">
+          <%= link_to photos_path, class: 'nav-link' do %>
+            Photos
+            <span class="sr-only">(current)</span>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'Photos', photos_path, class: 'nav-link' %>
+        </li>
+      <% end %>
       <% if active['testimonials'] %>
         <li class="nav-item active">
           <%= link_to testimonials_path, class: 'nav-link' do %>
