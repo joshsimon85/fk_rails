@@ -1,6 +1,6 @@
 <%= content_for :title, 'Photos' %>
 <%= render partial: 'shared/nav', locals: { active: 'photos' } %>
-<main>
+<main class="photos">
   <header class="my-4">
     <h1 class="text-center text-primary mb-3">FrankenKopter Rotorway Photos</h1>
   </header>
@@ -9,10 +9,18 @@
       <% @images.each do |img| %>
         <li class="col-lg-4 col-md-6 col-sm-12 mb-5">
           <a href="#">
-            <%= image_tag "photos/#{img}", class: 'd-block w-100' %>
+            <%= image_tag "photos/#{img}", class: 'd-block w-100 thumb' %>
           </a>
         </li>
       <% end %>
     </ul>
   </div>
 </main>
+<div class="overlay d-none"></div>
+<div class="image-modal d-none">
+  <button id="modal-close" type="button" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <img src="" alt="" id="image">
+</div>
+<%= javascript_pack_tag 'image_modal.js' %>
