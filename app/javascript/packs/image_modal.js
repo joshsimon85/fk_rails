@@ -6,7 +6,6 @@ $(function () {
   const imageModal = {
     handleClick: function(e) {
       e.preventDefault();
-
       $img.attr('src', $(e.target).attr('src'));
       $overlay.toggleClass('d-none');
       $modal.toggleClass('d-none');

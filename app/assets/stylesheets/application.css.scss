@@ -792,10 +792,10 @@ dt > label > span {
 }
 
 .image-modal {
-  position: absolute;
-  width: 70%;
-  top: 15%;
-  left:  15%;
+  position: fixed;
+  top: 50% !important;
+  left: 50%;
+  transform: translate(-50%, -45%);
   z-index: 101;
 }
 
