@@ -20,6 +20,14 @@
         "/packs-test/js/density_altitude-f44e77ce71a1b7ca19b8.js.map"
       ]
     },
+    "image_modal": {
+      "js": [
+        "/packs-test/js/image_modal-cf8f89c035cf433ee2ec.js"
+      ],
+      "js.map": [
+        "/packs-test/js/image_modal-cf8f89c035cf433ee2ec.js.map"
+      ]
+    },
     "landing_page": {
       "js": [
         "/packs-test/js/landing_page-75a8fd948bfad16946d4.js"
@@ -53,6 +61,8 @@
       ]
     }
   },
+  "image_modal.js": "/packs-test/js/image_modal-cf8f89c035cf433ee2ec.js",
+  "image_modal.js.map": "/packs-test/js/image_modal-cf8f89c035cf433ee2ec.js.map",
   "landing_page.js": "/packs-test/js/landing_page-75a8fd948bfad16946d4.js",
   "landing_page.js.map": "/packs-test/js/landing_page-75a8fd948bfad16946d4.js.map",
   "lightbox.js": "/packs-test/js/lightbox-c42100195457b246878b.js",
