@@ -40,7 +40,7 @@
       <% if user_signed_in? %>
         <%= render partial: 'shared/signed_in_dropdown', locals: { active: 'home' } %>
       <% else %>
-        <%= render partial: 'shared/signed_out_dropdown', locals: { active: 'home' } %>
+        <% render partial: 'shared/signed_out_dropdown', locals: { active: 'home' } %>
       <% end %>
     </ul>
   </div>

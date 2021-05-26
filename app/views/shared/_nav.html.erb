@@ -84,7 +84,7 @@
       <% if user_signed_in? %>
         <%= render partial: 'shared/signed_in_dropdown', locals: { active: active } %>
       <% else %>
-        <%= render partial: 'shared/signed_out_dropdown', locals: { active: active } %>
+        <% render partial: 'shared/signed_out_dropdown', locals: { active: active } %>
       <% end %>
     </ul>
   </div>

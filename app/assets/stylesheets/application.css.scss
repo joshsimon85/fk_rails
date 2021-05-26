@@ -391,6 +391,14 @@ ul.navbar-nav {
 }
 
 // Footer
+div.bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
 footer {
   background: black;
   width: 100%;
