@@ -353,9 +353,13 @@ h1 {
 #nav, #landing-nav {
   background: #0c0c0c;
 }
-
+/*
 #landing-nav {
   display: none;
+}
+*/
+.nav-item.active > .nav-link {
+  color: #FFF !important;
 }
 
 ul.navbar-nav {
@@ -691,6 +695,10 @@ dt > label > span {
     transition-duration: 1s;
   }
 
+  .cta a {
+    text-decoration: none;
+  }
+
   .cta a > h1:hover {
     transform: scale(1.1);
   }
@@ -800,14 +808,24 @@ dt > label > span {
 }
 
 #modal-close {
+  background: transparent;
+  border: none;
   color: #82DE3C;
-  font-size: 25px;
+  font-size: 40px;
 }
 
 #image {
   display: inline-block;
   width: 100%;
 }
-@media (min-width: 1200px) {
 
+@media (max-width: 992px) {
+  .image-modal {
+    width: 95%;
+  }
+  #image {
+    display: inline-block;
+    width: 100%;
+  }
 }
+
